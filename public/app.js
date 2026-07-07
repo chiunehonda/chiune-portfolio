@@ -3,7 +3,7 @@ const projects = [
     title: "SUBC Submarine Drivetrain",
     category: "mechanical",
     year: "2025-2026",
-    image: "public/assets/subc-gearbox-cad.webp",
+    image: "assets/subc-gearbox-cad.webp",
     alt: "CAD render of a submarine drivetrain gearbox",
     summary:
       "A compact human-powered submarine drivetrain focused on power transfer, shaft alignment, manufacturability, and reliability underwater.",
@@ -16,17 +16,17 @@ const projects = [
     impact:
       "Reduced drivetrain complexity, improved alignment control, lowered the risk of gear skipping, and made the assembly more consistent through precision-machined housing plates and clearer bearing seats.",
     gallery: [
-      "public/assets/subc-gearbox-cad.webp",
-      "public/assets/subc-housing-cad.webp",
-      "public/assets/subc-build.webp",
-      "public/assets/subc-submarine.webp"
+      "assets/subc-gearbox-cad.webp",
+      "assets/subc-housing-cad.webp",
+      "assets/subc-build.webp",
+      "assets/subc-submarine.webp"
     ]
   },
   {
     title: "Hydroelectric Generator",
     category: "mechatronics",
     year: "APSC Build",
-    image: "public/assets/hydro-test.webp",
+    image: "assets/hydro-test.webp",
     alt: "Hydroelectric generator prototype with circuit testing",
     summary:
       "A water-powered turbine and gearbox system designed to spin a DC motor and power an LED.",
@@ -39,16 +39,16 @@ const projects = [
     impact:
       "Produced upward of 4.7 volts and demonstrated the link between torque, gear ratios, mechanical energy transfer, and basic circuit behavior.",
     gallery: [
-      "public/assets/hydro-test.webp",
-      "public/assets/hydro-propeller.webp",
-      "public/assets/portfolio-page-hydro.webp"
+      "assets/hydro-test.webp",
+      "assets/hydro-propeller.webp",
+      "assets/portfolio-page-hydro.webp"
     ]
   },
   {
     title: "V6 Engine CAD Model",
     category: "mechanical",
     year: "Independent CAD Project",
-    image: "public/assets/v6-engine.webp",
+    image: "assets/v6-engine.webp",
     alt: "CAD render of a V6 engine model",
     summary:
       "A 55-plus part SolidWorks assembly exploring engine architecture, piston motion, crankshaft mates, and detailed part modeling.",
@@ -61,16 +61,16 @@ const projects = [
     impact:
       "Built fluency with advanced SolidWorks features and learned how detailed part constraints affect full assembly behavior.",
     gallery: [
-      "public/assets/v6-engine.webp",
-      "public/assets/v6-piston.webp",
-      "public/assets/v6-rod.webp"
+      "assets/v6-engine.webp",
+      "assets/v6-piston.webp",
+      "assets/v6-rod.webp"
     ]
   },
   {
     title: "APSC 101 Study Guide",
     category: "documentation",
     year: "2026",
-    image: "public/assets/portfolio-page-subc.webp",
+    image: "assets/portfolio-page-subc.webp",
     alt: "Portfolio page preview used as documentation visual",
     summary:
       "A structured engineering study resource assembled from course notes, quizzes, textbook questions, and module material.",
@@ -82,13 +82,13 @@ const projects = [
       "Organized module material, quiz references, textbook questions, and HTML/PDF notes into a navigable study package that made review more direct.",
     impact:
       "Created a practical learning system that shows organization, documentation discipline, and the ability to turn messy information into a usable tool.",
-    gallery: ["public/assets/portfolio-page-subc.webp"]
+    gallery: ["assets/portfolio-page-subc.webp"]
   },
   {
     title: "StarSolutions Electronics Exposure",
     category: "mechatronics",
     year: "Industry Experience",
-    image: "public/assets/subc-build.webp",
+    image: "assets/subc-build.webp",
     alt: "Engineering build environment",
     summary:
       "Industry exposure to circuit assembly, soldering, product testing, certification, and practical electrical engineering workflows.",
@@ -100,7 +100,7 @@ const projects = [
       "Assisted with basic circuit assembly and soldering while observing professional workflows around testing, certification, and hardware troubleshooting.",
     impact:
       "Strengthened interest in mechatronics by connecting mechanical design instincts with electronics, embedded systems, and product-level validation.",
-    gallery: ["public/assets/subc-build.webp"]
+    gallery: ["assets/subc-build.webp"]
   }
 ];
 
