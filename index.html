@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Chiune Honda engineering portfolio showcasing mechanical design, CAD, FEA, prototyping, submarine drivetrain work, and mechatronics projects."
+    />
+    <title>Chiune Honda | Engineering Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="#top" aria-label="Chiune Honda home">
+        <span class="brand-mark">CH</span>
+        <span>Chiune Honda</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="mobile-nav">
+        <span>Menu</span>
+      </button>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Mobile navigation">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="hero-copy">
+          <p class="eyebrow">UBC Engineering - Mechanical design, prototyping, mechatronics</p>
+          <h1>Building mechanical systems that move from CAD to hardware.</h1>
+          <p class="hero-intro">
+            I am a UBC engineering student focused on mechanical design, drivetrain systems,
+            CAD, FEA, manufacturing, and the point where hardware starts becoming intelligent.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">View Projects</a>
+            <a class="button secondary" href="#contact">Get In Touch</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Portrait and engineering project preview">
+          <img class="portrait" src="public/assets/headshot.webp" alt="Chiune Honda portrait" />
+          <div class="hero-card">
+            <img src="public/assets/subc-gearbox-cad.webp" alt="SUBC gearbox CAD model" />
+            <div>
+              <span>Featured Work</span>
+              <strong>SUBC submarine drivetrain</strong>
+              <p>Bevel gearbox, shaft analysis, FEA, CNC housing, assembly constraints.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats section" aria-label="Portfolio highlights">
+        <div>
+          <strong>2:1</strong>
+          <span>SUBC bevel gearbox ratio</span>
+        </div>
+        <div>
+          <strong>6061-T6</strong>
+          <span>Aluminum drivetrain housing</span>
+        </div>
+        <div>
+          <strong>4.7 V</strong>
+          <span>Hydroelectric generator output</span>
+        </div>
+        <div>
+          <strong>55+</strong>
+          <span>Parts in V6 engine CAD build</span>
+        </div>
+      </section>
+
+      <section class="section intro-grid">
+        <div>
+          <p class="section-kicker">What this portfolio is about</p>
+          <h2>Practical engineering work, presented clearly.</h2>
+        </div>
+        <p>
+          This site organizes my projects around problem framing, engineering decisions,
+          tools used, and results. The goal is to make each project scannable for recruiters,
+          technical teams, and design team leads while still showing the details that matter.
+        </p>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Selected Projects</p>
+            <h2>Case studies</h2>
+          </div>
+          <div class="filters" aria-label="Project filters">
+            <button class="filter-button active" type="button" data-filter="all">All</button>
+            <button class="filter-button" type="button" data-filter="mechanical">Mechanical</button>
+            <button class="filter-button" type="button" data-filter="mechatronics">Mechatronics</button>
+            <button class="filter-button" type="button" data-filter="documentation">Documentation</button>
+          </div>
+        </div>
+        <div class="project-grid" data-project-grid></div>
+      </section>
+
+      <section class="section feature-band" id="experience">
+        <div>
+          <p class="section-kicker">Experience</p>
+          <h2>Hands-on work across design, manufacturing, and electronics.</h2>
+        </div>
+        <div class="experience-list">
+          <article>
+            <span>Design Team</span>
+            <h3>UBC SUBC - Drivetrain</h3>
+            <p>
+              Worked on underwater drivetrain design involving CAD modelling, stress analysis,
+              manufacturing constraints, shafts, bearings, and subsystem integration.
+            </p>
+          </article>
+          <article>
+            <span>Industry Exposure</span>
+            <h3>StarSolutions - Electronics</h3>
+            <p>
+              Shadowed engineers and assisted with circuit assembly, soldering, product testing,
+              certification exposure, and hardware-focused problem solving.
+            </p>
+          </article>
+          <article>
+            <span>Academic Build</span>
+            <h3>Hydroelectric Generator</h3>
+            <p>
+              Built a turbine, gearbox, DC motor, and circuit system that produced enough voltage
+              to power an LED through water-driven rotation.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section process" id="process">
+        <div>
+          <p class="section-kicker">Engineering Approach</p>
+          <h2>How I think through builds.</h2>
+        </div>
+        <div class="process-steps">
+          <article>
+            <span>01</span>
+            <h3>Frame the problem</h3>
+            <p>Start with the failure mode, constraint, or performance target before choosing a design direction.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Model the system</h3>
+            <p>Use CAD, free-body diagrams, calculations, and simulation to make decisions visible.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Prototype for reality</h3>
+            <p>Design around manufacturing, tolerance, assembly order, access, and maintainability.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Communicate clearly</h3>
+            <p>Turn technical work into concise design rationale that other people can build from.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div>
+          <p class="section-kicker">Contact</p>
+          <h2>Open to design teams, co-op roles, and technical projects.</h2>
+          <p>
+            This first version is ready for your LinkedIn, GitHub, email, resume, and more project
+            media once you want to make it public.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a class="button primary" href="mailto:replace-with-your-email@example.com">Email Me</a>
+          <a class="button secondary" href="#" aria-label="LinkedIn placeholder">LinkedIn</a>
+          <a class="button secondary" href="#" aria-label="Resume placeholder">Resume</a>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="project-modal" data-modal>
+      <div class="modal-inner">
+        <button class="modal-close" type="button" data-modal-close>Close</button>
+        <div data-modal-content></div>
+      </div>
+    </dialog>
+
+    <footer class="site-footer">
+      <p>Chiune Honda - Engineering Portfolio</p>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
