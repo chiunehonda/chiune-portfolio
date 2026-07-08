@@ -2,19 +2,20 @@ const projects = [
   {
     title: "SUBC Submarine Drivetrain",
     category: "mechanical",
-    year: "2025-2026",
+    categoryLabel: "Mechanical",
+    year: "2025–2026",
     image: "assets/subc-gearbox-cad.webp",
-    alt: "CAD render of a submarine drivetrain gearbox",
+    alt: "SolidWorks render of the SUBC submarine drivetrain gearbox",
     summary:
-      "A compact human-powered submarine drivetrain focused on power transfer, shaft alignment, manufacturability, and reliability underwater.",
-    tags: ["SolidWorks", "FEA", "Shaft design", "CNC", "Gearbox"],
-    metrics: ["2:1 bevel gear ratio", "6061-T6 aluminum housing", "Tapered roller bearings"],
-    challenge:
-      "Previous drivetrain concepts used more stages and suffered from gear alignment, loose tolerances, mass, and reliability concerns. The system needed a simpler way to transmit input power to contra-rotating propellers while staying manufacturable.",
-    engineering:
-      "Developed a bevel gear transmission, reviewed shaft free-body diagrams and fatigue criteria, validated gears through FEA, selected 6061-T6 aluminum for the housing and shafts, and used tapered roller bearings plus Delrin bushings to support shaft alignment.",
-    impact:
-      "Reduced drivetrain complexity, improved alignment control, lowered the risk of gear skipping, and made the assembly more consistent through precision-machined housing plates and clearer bearing seats.",
+      "Designed and validated sealed drivetrain and gearbox components for UBC’s human-powered submarine.",
+    tags: ["SolidWorks", "FEA", "CFD", "Machining"],
+    metrics: ["100+ CAD hours", "30+ simulations", "1.8–2.1 kN design loads"],
+    problem:
+      "The drivetrain needed to transfer rider input through a compact underwater assembly while controlling alignment, mass, structural loading, and manufacturing tolerances.",
+    work:
+      "Modelled gearbox and housing components, ran static, fatigue, and buckling studies in SolidWorks Simulation, completed flow and pressure analysis, and iterated parts for manual machining and assembly.",
+    outcome:
+      "Topology-based pocketing and rib changes reduced component weight by 32–45%. Prototype adjustments reached approximately ±0.1–0.2 mm fabrication accuracy while maintaining a factor of safety above 1.2 in predicted load cases.",
     gallery: [
       "assets/subc-gearbox-cad.webp",
       "assets/subc-housing-cad.webp",
@@ -23,21 +24,41 @@ const projects = [
     ]
   },
   {
+    title: "V6 Engine Assembly",
+    category: "mechanical",
+    categoryLabel: "Mechanical",
+    year: "Personal project · 2025",
+    image: "assets/v6-engine.webp",
+    alt: "Detailed SolidWorks render of a V6 engine assembly",
+    summary:
+      "A functional 55+ part SolidWorks assembly with linked piston, crankshaft, camshaft, and valve motion.",
+    tags: ["SolidWorks", "Assemblies", "Mechanical mates"],
+    metrics: ["55+ parts", "150+ mates", "Functional four-stroke motion"],
+    problem:
+      "I wanted to move beyond isolated CAD parts and learn how a dense mechanical assembly behaves when geometry, motion, and constraints all interact.",
+    work:
+      "Modelled the powertrain using lofts, boundaries, ribs, shells, drafts, patterns, and detailed part features. Gear, cam, tangent, concentric, and coincident mates connect the valvetrain and lower engine assembly.",
+    outcome:
+      "The completed model reproduces four-stroke motion through manual crankshaft rotation and became a practical study in assembly architecture, constraint management, and advanced SolidWorks features.",
+    gallery: ["assets/v6-engine.webp", "assets/v6-piston.webp", "assets/v6-rod.webp"]
+  },
+  {
     title: "Hydroelectric Generator",
     category: "mechatronics",
-    year: "APSC Build",
+    categoryLabel: "Mechatronics",
+    year: "APSC design project",
     image: "assets/hydro-test.webp",
-    alt: "Hydroelectric generator prototype with circuit testing",
+    alt: "Hydroelectric generator prototype during voltage testing",
     summary:
-      "A water-powered turbine and gearbox system designed to spin a DC motor and power an LED.",
-    tags: ["Gear ratios", "Circuits", "Prototyping", "Testing"],
-    metrics: ["1:5 gear ratio", "75T driver / 15T driven", "Up to 4.7 V measured"],
-    challenge:
-      "The goal was to convert water flow into enough rotational speed to generate usable voltage from a DC motor and visibly power an LED.",
-    engineering:
-      "Built a turbine, designed a gear train with a 1:5 speed-increase ratio, connected the motor to an LED and voltmeter, and iterated on alignment so the water-driven turbine could transmit motion efficiently.",
-    impact:
-      "Produced upward of 4.7 volts and demonstrated the link between torque, gear ratios, mechanical energy transfer, and basic circuit behavior.",
+      "A water-driven turbine and speed-increasing gearbox that powered an LED through a DC motor.",
+    tags: ["Gear design", "Circuits", "Prototyping", "Testing"],
+    metrics: ["1:5 speed increase", "75T / 15T gears", "Up to 4.7 V"],
+    problem:
+      "The system had to convert a low-speed water input into enough motor speed and electrical output to visibly power an LED.",
+    work:
+      "Built the turbine and structure, aligned a 75-tooth driver with a 15-tooth driven gear, and connected the DC motor to an LED and voltmeter for repeated testing.",
+    outcome:
+      "The final prototype generated up to 4.7 V and demonstrated the complete energy path from water flow to rotational motion, gearing, electrical generation, and circuit output.",
     gallery: [
       "assets/hydro-test.webp",
       "assets/hydro-propeller.webp",
@@ -45,67 +66,37 @@ const projects = [
     ]
   },
   {
-    title: "V6 Engine CAD Model",
-    category: "mechanical",
-    year: "Independent CAD Project",
-    image: "assets/v6-engine.webp",
-    alt: "CAD render of a V6 engine model",
+    title: "APSC 101 Study System",
+    category: "software",
+    categoryLabel: "Software",
+    year: "Independent project · 2026",
+    visual: "study-guide",
     summary:
-      "A 55-plus part SolidWorks assembly exploring engine architecture, piston motion, crankshaft mates, and detailed part modeling.",
-    tags: ["SolidWorks", "Assemblies", "Mates", "CAD"],
-    metrics: ["55+ parts", "Functional piston motion", "Manual crank actuation"],
-    challenge:
-      "The project was built to learn realistic assembly modeling through a complex mechanical system with linked motion and many interacting parts.",
-    engineering:
-      "Modeled pistons, rods, crankshaft components, an air filter, and manifold geometry using sketches, shell features, circular patterns, boundary features, and mechanical mates.",
-    impact:
-      "Built fluency with advanced SolidWorks features and learned how detailed part constraints affect full assembly behavior.",
-    gallery: [
-      "assets/v6-engine.webp",
-      "assets/v6-piston.webp",
-      "assets/v6-rod.webp"
+      "An original full-course study guide and interactive practice site built to make dense engineering material searchable and testable.",
+    tags: ["HTML", "CSS", "JavaScript", "Information design"],
+    metrics: ["Modules 5–7", "Live topic search", "Interactive answer reveal"],
+    problem:
+      "Notes, quizzes, worksheets, and reference files were spread across formats, slowing focused review.",
+    work:
+      "Combined 87 source files into searchable module notes, collapsible concept cards, formula references, and a practice quiz with hidden answers.",
+    outcome:
+      "A fast browser-based system for reference and active recall, with no installation or backend required.",
+    gallery: ["assets/apsc-study-guide-overview.png", "assets/apsc-practice-quiz.png"],
+    links: [
+      {
+        label: "Visit study guide",
+        href: "projects/apsc101-study-guide.html"
+      },
+      {
+        label: "Visit practice quiz",
+        href: "projects/apsc101-practice-midterm.html"
+      }
     ]
-  },
-  {
-    title: "APSC 101 Study Guide",
-    category: "documentation",
-    year: "2026",
-    image: "assets/portfolio-page-subc.webp",
-    alt: "Portfolio page preview used as documentation visual",
-    summary:
-      "A structured engineering study resource assembled from course notes, quizzes, textbook questions, and module material.",
-    tags: ["Technical communication", "Systems thinking", "Learning design"],
-    metrics: ["87 source files", "Module notes", "Quiz consolidation"],
-    challenge:
-      "Large course content can become hard to study from when notes, quiz material, and supplemental files are scattered across formats.",
-    engineering:
-      "Organized module material, quiz references, textbook questions, and HTML/PDF notes into a navigable study package that made review more direct.",
-    impact:
-      "Created a practical learning system that shows organization, documentation discipline, and the ability to turn messy information into a usable tool.",
-    gallery: ["assets/portfolio-page-subc.webp"]
-  },
-  {
-    title: "StarSolutions Electronics Exposure",
-    category: "mechatronics",
-    year: "Industry Experience",
-    image: "assets/subc-build.webp",
-    alt: "Engineering build environment",
-    summary:
-      "Industry exposure to circuit assembly, soldering, product testing, certification, and practical electrical engineering workflows.",
-    tags: ["Soldering", "Circuit assembly", "Testing", "Hardware"],
-    metrics: ["SIM reader extension", "Engineer shadowing", "Product testing exposure"],
-    challenge:
-      "Real hardware work requires electrical decisions to be built, tested, inspected, and documented in a way that survives product requirements.",
-    engineering:
-      "Assisted with basic circuit assembly and soldering while observing professional workflows around testing, certification, and hardware troubleshooting.",
-    impact:
-      "Strengthened interest in mechatronics by connecting mechanical design instincts with electronics, embedded systems, and product-level validation.",
-    gallery: ["assets/subc-build.webp"]
   }
 ];
 
 const grid = document.querySelector("[data-project-grid]");
-const buttons = document.querySelectorAll("[data-filter]");
+const filterButtons = document.querySelectorAll("[data-filter]");
 const modal = document.querySelector("[data-modal]");
 const modalContent = document.querySelector("[data-modal-content]");
 const modalClose = document.querySelector("[data-modal-close]");
@@ -113,20 +104,64 @@ const menuButton = document.querySelector("[data-menu-button]");
 const mobileNav = document.querySelector("[data-mobile-nav]");
 const header = document.querySelector("[data-header]");
 
-function projectCard(project, index) {
+let lastTrigger = null;
+
+function studyGuidePreview() {
   return `
-    <article class="project-card" data-project-card data-category="${project.category}">
-      <button class="project-open" type="button" data-project-index="${index}" aria-label="Open ${project.title} case study">
-        <span class="project-image-wrap">
-          <img src="${project.image}" alt="${project.alt}" loading="lazy" />
+    <span class="project-image-wrap study-gallery-preview">
+      <img
+        src="assets/apsc-study-guide-overview.png"
+        alt="APSC 101 study guide showing module navigation, search, and structured notes"
+        loading="lazy"
+      />
+      <img
+        src="assets/apsc-practice-quiz.png"
+        alt="APSC 101 practice quiz with an answer revealed"
+        loading="lazy"
+      />
+    </span>
+  `;
+}
+
+function projectMedia(project) {
+  if (project.visual === "study-guide") {
+    return studyGuidePreview();
+  }
+
+  return `
+    <span class="project-image-wrap">
+      <img src="${project.image}" alt="${project.alt}" loading="lazy" />
+    </span>
+  `;
+}
+
+function projectCard(project, index, featured = false) {
+  return `
+    <article class="project-card ${featured ? "project-card-featured" : ""}" data-category="${project.category}">
+      <button
+        class="project-open"
+        type="button"
+        data-project-index="${index}"
+        aria-label="Open ${project.title} case study"
+      >
+        <span class="project-visual">
+          ${projectMedia(project)}
+          <span class="project-visual-label">
+            <strong>${project.title}</strong>
+            <em>${project.categoryLabel}</em>
+          </span>
         </span>
         <span class="project-card-body">
-          <span class="project-meta">${project.year} / ${project.category}</span>
-          <strong>${project.title}</strong>
-          <span>${project.summary}</span>
-          <span class="tag-row">
-            ${project.tags.slice(0, 3).map((tag) => `<em>${tag}</em>`).join("")}
+          <span class="project-meta">
+            <span>${String(index + 1).padStart(2, "0")} / ${project.categoryLabel}</span>
+            <span>${project.year}</span>
           </span>
+          <strong class="project-title">${project.title}</strong>
+          <span class="project-summary">${project.summary}</span>
+          <span class="project-tags">
+            ${project.tags.map((tag) => `<em>${tag}</em>`).join("")}
+          </span>
+          <span class="project-cta">View case study <i aria-hidden="true">↗</i></span>
         </span>
       </button>
     </article>
@@ -135,69 +170,161 @@ function projectCard(project, index) {
 
 function renderProjects(filter = "all") {
   const visibleProjects = projects
-    .map((project, index) => ({ ...project, index }))
-    .filter((project) => filter === "all" || project.category === filter);
+    .map((project, index) => ({ project, index }))
+    .filter(({ project }) => filter === "all" || project.category === filter);
 
-  grid.innerHTML = visibleProjects.map((project) => projectCard(project, project.index)).join("");
+  grid.innerHTML = visibleProjects
+    .map(({ project, index }) =>
+      projectCard(project, index, index === 0)
+    )
+    .join("");
 
   document.querySelectorAll("[data-project-index]").forEach((button) => {
-    button.addEventListener("click", () => openProject(Number(button.dataset.projectIndex)));
+    button.addEventListener("click", () => {
+      lastTrigger = button;
+      openProject(Number(button.dataset.projectIndex));
+    });
   });
+}
+
+function externalLinks(project) {
+  if (!project.links?.length) {
+    return "";
+  }
+
+  return `
+    <div class="modal-links">
+      ${project.links
+        .map(
+          (link) => `
+            <a href="${link.href}" target="_blank" rel="noreferrer">
+              ${link.label} <span aria-hidden="true">↗</span>
+            </a>
+          `
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function projectImages(project) {
+  return [...new Set([project.image, ...project.gallery].filter(Boolean))];
+}
+
+function modalViewer(project, images) {
+  const mainAlt = project.alt || `${project.title} project interface`;
+
+  return `
+    <div class="modal-media">
+      <div class="modal-stage">
+        <img src="${images[0]}" alt="${mainAlt}" data-modal-main />
+      </div>
+      <div class="modal-thumbnails" aria-label="${project.title} image gallery">
+        ${images
+          .map(
+            (image, imageIndex) => `
+              <button
+                class="modal-thumbnail ${imageIndex === 0 ? "active" : ""}"
+                type="button"
+                data-modal-thumb="${image}"
+                aria-label="Show ${project.title} image ${imageIndex + 1}"
+                aria-pressed="${imageIndex === 0 ? "true" : "false"}"
+              >
+                <img src="${image}" alt="" />
+              </button>
+            `
+          )
+          .join("")}
+      </div>
+    </div>
+  `;
 }
 
 function openProject(index) {
   const project = projects[index];
+  const images = projectImages(project);
+
   modalContent.innerHTML = `
-    <div class="modal-hero">
-      <div>
-        <span class="project-meta">${project.year} / ${project.category}</span>
-        <h2>${project.title}</h2>
-        <p>${project.summary}</p>
+    <div class="modal-layout modal-layout-${project.category}">
+      ${modalViewer(project, images)}
+
+      <div class="modal-info">
+        <div class="modal-heading">
+          <span class="project-meta">${project.year} / ${project.categoryLabel}</span>
+          <h2>${project.title}</h2>
+          <p>${project.summary}</p>
+        </div>
+
+        <div class="modal-metrics">
+          ${project.metrics.map((metric) => `<span>${metric}</span>`).join("")}
+        </div>
+
+        <div class="modal-sections">
+          <section>
+            <span>01</span>
+            <h3>Problem</h3>
+            <p>${project.problem}</p>
+          </section>
+          <section>
+            <span>02</span>
+            <h3>Work</h3>
+            <p>${project.work}</p>
+          </section>
+          <section>
+            <span>03</span>
+            <h3>Result</h3>
+            <p>${project.outcome}</p>
+          </section>
+        </div>
+
+        ${externalLinks(project)}
       </div>
-      <img src="${project.image}" alt="${project.alt}" />
-    </div>
-
-    <div class="modal-metrics">
-      ${project.metrics.map((metric) => `<span>${metric}</span>`).join("")}
-    </div>
-
-    <div class="modal-sections">
-      <section>
-        <h3>Problem</h3>
-        <p>${project.challenge}</p>
-      </section>
-      <section>
-        <h3>Engineering</h3>
-        <p>${project.engineering}</p>
-      </section>
-      <section>
-        <h3>Impact</h3>
-        <p>${project.impact}</p>
-      </section>
-    </div>
-
-    <div class="modal-gallery">
-      ${project.gallery
-        .map((image) => `<img src="${image}" alt="${project.title} supporting visual" loading="lazy" />`)
-        .join("")}
     </div>
   `;
+
+  const mainImage = modalContent.querySelector("[data-modal-main]");
+  modalContent.querySelectorAll("[data-modal-thumb]").forEach((button) => {
+    button.addEventListener("click", () => {
+      mainImage.src = button.dataset.modalThumb;
+      modalContent.querySelectorAll("[data-modal-thumb]").forEach((item) => {
+        const isActive = item === button;
+        item.classList.toggle("active", isActive);
+        item.setAttribute("aria-pressed", String(isActive));
+      });
+    });
+  });
+
+  document.body.classList.add("modal-open");
   modal.showModal();
 }
 
-buttons.forEach((button) => {
+function closeModal() {
+  modal.close();
+  document.body.classList.remove("modal-open");
+  lastTrigger?.focus();
+}
+
+filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    buttons.forEach((item) => item.classList.remove("active"));
+    filterButtons.forEach((item) => {
+      item.classList.remove("active");
+      item.setAttribute("aria-pressed", "false");
+    });
     button.classList.add("active");
+    button.setAttribute("aria-pressed", "true");
     renderProjects(button.dataset.filter);
   });
 });
 
-modalClose.addEventListener("click", () => modal.close());
+modalClose.addEventListener("click", closeModal);
 modal.addEventListener("click", (event) => {
   if (event.target === modal) {
-    modal.close();
+    closeModal();
   }
+});
+modal.addEventListener("close", () => {
+  document.body.classList.remove("modal-open");
+  lastTrigger?.focus();
 });
 
 menuButton.addEventListener("click", () => {
@@ -213,7 +340,7 @@ mobileNav.querySelectorAll("a").forEach((link) => {
 });
 
 window.addEventListener("scroll", () => {
-  header.classList.toggle("scrolled", window.scrollY > 16);
+  header.classList.toggle("scrolled", window.scrollY > 12);
 });
 
 renderProjects();

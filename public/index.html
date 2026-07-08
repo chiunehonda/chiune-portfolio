@@ -5,207 +5,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Chiune Honda engineering portfolio showcasing mechanical design, CAD, FEA, prototyping, submarine drivetrain work, and mechatronics projects."
+      content="Chiune Honda is a UBC Mechanical Engineering student focused on CAD, simulation, prototyping, mechatronics, and practical hardware."
     />
-    <title>Chiune Honda | Engineering Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="theme-color" content="#050505" />
+    <title>Chiune Honda | Mechanical Engineering</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <header class="site-header" data-header>
-      <a class="brand" href="#top" aria-label="Chiune Honda home">
+      <a class="brand" href="#top" aria-label="Chiune Honda, home">
         <span class="brand-mark">CH</span>
-        <span>Chiune Honda</span>
+        <span class="brand-copy">
+          <strong>Chiune Honda</strong>
+          <small>Mechanical Engineering</small>
+        </span>
       </a>
 
       <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
-        <a href="#process">Process</a>
         <a href="#contact">Contact</a>
       </nav>
 
-      <button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="mobile-nav">
-        <span>Menu</span>
+      <button
+        class="menu-button"
+        type="button"
+        data-menu-button
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        Menu
       </button>
     </header>
 
     <nav class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Mobile navigation">
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
-      <a href="#process">Process</a>
       <a href="#contact">Contact</a>
+      <a href="mailto:chonda@student.ubc.ca">Email</a>
     </nav>
 
-    <main id="top">
-      <section class="hero section">
+    <main id="main">
+      <section class="hero" id="top">
         <div class="hero-copy">
-          <p class="eyebrow">UBC Engineering - Mechanical design, prototyping, mechatronics</p>
-          <h1>Building mechanical systems that move from CAD to hardware.</h1>
+          <p class="eyebrow">Mechanical Engineering · UBC</p>
+          <h1>Chiune<br />Honda.</h1>
           <p class="hero-intro">
-            I am a UBC engineering student focused on mechanical design, drivetrain systems,
-            CAD, FEA, manufacturing, and the point where hardware starts becoming intelligent.
+            Mechanical Engineering student at the University of British Columbia with
+            experience in CAD, FEA, CFD, machining, electronics, and browser-based tools.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#projects">View Projects</a>
-            <a class="button secondary" href="#contact">Get In Touch</a>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-label="Portrait and engineering project preview">
-          <img class="portrait" src="assets/headshot.webp" alt="Chiune Honda portrait" />
-          <div class="hero-card">
-            <img src="assets/subc-gearbox-cad.webp" alt="SUBC gearbox CAD model" />
-            <div>
-              <span>Featured Work</span>
-              <strong>SUBC submarine drivetrain</strong>
-              <p>Bevel gearbox, shaft analysis, FEA, CNC housing, assembly constraints.</p>
+            <a class="primary-link" href="#projects">
+              View projects
+              <span aria-hidden="true">↓</span>
+            </a>
+            <div class="stage-links" aria-label="Portfolio sections">
+              <a href="#experience"><span>02</span> Experience</a>
+              <a href="#contact"><span>03</span> Contact</a>
             </div>
           </div>
         </div>
+
+        <div class="hero-status" aria-label="Current status">
+          <p class="status-label">Currently</p>
+          <ul>
+            <li>
+              <span>Program</span>
+              <strong>Mechanical Engineering</strong>
+            </li>
+            <li>
+              <span>Next step</span>
+              <strong>Applying to the Mechatronics Option</strong>
+            </li>
+            <li>
+              <span>2026–27</span>
+              <strong>Seeking co-op roles and a new design team after SUBC</strong>
+            </li>
+          </ul>
+        </div>
       </section>
 
-      <section class="stats section" aria-label="Portfolio highlights">
-        <div>
-          <strong>2:1</strong>
-          <span>SUBC bevel gearbox ratio</span>
-        </div>
-        <div>
-          <strong>6061-T6</strong>
-          <span>Aluminum drivetrain housing</span>
-        </div>
-        <div>
-          <strong>4.7 V</strong>
-          <span>Hydroelectric generator output</span>
-        </div>
-        <div>
-          <strong>55+</strong>
-          <span>Parts in V6 engine CAD build</span>
-        </div>
-      </section>
-
-      <section class="section intro-grid">
-        <div>
-          <p class="section-kicker">What this portfolio is about</p>
-          <h2>Practical engineering work, presented clearly.</h2>
-        </div>
-        <p>
-          This site organizes my projects around problem framing, engineering decisions,
-          tools used, and results. The goal is to make each project scannable for recruiters,
-          technical teams, and design team leads while still showing the details that matter.
-        </p>
-      </section>
-
-      <section class="section" id="projects">
+      <section class="projects section" id="projects">
         <div class="section-heading">
           <div>
-            <p class="section-kicker">Selected Projects</p>
-            <h2>Case studies</h2>
+            <p class="eyebrow">01 / Projects</p>
+            <h2>Projects</h2>
           </div>
-          <div class="filters" aria-label="Project filters">
-            <button class="filter-button active" type="button" data-filter="all">All</button>
-            <button class="filter-button" type="button" data-filter="mechanical">Mechanical</button>
-            <button class="filter-button" type="button" data-filter="mechatronics">Mechatronics</button>
-            <button class="filter-button" type="button" data-filter="documentation">Documentation</button>
-          </div>
+          <p>
+            Mechanical design, simulation, prototyping, and small interactive tools.
+            Select a project for the details.
+          </p>
         </div>
+
+        <div class="filters" aria-label="Filter projects">
+          <button class="filter-button active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-button" type="button" data-filter="mechanical" aria-pressed="false">Mechanical</button>
+          <button class="filter-button" type="button" data-filter="mechatronics" aria-pressed="false">Mechatronics</button>
+          <button class="filter-button" type="button" data-filter="software" aria-pressed="false">Software</button>
+        </div>
+
         <div class="project-grid" data-project-grid></div>
       </section>
 
-      <section class="section feature-band" id="experience">
-        <div>
-          <p class="section-kicker">Experience</p>
-          <h2>Hands-on work across design, manufacturing, and electronics.</h2>
+      <section class="experience section" id="experience">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">02 / Experience</p>
+            <h2>Hardware exposure</h2>
+          </div>
         </div>
-        <div class="experience-list">
-          <article>
-            <span>Design Team</span>
-            <h3>UBC SUBC - Drivetrain</h3>
+
+        <article class="experience-row">
+          <div class="experience-meta">
+            <span>StarSolutions</span>
+            <span>Richmond, BC · Aug 2024</span>
+          </div>
+          <div>
+            <h3>Engineer Shadowing / Intern</h3>
             <p>
-              Worked on underwater drivetrain design involving CAD modelling, stress analysis,
-              manufacturing constraints, shafts, bearings, and subsystem integration.
+              Re-engineered a USB-SIM card reader for a portable enclosure, completed
+              precision soldering and product testing, and reviewed certification
+              documentation with mechanical and electrical engineers.
             </p>
-          </article>
-          <article>
-            <span>Industry Exposure</span>
-            <h3>StarSolutions - Electronics</h3>
-            <p>
-              Shadowed engineers and assisted with circuit assembly, soldering, product testing,
-              certification exposure, and hardware-focused problem solving.
-            </p>
-          </article>
-          <article>
-            <span>Academic Build</span>
-            <h3>Hydroelectric Generator</h3>
-            <p>
-              Built a turbine, gearbox, DC motor, and circuit system that produced enough voltage
-              to power an LED through water-driven rotation.
-            </p>
-          </article>
-        </div>
+            <ul class="skill-list" aria-label="StarSolutions skills">
+              <li>Soldering</li>
+              <li>Hardware testing</li>
+              <li>Product certification</li>
+              <li>System integration</li>
+            </ul>
+          </div>
+        </article>
       </section>
 
-      <section class="section process" id="process">
-        <div>
-          <p class="section-kicker">Engineering Approach</p>
-          <h2>How I think through builds.</h2>
-        </div>
-        <div class="process-steps">
-          <article>
-            <span>01</span>
-            <h3>Frame the problem</h3>
-            <p>Start with the failure mode, constraint, or performance target before choosing a design direction.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Model the system</h3>
-            <p>Use CAD, free-body diagrams, calculations, and simulation to make decisions visible.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Prototype for reality</h3>
-            <p>Design around manufacturing, tolerance, assembly order, access, and maintainability.</p>
-          </article>
-          <article>
-            <span>04</span>
-            <h3>Communicate clearly</h3>
-            <p>Turn technical work into concise design rationale that other people can build from.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section contact" id="contact">
-        <div>
-          <p class="section-kicker">Contact</p>
-          <h2>Open to design teams, co-op roles, and technical projects.</h2>
-          <p>
-            This first version is ready for your LinkedIn, GitHub, email, resume, and more project
-            media once you want to make it public.
-          </p>
-        </div>
-        <div class="contact-actions">
-          <a class="button primary" href="mailto:replace-with-your-email@example.com">Email Me</a>
-          <a class="button secondary" href="#" aria-label="LinkedIn placeholder">LinkedIn</a>
-          <a class="button secondary" href="#" aria-label="Resume placeholder">Resume</a>
+      <section class="contact section" id="contact">
+        <p class="eyebrow">03 / Contact</p>
+        <div class="contact-grid">
+          <div>
+            <h2>Let’s build something useful.</h2>
+            <p>
+              I’m open to co-op roles, design teams, and technical projects where I can
+              contribute to real hardware and keep growing toward mechatronics.
+            </p>
+          </div>
+          <div class="contact-links">
+            <a href="mailto:chonda@student.ubc.ca">
+              <span>Email</span>
+              <strong>chonda@student.ubc.ca</strong>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.linkedin.com/in/chiunehonda/" target="_blank" rel="noreferrer">
+              <span>LinkedIn</span>
+              <strong>chiunehonda</strong>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a href="https://github.com/chiunehonda" target="_blank" rel="noreferrer">
+              <span>GitHub</span>
+              <strong>chiunehonda</strong>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
       </section>
     </main>
 
     <dialog class="project-modal" data-modal>
-      <div class="modal-inner">
-        <button class="modal-close" type="button" data-modal-close>Close</button>
+      <div class="modal-shell">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close project">
+          Close <span aria-hidden="true">×</span>
+        </button>
         <div data-modal-content></div>
       </div>
     </dialog>
 
     <footer class="site-footer">
-      <p>Chiune Honda - Engineering Portfolio</p>
-      <a href="#top">Back to top</a>
+      <p>Chiune Honda · Mechanical Engineering</p>
+      <p>Vancouver, BC</p>
+      <a href="#top">Back to top ↑</a>
     </footer>
 
     <script src="app.js"></script>

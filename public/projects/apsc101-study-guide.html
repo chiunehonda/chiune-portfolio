@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APSC 101 Ultimate Study Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@700;800&display=swap');
+
+:root {
+  --bg: #0f1117;
+  --surface: #181b24;
+  --surface2: #1f2330;
+  --surface3: #272b38;
+  --accent: #6c9fff;
+  --accent2: #a78bfa;
+  --accent3: #34d399;
+  --accent4: #fb923c;
+  --accent5: #f472b6;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #64748b;
+  --border: #2d3348;
+  --danger: #ef4444;
+  --warning: #eab308;
+  --success: #22c55e;
+  --radius: 10px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* LAYOUT */
+.app { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 260px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  overflow-y: auto;
+  z-index: 100;
+  transition: transform 0.3s;
+}
+
+.sidebar-header {
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sidebar-header p {
+  font-size: 11px;
+  color: var(--text3);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.nav-group { padding: 12px 0; }
+.nav-group-title {
+  padding: 6px 20px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text3);
+  font-weight: 600;
+}
+
+.nav-item {
+  display: block;
+  padding: 8px 20px 8px 28px;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+  border-left: 3px solid transparent;
+}
+
+.nav-item:hover {
+  background: var(--surface2);
+  color: var(--text);
+}
+
+.nav-item.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  background: rgba(108,159,255,0.06);
+}
+
+.main {
+  margin-left: 260px;
+  flex: 1;
+  max-width: 900px;
+  padding: 32px 48px 80px;
+}
+
+/* SEARCH */
+.search-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  padding: 16px 0 12px;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-bar input:focus { border-color: var(--accent); }
+.search-bar::before {
+  content: '⌕';
+  position: absolute;
+  left: 14px;
+  top: 28px;
+  color: var(--text3);
+  font-size: 18px;
+}
+
+/* SECTIONS */
+.module-section { display: none; }
+.module-section.active { display: block; }
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.section-subtitle {
+  color: var(--text2);
+  margin-bottom: 32px;
+  font-size: 14px;
+}
+
+/* COLLAPSIBLE CARDS */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.card-header:hover { background: var(--surface2); }
+
+.card-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-header .tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tag-core { background: rgba(108,159,255,0.15); color: var(--accent); }
+.tag-key { background: rgba(167,139,250,0.15); color: var(--accent2); }
+.tag-formula { background: rgba(52,211,153,0.15); color: var(--accent3); }
+.tag-exam { background: rgba(251,146,60,0.15); color: var(--accent4); }
+
+.chevron {
+  transition: transform 0.25s;
+  color: var(--text3);
+  font-size: 14px;
+}
+
+.card.open .chevron { transform: rotate(180deg); }
+
+.card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.card.open .card-body { max-height: 8000px; }
+
+.card-content {
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--border);
+}
+
+/* CONTENT STYLING */
+.card-content p { margin: 12px 0; }
+.card-content h4 {
+  margin: 20px 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.formula-box {
+  background: var(--surface3);
+  border-left: 3px solid var(--accent3);
+  padding: 14px 18px;
+  margin: 14px 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 15px;
+  overflow-x: auto;
+}
+
+.key-point {
+  background: rgba(108,159,255,0.08);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  margin: 14px 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 14px;
+}
+
+.warning-box {
+  background: rgba(234,179,8,0.08);
+  border-left: 3px solid var(--warning);
+  padding: 12px 16px;
+  margin: 14px 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 14px;
+}
+
+.def {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 14px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.def dt {
+  font-weight: 600;
+  color: var(--accent2);
+  white-space: nowrap;
+}
+
+.def dd { color: var(--text); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 13px;
+}
+
+th, td {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+th {
+  background: var(--surface3);
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+td { color: var(--text); }
+
+.svg-diagram {
+  width: 100%;
+  margin: 16px 0;
+  background: var(--surface2);
+  border-radius: var(--radius);
+  padding: 16px;
+  overflow-x: auto;
+}
+
+.svg-diagram svg { display: block; margin: 0 auto; }
+
+strong { color: var(--text); font-weight: 600; }
+em { color: var(--accent2); font-style: normal; }
+code {
+  font-family: 'IBM Plex Mono', monospace;
+  background: var(--surface3);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 14px 0;
+}
+
+.col-box {
+  background: var(--surface2);
+  padding: 14px;
+  border-radius: var(--radius);
+  font-size: 13px;
+}
+
+.col-box h5 {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.list-styled { padding-left: 20px; margin: 8px 0; }
+.list-styled li { margin: 4px 0; font-size: 14px; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 12px; left: 12px;
+  z-index: 200;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; padding: 24px 16px 60px; }
+  .hamburger { display: block; }
+  .two-col { grid-template-columns: 1fr; }
+  .section-title { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+<button class="hamburger" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+
+<div class="app">
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <h1>APSC 101</h1>
+    <p>Ultimate Study Guide</p>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-title">Module 5 — Design & Build</div>
+    <a class="nav-item active" onclick="showSection('m5-safety')">Safety & Hand Tools</a>
+    <a class="nav-item" onclick="showSection('m5-servo')">Servo Motors & Forces</a>
+    <a class="nav-item" onclick="showSection('m5-risk')">Risk Management</a>
+    <a class="nav-item" onclick="showSection('m5-teams')">Team Development</a>
+    <a class="nav-item" onclick="showSection('m5-drawings')">Engineering Drawings</a>
+    <a class="nav-item" onclick="showSection('m5-safety-hazards')">Safety Hazards & Hierarchy</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-title">Module 6 — Mining Case Study</div>
+    <a class="nav-item" onclick="showSection('m6-mining')">Copper Mining Overview</a>
+    <a class="nav-item" onclick="showSection('m6-sustainability')">Sustainability & Systems</a>
+    <a class="nav-item" onclick="showSection('m6-cld')">Causal Loop Diagrams</a>
+    <a class="nav-item" onclick="showSection('m6-resilience')">Resilience</a>
+    <a class="nav-item" onclick="showSection('m6-lca')">LCA & SLCA</a>
+    <a class="nav-item" onclick="showSection('m6-engagement')">Engagement & UNDRIP</a>
+    <a class="nav-item" onclick="showSection('m6-letters')">Business Letters & 7Cs</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-title">Module 7 — Rainwater Harvester</div>
+    <a class="nav-item" onclick="showSection('m7-specs')">Target Design Specs</a>
+    <a class="nav-item" onclick="showSection('m7-satisfaction')">Satisfaction Curves</a>
+    <a class="nav-item" onclick="showSection('m7-fluids')">Fluid Mechanics</a>
+    <a class="nav-item" onclick="showSection('m7-system')">RWH System Design</a>
+    <a class="nav-item" onclick="showSection('m7-energy')">Energy & Pump Curves</a>
+    <a class="nav-item" onclick="showSection('m7-filters')">Filters & Maintenance</a>
+    <a class="nav-item" onclick="showSection('m7-risk')">RWH Risk & Curve Fitting</a>
+  </div>
+</nav>
+
+<main class="main">
+<div class="search-bar">
+  <input type="text" placeholder="Search topics, formulas, keywords..." oninput="searchContent(this.value)">
+</div>
+
+<!-- ============================================================ -->
+<!--                    MODULE 5                                    -->
+<!-- ============================================================ -->
+
+<div id="m5-safety" class="module-section active">
+<h2 class="section-title">Safety & Hand Tools</h2>
+<p class="section-subtitle">Module 5 · Week 1 — PPE, workspace protocols, and studio tools</p>
+
+<div class="card open">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> PPE & Safety Protocols</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <div class="key-point"><strong>Three mandatory PPE items:</strong> Safety glasses, long pants, and close-toed shoes. Missing any = may be asked to leave.</div>
+    <p><strong>Safety glasses</strong> must be worn <em>at all times</em> in the studio, whether or not tools are in use. Prescription glasses are NOT safety glasses — you must wear safety glasses over them.</p>
+    <h4>Injury Protocol</h4>
+    <p><strong>Minor injury:</strong> Notify studio instructor, get a bandage if needed.</p>
+    <p><strong>Serious injury:</strong> (1) Stay with injured person, (2) Notify instructor immediately, (3) One person calls 911 and stays on the line, (4) Send a separate person outside to meet paramedics and guide them in.</p>
+    <div class="warning-box">The person on the phone with 911 must stay in the studio room with the injured person — do NOT be the one who goes outside.</div>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-core">Core</span> Hand Tools</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <dl class="def">
+      <dt>Aviation Snips</dt><dd>Cut sheet metal along curved or straight lines. Different colors for different cut directions (left, right, straight).</dd>
+      <dt>Seamar</dt><dd>Folds sheet metal along a straight line to create bends and flanges.</dd>
+      <dt>Nibbler</dt><dd>Punches small notches to cut curves and complex shapes in sheet metal.</dd>
+      <dt>Hole Punch</dt><dd>Creates clean circular holes in sheet metal for rivets or fasteners.</dd>
+      <dt>Pop Riveter</dt><dd>Joins two pieces of sheet metal together using pop rivets (permanent mechanical fasteners).</dd>
+    </dl>
+  </div></div>
+</div>
+</div>
+
+<div id="m5-servo" class="module-section">
+<h2 class="section-title">Servo Motors & Forces</h2>
+<p class="section-subtitle">Module 5 · Weeks 1-2 — Operating principles, torque, and mechanical advantage</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-core">Core</span> Servo Motor Components & Operation</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p>A servo motor moves to a <em>commanded position</em> (0°–180°), unlike a DC motor which rotates continuously.</p>
+    <h4>Four Components</h4>
+    <dl class="def">
+      <dt>❶ DC Motor</dt><dd>Provides the rotational power</dd>
+      <dt>❷ Gears</dt><dd>Reduce speed and increase torque from the DC motor</dd>
+      <dt>❸ Output Position Sensor</dt><dd>Measures the current shaft angle</dd>
+      <dt>❹ Electronic Control System</dt><dd>Compares commanded position (from Arduino) to actual position and adjusts the motor current accordingly</dd>
+    </dl>
+    <div class="key-point">This is a <strong>feedback control loop</strong>: Input (commanded angle) → Controller → Motor → Gears → Output shaft → Sensor feeds back to controller.</div>
+
+    <h4>Practical Limitations</h4>
+    <p>Limited rotation range (0–180°), limited torque output, limited speed, physical size and weight constraints. These directly affect retrieval system design.</p>
+
+    <h4>Force & Torque Principles</h4>
+    <p><strong>Torque = Force × Distance.</strong> Attaching the cable further from the pivot increases the moment arm and thus the torque. Mounting the winch higher on the mast increases the effective pulling angle. Longer servo arm wires = greater leverage but less clamping force at the tips.</p>
+    <div class="warning-box">When the cable/wire connecting the servo arm to the claw is longer, the holding force at the grip point <em>decreases</em> because the moment arm on the object side increases.</div>
+  </div></div>
+</div>
+</div>
+
+<div id="m5-risk" class="module-section">
+<h2 class="section-title">Risk Management</h2>
+<p class="section-subtitle">Module 5 · Week 2 — Risk framework, matrix, register, and management process</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Risk Definition & Formula</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <div class="formula-box">Risk = Severity × Likelihood</div>
+    <p><strong>Severity:</strong> Maximum harm, consequences, or damage that could result.<br>
+    <strong>Likelihood:</strong> Probability of the incident or event occurring.</p>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Risk Sources (3 Types)</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <dl class="def">
+      <dt>Preventable</dt><dd>Within the team's ability to minimize and control</dd>
+      <dt>Strategic</dt><dd>Knowingly accepted with hope of greater reward/payoff</dd>
+      <dt>External</dt><dd>Outside the team's control, but must still be considered</dd>
+    </dl>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Risk Types (5 Categories)</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <table>
+      <tr><th>Type</th><th>Description</th></tr>
+      <tr><td><strong>Safety</strong></td><td>Health and welfare of people and the environment</td></tr>
+      <tr><td><strong>Technical</strong></td><td>Design and manufacturing issues preventing the device from working as intended</td></tr>
+      <tr><td><strong>Project Management</strong></td><td>Completing the project on time and on budget</td></tr>
+      <tr><td><strong>Operational</strong></td><td>Decision-making and operation of the organization or device</td></tr>
+      <tr><td><strong>Market</strong></td><td>Understanding market needs and competition</td></tr>
+    </table>
+    <div class="key-point">The <strong>Risk Classification Table</strong> is a matrix of Risk Sources (columns) vs Risk Types (rows). Its function is to help systematically identify a greater number of key risks.</div>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-key">Key Concept</span> Risk Matrix (5×5)</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <div class="svg-diagram">
+      <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans, sans-serif">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0%" stop-color="#22c55e"/>
+            <stop offset="35%" stop-color="#eab308"/>
+            <stop offset="65%" stop-color="#f97316"/>
+            <stop offset="100%" stop-color="#ef4444"/>
+          </linearGradient>
+        </defs>
+        <!-- Header -->
+        <text x="310" y="22" text-anchor="middle" fill="#6c9fff" font-size="14" font-weight="600">SEVERITY →</text>
+        <text x="60" y="180" text-anchor="middle" fill="#6c9fff" font-size="14" font-weight="600" transform="rotate(-90,60,180)">LIKELIHOOD →</text>
+        <!-- Column headers -->
+        <text x="160" y="52" text-anchor="middle" fill="#94a3b8" font-size="10">1-Negligible</text>
+        <text x="235" y="52" text-anchor="middle" fill="#94a3b8" font-size="10">2-Minor</text>
+        <text x="310" y="52" text-anchor="middle" fill="#94a3b8" font-size="10">3-Moderate</text>
+        <text x="385" y="52" text-anchor="middle" fill="#94a3b8" font-size="10">4-Major</text>
+        <text x="460" y="52" text-anchor="middle" fill="#94a3b8" font-size="10">5-Catastrophic</text>
+        <!-- Row headers -->
+        <text x="118" y="85" text-anchor="end" fill="#94a3b8" font-size="10">5-Almost certain</text>
+        <text x="118" y="135" text-anchor="end" fill="#94a3b8" font-size="10">4-Likely</text>
+        <text x="118" y="185" text-anchor="end" fill="#94a3b8" font-size="10">3-Possible</text>
+        <text x="118" y="235" text-anchor="end" fill="#94a3b8" font-size="10">2-Unlikely</text>
+        <text x="118" y="285" text-anchor="end" fill="#94a3b8" font-size="10">1-Rare</text>
+        <!-- Grid cells with color coding -->
+        <!-- Row 5 (Almost certain) -->
+        <rect x="125" y="62" width="70" height="45" rx="4" fill="#eab308" opacity="0.3"/><text x="160" y="90" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">5</text>
+        <rect x="200" y="62" width="70" height="45" rx="4" fill="#f97316" opacity="0.3"/><text x="235" y="90" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">10</text>
+        <rect x="275" y="62" width="70" height="45" rx="4" fill="#f97316" opacity="0.4"/><text x="310" y="90" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">15</text>
+        <rect x="350" y="62" width="70" height="45" rx="4" fill="#ef4444" opacity="0.35"/><text x="385" y="90" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">20</text>
+        <rect x="425" y="62" width="70" height="45" rx="4" fill="#ef4444" opacity="0.5"/><text x="460" y="90" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">25</text>
+        <!-- Row 4 -->
+        <rect x="125" y="112" width="70" height="45" rx="4" fill="#22c55e" opacity="0.3"/><text x="160" y="140" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">4</text>
+        <rect x="200" y="112" width="70" height="45" rx="4" fill="#eab308" opacity="0.3"/><text x="235" y="140" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">8</text>
+        <rect x="275" y="112" width="70" height="45" rx="4" fill="#f97316" opacity="0.3"/><text x="310" y="140" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">12</text>
+        <rect x="350" y="112" width="70" height="45" rx="4" fill="#f97316" opacity="0.4"/><text x="385" y="140" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">16</text>
+        <rect x="425" y="112" width="70" height="45" rx="4" fill="#ef4444" opacity="0.35"/><text x="460" y="140" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">20</text>
+        <!-- Row 3 -->
+        <rect x="125" y="162" width="70" height="45" rx="4" fill="#22c55e" opacity="0.25"/><text x="160" y="190" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">3</text>
+        <rect x="200" y="162" width="70" height="45" rx="4" fill="#eab308" opacity="0.25"/><text x="235" y="190" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">6</text>
+        <rect x="275" y="162" width="70" height="45" rx="4" fill="#eab308" opacity="0.35"/><text x="310" y="190" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">9</text>
+        <rect x="350" y="162" width="70" height="45" rx="4" fill="#f97316" opacity="0.3"/><text x="385" y="190" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">12</text>
+        <rect x="425" y="162" width="70" height="45" rx="4" fill="#f97316" opacity="0.4"/><text x="460" y="190" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">15</text>
+        <!-- Row 2 -->
+        <rect x="125" y="212" width="70" height="45" rx="4" fill="#22c55e" opacity="0.2"/><text x="160" y="240" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">2</text>
+        <rect x="200" y="212" width="70" height="45" rx="4" fill="#22c55e" opacity="0.3"/><text x="235" y="240" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">4</text>
+        <rect x="275" y="212" width="70" height="45" rx="4" fill="#eab308" opacity="0.25"/><text x="310" y="240" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">6</text>
+        <rect x="350" y="212" width="70" height="45" rx="4" fill="#eab308" opacity="0.3"/><text x="385" y="240" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">8</text>
+        <rect x="425" y="212" width="70" height="45" rx="4" fill="#f97316" opacity="0.3"/><text x="460" y="240" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">10</text>
+        <!-- Row 1 -->
+        <rect x="125" y="262" width="70" height="45" rx="4" fill="#22c55e" opacity="0.15"/><text x="160" y="290" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">1</text>
+        <rect x="200" y="262" width="70" height="45" rx="4" fill="#22c55e" opacity="0.2"/><text x="235" y="290" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">2</text>
+        <rect x="275" y="262" width="70" height="45" rx="4" fill="#22c55e" opacity="0.25"/><text x="310" y="290" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">3</text>
+        <rect x="350" y="262" width="70" height="45" rx="4" fill="#22c55e" opacity="0.3"/><text x="385" y="290" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">4</text>
+        <rect x="425" y="262" width="70" height="45" rx="4" fill="#eab308" opacity="0.25"/><text x="460" y="290" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">5</text>
+        <!-- Legend -->
+        <rect x="125" y="318" width="50" height="12" rx="3" fill="#22c55e" opacity="0.3"/><text x="182" y="328" fill="#94a3b8" font-size="9">Low</text>
+        <rect x="205" y="318" width="50" height="12" rx="3" fill="#eab308" opacity="0.3"/><text x="262" y="328" fill="#94a3b8" font-size="9">Medium</text>
+        <rect x="290" y="318" width="50" height="12" rx="3" fill="#f97316" opacity="0.35"/><text x="347" y="328" fill="#94a3b8" font-size="9">High</text>
+        <rect x="370" y="318" width="50" height="12" rx="3" fill="#ef4444" opacity="0.4"/><text x="427" y="328" fill="#94a3b8" font-size="9">Extreme</text>
+      </svg>
+    </div>
+    <p><strong>Low (1-4):</strong> No action required. <strong>Medium (5-9):</strong> Monitor, some action. <strong>High (10-16):</strong> Implement risk reduction. <strong>Extreme (20-25):</strong> Unacceptable — must stop or address immediately.</p>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Risk Management Strategies (4 Approaches)</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <dl class="def">
+      <dt>Avoid</dt><dd>Remove the risk entirely by changing what you're doing</dd>
+      <dt>Mitigate</dt><dd>Reduce the likelihood or severity of the risk</dd>
+      <dt>Transfer</dt><dd>Pass the risk to another party (e.g., insurance)</dd>
+      <dt>Accept</dt><dd>Live with the consequences if it occurs (only for minor/strategic risks, <em>never safety</em>)</dd>
+    </dl>
+    <div class="warning-box"><strong>Safety is paramount.</strong> Per the engineering code of ethics, never trade safety for strategic gain without careful deliberation.</div>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Risk Management Process Flowchart</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <div class="svg-diagram">
+      <svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans, sans-serif">
+        <rect x="30" y="10" width="160" height="40" rx="6" fill="#1e3a5f" stroke="#6c9fff" stroke-width="1.5"/>
+        <text x="110" y="35" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Identify Risks</text>
+        <line x1="110" y1="50" x2="110" y2="75" stroke="#6c9fff" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <rect x="30" y="75" width="160" height="40" rx="6" fill="#1e3a5f" stroke="#6c9fff" stroke-width="1.5"/>
+        <text x="110" y="100" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Conduct Risk Analysis</text>
+        <line x1="110" y1="115" x2="110" y2="145" stroke="#6c9fff" stroke-width="1.5"/>
+        <polygon points="110,145 40,185 180,185" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="110" y="172" text-anchor="middle" fill="#e2e8f0" font-size="11">Is risk acceptable?</text>
+        <!-- Yes branch -->
+        <line x1="110" y1="185" x2="110" y2="220" stroke="#22c55e" stroke-width="1.5"/>
+        <text x="120" y="205" fill="#22c55e" font-size="10">Yes</text>
+        <rect x="30" y="220" width="160" height="40" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+        <text x="110" y="245" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Monitor & Manage</text>
+        <!-- No branch -->
+        <line x1="180" y1="175" x2="290" y2="175" stroke="#ef4444" stroke-width="1.5"/>
+        <text x="230" y="168" fill="#ef4444" font-size="10">No</text>
+        <polygon points="340,175 290,145 290,205" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="315" y="178" text-anchor="middle" fill="#e2e8f0" font-size="10">Can risk be</text>
+        <text x="315" y="190" text-anchor="middle" fill="#e2e8f0" font-size="10">reduced?</text>
+        <!-- Can reduce - yes -->
+        <line x1="315" y1="145" x2="315" y2="60" stroke="#22c55e" stroke-width="1.5"/>
+        <text x="325" y="110" fill="#22c55e" font-size="10">Yes</text>
+        <rect x="260" y="10" width="130" height="40" rx="6" fill="#1e3a5f" stroke="#6c9fff" stroke-width="1.5"/>
+        <text x="325" y="35" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Reduce the Risk</text>
+        <line x1="260" y1="30" x2="190" y2="30" stroke="#6c9fff" stroke-width="1.5" stroke-dasharray="4"/>
+        <!-- Can reduce - no -->
+        <line x1="340" y1="175" x2="420" y2="175" stroke="#ef4444" stroke-width="1.5"/>
+        <text x="375" y="168" fill="#ef4444" font-size="10">No</text>
+        <rect x="420" y="155" width="130" height="40" rx="6" fill="#450a0a" stroke="#ef4444" stroke-width="1.5"/>
+        <text x="485" y="180" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Discontinue</text>
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#6c9fff"/></marker></defs>
+      </svg>
+    </div>
+    <p>After reducing a risk, loop back to <strong>Identify Risks</strong> because changes may introduce new risks. The process is iterative.</p>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-key">Key Concept</span> Risk Register</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p>A risk register is a structured table listing identified risks with management strategies.</p>
+    <table>
+      <tr><th>ID</th><th>Risk Description</th><th>Sev.</th><th>Like.</th><th>Rating</th><th>Action</th><th>Owner</th></tr>
+      <tr><td>1</td><td>Wires come loose during competition</td><td>3</td><td>2</td><td>6</td><td>Secure wires with tape; add strain relief</td><td>PO</td></tr>
+      <tr><td>2</td><td>Forget to turn on microcontroller</td><td>2</td><td>2</td><td>4</td><td>Implement start-of-round checklist</td><td>JN</td></tr>
+      <tr><td>3</td><td>Teammate absent during build</td><td>4</td><td>3</td><td>12</td><td>Develop schedule; distribute work evenly</td><td>CJ</td></tr>
+    </table>
+    <p>The Risk Register fits in the risk management process at the <strong>Identify Risks</strong> and <strong>Conduct Risk Analysis</strong> stages.</p>
+  </div></div>
+</div>
+</div>
+
+<!-- TEAM DEVELOPMENT -->
+<div id="m5-teams" class="module-section">
+<h2 class="section-title">Team Development</h2>
+<p class="section-subtitle">Module 5 · Week 2 — Tuckman's stages, conflict management, feedback</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Tuckman's Stages of Team Development</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <table>
+      <tr><th>Stage</th><th>Relationships</th><th>Task Performance</th><th>Conflict</th></tr>
+      <tr><td><strong>Forming</strong></td><td>Polite, uncertain, optimistic</td><td>Some work, but not efficient</td><td>Avoided or ignored</td></tr>
+      <tr><td><strong>Storming</strong></td><td>Tensions, disagreements, power struggles</td><td>Often diminishes</td><td>Open, may impede work</td></tr>
+      <tr><td><strong>Norming</strong></td><td>Mutual understanding, improving</td><td>Improving quality and quantity</td><td>Managed more constructively</td></tr>
+      <tr><td><strong>Performing</strong></td><td>Strong identity, trust, cohesion</td><td>Efficient and effective</td><td>Dealt with directly and swiftly</td></tr>
+    </table>
+    <h4>Transitions Between Stages</h4>
+    <p><strong>Forming → Storming:</strong> Time working together, getting to know each other, having leadership/direction.</p>
+    <p><strong>Storming → Norming:</strong> Openness in communication, desire to improve.</p>
+    <p><strong>Norming → Performing:</strong> Psychological safety, valuing team over individual.</p>
+    <div class="warning-box"><strong>Bad Norming:</strong> When dysfunctions from storming become entrenched and tolerated (e.g., one person always misses meetings and nobody addresses it). Bad norms are like bad habits — take courage and difficult conversations to undo.</div>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Conflict Management Styles (5 Styles)</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p>Based on two axes: <strong>Assertiveness</strong> (achieving your goals) and <strong>Cooperativeness</strong> (meeting the other party's goals).</p>
+    <table>
+      <tr><th>Style</th><th>Assert.</th><th>Coop.</th><th>When to Use</th></tr>
+      <tr><td><strong>Avoiding</strong></td><td>Low</td><td>Low</td><td>Emotions are high; step away to cool off</td></tr>
+      <tr><td><strong>Accommodating</strong></td><td>Low</td><td>High</td><td>Issue matters more to them; builds goodwill</td></tr>
+      <tr><td><strong>Competing</strong></td><td>High</td><td>Low</td><td>Issue is critical for you; quick action needed</td></tr>
+      <tr><td><strong>Compromising</strong></td><td>Mid</td><td>Mid</td><td>Need a solution fast; no time to collaborate</td></tr>
+      <tr><td><strong>Collaborating</strong></td><td>High</td><td>High</td><td>Win-win; important issues with time to resolve</td></tr>
+    </table>
+    <div class="key-point">Effective teams are <strong>flexible</strong> — they draw from different styles depending on the situation. Always competing or always accommodating are both unhealthy patterns.</div>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-key">Key Concept</span> 3×3 Feedback Model</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <table>
+      <tr><th></th><th>Sender</th><th>Message</th><th>Receiver</th></tr>
+      <tr><td><strong>Clear</strong></td><td>Consistent, unambiguous speech and body language</td><td><strong>Concrete:</strong> Descriptive, specific, non-judgmental; focuses on receiver</td><td>Clear: Consistent, unambiguous body language</td></tr>
+      <tr><td><strong>Courteous</strong></td><td>Polite and respectful tone, language, body language</td><td><strong>Complete:</strong> Includes observations, impacts, suggestions, follow-up</td><td>Courteous: Receptive; polite and respectful</td></tr>
+      <tr><td><strong>Considerate</strong></td><td>Time and method of feedback considers the receiver</td><td><strong>Considerate:</strong> Empathetic and relevant to receiver</td><td>Complete: Acknowledge feedback; ask for clarification</td></tr>
+    </table>
+  </div></div>
+</div>
+</div>
+
+<!-- ENGINEERING DRAWINGS -->
+<div id="m5-drawings" class="module-section">
+<h2 class="section-title">Engineering Drawings</h2>
+<p class="section-subtitle">Module 5 · Week 3 — Isometric, orthographic, third angle projection, dimensioning</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Projection Types</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <dl class="def">
+      <dt>Perspective</dt><dd>Lines converge to show depth (realistic, like a photo)</dd>
+      <dt>Isometric</dt><dd>Three equal axes; parallel lines stay parallel; verticals stay vertical; horizontals rise at 30°; circles → ellipses</dd>
+      <dt>Principal/Orthographic</dt><dd>View directly along an axis; shows true shape of one face</dd>
+      <dt>Cabinet</dt><dd>Principal view with depth lines at an angle (least realistic)</dd>
+    </dl>
+    <div class="key-point"><strong>Isometric</strong> = best for conceptual design (easy to understand shape). <strong>Orthographic</strong> = best for dimensioned/manufacturing drawings (reveals hidden features).</div>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Third Angle Projection</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p><strong>Third angle projection</strong> is the North American standard. Views are arranged so:</p>
+    <p>• <strong>Top view</strong> is placed <em>above</em> the front view<br>
+    • <strong>Right end view</strong> is placed to the <em>right</em> of the front view<br>
+    • <strong>Left end view</strong> would go to the <em>left</em></p>
+    <p>Front and top views <em>align vertically</em>. Front and end views <em>align horizontally</em>.</p>
+    <div class="key-point">Think of it as "unfolding a box" — each face shows what you'd see looking at that side of the object. The standard 3-view drawing uses <strong>Front + Top + Right End</strong>.</div>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Dimensioning Guidelines</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <ul class="list-styled">
+      <li>Place dimensions <strong>outside</strong> the part views when possible</li>
+      <li>Extension lines come <strong>close to but don't touch</strong> the part</li>
+      <li>Extension lines from different dimensions <strong>may cross</strong></li>
+      <li>Place dimensions <strong>between views</strong> when they apply to both</li>
+      <li>Dimension <strong>visible features</strong>, not hidden features when possible</li>
+      <li><strong>No redundant dimensions</strong> — don't over-dimension (causes confusion and errors)</li>
+      <li>Choose which dimensions to show based on which are <strong>most critical for manufacturing</strong></li>
+      <li>⌀ symbol indicates a <strong>diameter</strong> dimension</li>
+      <li>Locate holes/circles by dimensioning their <strong>center position</strong></li>
+    </ul>
+    <div class="warning-box"><strong>Never place the same dimension on multiple views.</strong> If overall length = 96, notch = 35, and remaining = 61, you must eliminate one of the three (choose based on manufacturing importance).</div>
+    <h4>Title Block Information</h4>
+    <p>Drawing name, number, revision, scale, who prepared/checked it, units and precision, and the <strong>third angle projection symbol</strong>.</p>
+  </div></div>
+</div>
+</div>
+
+<!-- SAFETY HAZARDS -->
+<div id="m5-safety-hazards" class="module-section">
+<h2 class="section-title">Safety Hazards & Control Hierarchy</h2>
+<p class="section-subtitle">Module 5 · Week 2 — Hazard vs Risk, hierarchy of controls, prototyping</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Risk vs Hazard</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <dl class="def">
+      <dt>Risk</dt><dd>The <em>possibility</em> of harm, consequences, or damage occurring</dd>
+      <dt>Hazard</dt><dd>The inherent <em>capacity</em> of equipment, material, or processes to cause harm</dd>
+    </dl>
+    <p><strong>Example:</strong> "Gasoline vapours can ignite" = <em>Hazard</em>. "Leaving your cellphone while refueling reduces spark chance" = <em>Risk mitigation</em>. "Gasoline is safe when properly contained" = <em>Risk assessment</em>.</p>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Control Hierarchy for Safety Hazards</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p>Listed from <strong>most effective</strong> (top) to <strong>least effective</strong> (bottom):</p>
+    <table>
+      <tr><th>Level</th><th>Action</th><th>Example (fall hazard)</th></tr>
+      <tr><td><strong>1. Elimination</strong></td><td>Remove the hazard entirely</td><td>Build shorter buildings</td></tr>
+      <tr><td><strong>2. Substitution</strong></td><td>Replace with something safer</td><td>Use surfaces that don't need painting</td></tr>
+      <tr><td><strong>3. Engineering Controls</strong></td><td>Prevent exposure to the hazard</td><td>Install guardrails, scaffolding</td></tr>
+      <tr><td><strong>4. Administrative Controls</strong></td><td>Change how people work/behave</td><td>Safety training on working at elevation</td></tr>
+      <tr><td><strong>5. PPE</strong></td><td>Protect people from the hazard</td><td>Helmets and safety gear</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-key">Key Concept</span> Prototype Types for Risk Reduction</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <table>
+      <tr><th>Type</th><th>Purpose</th></tr>
+      <tr><td><strong>Proof-of-concept</strong></td><td>Determines if the core principle behind an idea works</td></tr>
+      <tr><td><strong>Form & fit</strong></td><td>Tests clearances, assembly, and movement of parts</td></tr>
+      <tr><td><strong>Exploratory</strong></td><td>Detects unanticipated behaviour and unexpected physics</td></tr>
+      <tr><td><strong>Performance test</strong></td><td>Measures performance against expectations or targets</td></tr>
+    </table>
+  </div></div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!--                    MODULE 6                                    -->
+<!-- ============================================================ -->
+
+<div id="m6-mining" class="module-section">
+<h2 class="section-title">Copper Mining Overview</h2>
+<p class="section-subtitle">Module 6 · Week 5 — Mining lifecycle, open-pit vs underground, tailings</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Key Mining Terminology</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <dl class="def">
+      <dt>Minerals</dt><dd>Naturally occurring substances we extract through mining (not from plants/animals)</dd>
+      <dt>Ore</dt><dd>Rock containing minerals of interest, plus valueless material called <em>gangue</em></dd>
+      <dt>Waste Rock</dt><dd>Rock surrounding ore that must be removed and stored to access the ore</dd>
+      <dt>Tailings</dt><dd>What remains after mineral extraction from ore during processing — a slurry of water and finely crushed gangue</dd>
+      <dt>Concentrate</dt><dd>Product of processing; typically 20–30% copper content</dd>
+    </dl>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Mine Development Cycle</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <table>
+      <tr><th>Stage</th><th>Duration</th><th>Key Activities</th></tr>
+      <tr><td><strong>Exploration</strong></td><td>8–10+ years</td><td>Locate minerals, environmental assessments, Indigenous consultation</td></tr>
+      <tr><td><strong>Assessments & Consultations</strong></td><td>Ongoing</td><td>Required approvals; cannot proceed without them</td></tr>
+      <tr><td><strong>Construction</strong></td><td>1–3 years</td><td>Build mine, processing plant, infrastructure, worker housing</td></tr>
+      <tr><td><strong>Operation</strong></td><td>10–30 years</td><td>Active mining and processing</td></tr>
+      <tr><td><strong>Closure</strong></td><td>1–2 years</td><td>Remove plant and equipment, begin land restoration</td></tr>
+      <tr><td><strong>Rehabilitation & Monitoring</strong></td><td>1–2 yrs + 5+ yrs monitoring</td><td>Restore environment to near-original state</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Open-Pit vs Underground Mining</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <div class="two-col">
+      <div class="col-box">
+        <h5 style="color:#22c55e">Open-Pit Mining ✓</h5>
+        <p>Good for near-surface deposits. Faster extraction with bigger equipment. Cost-effective for low-grade deposits.</p>
+        <h5 style="color:#ef4444;margin-top:10px">Drawbacks ✗</h5>
+        <p>Large amounts of waste rock. Significant landform changes. May not be feasible in environmentally/culturally sensitive sites.</p>
+      </div>
+      <div class="col-box">
+        <h5 style="color:#22c55e">Underground Mining ✓</h5>
+        <p>Good for deep deposits. Significantly less waste rock. Lower environmental footprint.</p>
+        <h5 style="color:#ef4444;margin-top:10px">Drawbacks ✗</h5>
+        <p>More expensive. Additional safety concerns (stability, ventilation, radiation). Slower due to less room and smaller equipment.</p>
+      </div>
+    </div>
+    <h4>Tailings Management</h4>
+    <p><strong>Tailings dam/impoundment:</strong> Most common; slurry added continuously; water and solids separate over time. Must withstand extreme weather, earthquakes, climate change.</p>
+    <p><strong>Dry stacking:</strong> Remove most water before storage; stored like waste rock. Impermeable liners protect against leaching.</p>
+    <p><strong>Dewatering:</strong> Removing water from tailings. <strong>Backfilling:</strong> Returning processed material into underground mine voids for stability and waste reduction.</p>
+  </div></div>
+</div>
+</div>
+
+<!-- SUSTAINABILITY & SYSTEMS -->
+<div id="m6-sustainability" class="module-section">
+<h2 class="section-title">Sustainability & Systems Thinking</h2>
+<p class="section-subtitle">Module 6 · Week 5 — Three pillars, systems thinking principles, life cycle thinking</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Five Systems Thinking Principles</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <ol class="list-styled">
+      <li><strong>Consider the whole</strong>, not just the parts</li>
+      <li><strong>Consider connections and interdependence</strong>, not independent elements</li>
+      <li><strong>Look for circular relationships and feedback</strong>, not linear/deterministic views</li>
+      <li><strong>Synthesize</strong> — bring ideas together, don't just analyze parts</li>
+      <li><strong>Adopt multidisciplinary thinking</strong>, not siloed approaches</li>
+    </ol>
+    <h4>Three Types of Scales</h4>
+    <dl class="def">
+      <dt>Spatial</dt><dd>Physical extent — from chemical composition to regional impacts</dd>
+      <dt>Temporal</dt><dd>Time horizons — now, near future, generations to come</dd>
+      <dt>Organizational</dt><dd>Decision levels — project site, community, provincial/federal</dd>
+    </dl>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-key">Key Concept</span> Life Cycle Thinking</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p>Stages (general product): <strong>Natural Resources → Extraction → Design & Production → Packaging & Distribution → Use & Maintenance → End of Life</strong></p>
+    <p>End of life options (best to worst): <strong>Reuse → Recycling → Recovery → Incineration/Landfilling</strong></p>
+    <p>For a <strong>mine</strong>, the appropriate life cycle is: <em>Exploration → Development → Operation → Closure</em></p>
+    <div class="key-point"><strong>Sustainability is a property of a SYSTEM, not an object.</strong> To develop sustainable solutions, you must look at entire systems through all life cycle stages using both systems thinking and life cycle thinking.</div>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-key">Key Concept</span> Nested Sustainability Model</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p>The <strong>nested model</strong> shows: Economy ⊂ Society ⊂ Environment. The economy depends on society, and both depend on the environment. Without the ecosystem, the human world does not exist.</p>
+    <p>This contrasts with the <strong>Venn diagram model</strong> (three overlapping circles) — both are valid ways to represent the three dimensions of sustainability (economic, social, environmental).</p>
+  </div></div>
+</div>
+</div>
+
+<!-- CLDs -->
+<div id="m6-cld" class="module-section">
+<h2 class="section-title">Causal Loop Diagrams (CLDs)</h2>
+<p class="section-subtitle">Module 6 · Week 5-6 — Building and analyzing CLDs for complex systems</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> CLD Fundamentals</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p>A CLD is a <strong>virtual prototype</strong> that maps relationships, dependencies, and feedback loops in a complex system.</p>
+    <h4>Link Types</h4>
+    <dl class="def">
+      <dt>+ (positive link)</dt><dd>Variables change in the <em>same</em> direction. If A increases, B increases (and vice versa).</dd>
+      <dt>- (negative link)</dt><dd>Variables change in <em>opposite</em> directions. If A increases, B decreases (and vice versa).</dd>
+    </dl>
+    <h4>Loop Types</h4>
+    <dl class="def">
+      <dt>Reinforcing loop (R)</dt><dd>Contains an <em>even</em> number of negative links (or all positive). Amplifies changes — can produce growth or collapse.</dd>
+      <dt>Balancing loop (B)</dt><dd>Contains an <em>odd</em> number of negative links. Seeks equilibrium — counteracts changes.</dd>
+    </dl>
+    <div class="warning-box"><strong>A CLD is NOT a calculation tool.</strong> It does not compute numerical outputs. It helps you understand <em>qualitative relationships</em> — which variables affect which, and whether the overall system amplifies or dampens changes.</div>
+  </div></div>
+</div>
+</div>
+
+<!-- RESILIENCE -->
+<div id="m6-resilience" class="module-section">
+<h2 class="section-title">Resilience</h2>
+<p class="section-subtitle">Module 6 · Week 6 — Resilient design principles for complex systems</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Resilience Definition & Principles</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <div class="key-point"><strong>Resilience</strong> = the capacity to adapt to changing conditions and to maintain or regain functionality and vitality in the face of stress or disturbance. Performance may be different from before (e.g., "run flat" tire — you can keep driving but slower).</div>
+    <h4>Six Principles for Resilient Design</h4>
+    <table>
+      <tr><th>Principle</th><th>Meaning</th></tr>
+      <tr><td><strong>Function across scales</strong></td><td>Work now and long-term, in different regions</td></tr>
+      <tr><td><strong>Anticipate disturbances</strong></td><td>Consider possible disturbances and changes during design</td></tr>
+      <tr><td><strong>Build in redundancy & diversity</strong></td><td>Don't rely on a single approach; have backups</td></tr>
+      <tr><td><strong>Be simple, passive, flexible</strong></td><td>Function without constant monitoring or input</td></tr>
+      <tr><td><strong>Use locally available resources</strong></td><td>Don't rely on distant inputs; use renewable/local resources</td></tr>
+      <tr><td><strong>Support community & social equity</strong></td><td>Strong communities cope better with stresses</td></tr>
+    </table>
+    <p><strong>Example:</strong> A grid road pattern is more resilient than a branching pattern because if one road is blocked, alternative routes exist. But grid patterns cost more to build and maintain.</p>
+  </div></div>
+</div>
+</div>
+
+<!-- LCA & SLCA -->
+<div id="m6-lca" class="module-section">
+<h2 class="section-title">LCA & SLCA</h2>
+<p class="section-subtitle">Module 6 · Weeks 6-7 — Life cycle assessment methods, functional units, sunk costs</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> LCA: Four ISO Steps</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <ol class="list-styled">
+      <li><strong>Goal Definition & Scoping:</strong> Define system boundary, inputs (materials, energy), outputs (emissions, waste)</li>
+      <li><strong>Inventory Analysis:</strong> Track all material and energy flows into/out of the system (detailed, time-consuming)</li>
+      <li><strong>Impact Assessment:</strong> Examine environmental impacts using established metrics (resources, waste, land, water, air)</li>
+      <li><strong>Interpretation:</strong> Identify which stages/components contribute most; use to improve designs</li>
+    </ol>
+    <p>Steps are <strong>iterative</strong> — results from later stages may cause revisiting earlier steps.</p>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Functional Units</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p>A <strong>functional unit</strong> is a reference quantity used to measure and normalize performance of alternatives for fair comparison.</p>
+    <p><strong>Example:</strong> Comparing lightbulbs → use "40 million lumen-hours of light" (not "1 bulb" since they last different times).</p>
+    <p><strong>Example:</strong> Comparing grocery bags → use capacity × uses (not "1 bag" since reusable bags are used many times).</p>
+    <p><strong>Example:</strong> Car vs bus → use "person-km" (accounts for different passenger counts).</p>
+    <div class="key-point">The functional unit must measure the <em>function</em> (useful output) fairly across alternatives. There is no single correct functional unit — it depends on the problem.</div>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> SLCA vs LCA</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <div class="two-col">
+      <div class="col-box">
+        <h5>Full LCA</h5>
+        <p>Quantitative, detailed, months to complete. Best for existing/mature products. Requires precise system knowledge.</p>
+      </div>
+      <div class="col-box">
+        <h5>Streamlined LCA (SLCA)</h5>
+        <p>Qualitative, fast (hours/days), inexpensive. Best <em>early</em> in design. Captures ~80% of environmental issues from a full LCA.</p>
+      </div>
+    </div>
+    <h4>SLCA Rating Scale</h4>
+    <p>0 = Very Poor, 1 = Poor, 2 = Fair, 3 = Good, 4 = Very Good. Ratings are summed for an Environmentally Responsible Product Rating (RERP).</p>
+    <h4>LCA Terminology</h4>
+    <dl class="def">
+      <dt>LCA</dt><dd>Life Cycle Assessment (typically environmental focus)</dd>
+      <dt>ELCA</dt><dd>Economic Life Cycle Assessment (sometimes used for "environmental")</dd>
+      <dt>S-LCA</dt><dd>Social Life Cycle Assessment</dd>
+      <dt>SLCA</dt><dd>Streamlined Life Cycle Assessment (no dash)</dd>
+    </dl>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Sunk Costs</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <div class="key-point"><strong>Sunk cost</strong> = a cost that has already been incurred and can't be recovered. In decision-making, sunk costs should be <strong>ignored</strong>.</div>
+    <p><strong>Example:</strong> You bought a $1000 e-bike. Comparing trip costs: e-bike electricity ($0.50) vs Uber ($20). The $1000 purchase is a sunk cost — don't factor it in.</p>
+    <p><strong>In Module 6:</strong> Exploration costs are sunk costs — they're the same regardless of which deposit is chosen. Don't include them in SLCAs or WDMs for comparing deposits.</p>
+  </div></div>
+</div>
+</div>
+
+<!-- ENGAGEMENT -->
+<div id="m6-engagement" class="module-section">
+<h2 class="section-title">Engagement & UNDRIP</h2>
+<p class="section-subtitle">Module 6 · Week 7 — Engagement continuum, social license, duty to consult</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Engagement Continuum (5 Levels)</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <table>
+      <tr><th>Level</th><th>Action</th><th>Tools</th></tr>
+      <tr><td><strong>Inform</strong></td><td>Provide balanced information outward</td><td>Newsletters, websites, open houses, presentations</td></tr>
+      <tr><td><strong>Consult</strong></td><td>Obtain and <em>consider</em> input</td><td>Surveys, townhalls, focus groups, interviews</td></tr>
+      <tr><td><strong>Involve</strong></td><td>Work together to understand issues and identify solutions</td><td>Workshops, think tanks, decision-making polls</td></tr>
+      <tr><td><strong>Collaborate</strong></td><td>Partner to make decisions together</td><td>Advisory boards, consensus-building, task forces</td></tr>
+      <tr><td><strong>Empower</strong></td><td>Support groups to make and implement their own decisions</td><td>Referenda, ballots, citizen juries, delegated decisions</td></tr>
+    </table>
+    <div class="key-point">Moving left → right = greater community control and input. Low salience groups → left side. High salience groups → right side.</div>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-key">Key Concept</span> Social License & UNDRIP</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p><strong>Social License to Operate:</strong> Local communities, stakeholders, and rights holders not only accept but <em>actively support</em> the company's activities.</p>
+    <p><strong>UNDRIP:</strong> United Nations Declaration on the Rights of Indigenous Peoples. BC passed this into law (DRIPA) in November 2019.</p>
+    <p><strong>Duty to Consult:</strong> The provincial (sometimes federal) government has a legal duty to consult with Indigenous rights holders. This can be delegated to the mining company ("proponent"), which then must: (1) provide information early, (2) identify and discuss potential impacts, (3) consider modifications to avoid/mitigate impacts, (4) document and report to the Province.</p>
+    <div class="key-point"><strong>PlayPump lesson:</strong> Even well-intentioned engineering solutions fail without proper community engagement. The PlayPump was 4× more expensive and 4× less efficient than conventional pumps, and failed because it didn't adequately consider the community's actual needs and usage patterns.</div>
+  </div></div>
+</div>
+</div>
+
+<!-- BUSINESS LETTERS & 7Cs -->
+<div id="m6-letters" class="module-section">
+<h2 class="section-title">Business Letters & 7Cs</h2>
+<p class="section-subtitle">Module 6 · Week 8 — Formal letter format, tone, and effective communication</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> The 7 Cs of Communication</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <dl class="def">
+      <dt>1. Clear</dt><dd>Writing is simple and easy to understand</dd>
+      <dt>2. Concise</dt><dd>Message is brief and to the point</dd>
+      <dt>3. Correct</dt><dd>Document is free of errors (spelling, facts, names)</dd>
+      <dt>4. Concrete</dt><dd>Main point is evident, vivid, and detailed</dd>
+      <dt>5. Complete</dt><dd>All necessary information is included</dd>
+      <dt>6. Courteous</dt><dd>Friendly, appropriate tone</dd>
+      <dt>7. Considerate</dt><dd>Writing takes the receiver into account; non-judgmental</dd>
+    </dl>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Business Letter Format</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p><strong>Block format:</strong> All text starts at the left margin. Body is left-aligned (uneven right edge). 11-12pt font. 1-1.25" margins.</p>
+    <h4>Letter Elements (in order)</h4>
+    <p>Sender's address → Date (written in full) → Inside address (recipient) → Salutation ("Dear Ms. Last<strong>:</strong>" with COLON) → Body (intro + details + conclusion) → Closing ("Sincerely,") → Signature space → Typed name/title → Enclosures → cc</p>
+    <h4>Key Details</h4>
+    <p>• Use <strong>serif fonts</strong> (Times New Roman is standard). Never use script/novelty fonts.<br>
+    • Use positive, action-focused language. Avoid negative words ("unfortunately," "can't," "only").<br>
+    • Honorifics: Mr., Ms. (pronounced "miz"), Mx. (for non-binary), Dr., Prof. Avoid Miss/Mrs. unless the person uses them.<br>
+    • Letterhead only on first page; blank paper for subsequent pages.<br>
+    • "Re:" line for reference numbers (bolded).</p>
+  </div></div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!--                    MODULE 7                                    -->
+<!-- ============================================================ -->
+
+<div id="m7-specs" class="module-section">
+<h2 class="section-title">Target Design Specifications</h2>
+<p class="section-subtitle">Module 7 · Week 8 — Attributes, design parameters, requirements vs evaluation criteria</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Key Terminology</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <dl class="def">
+      <dt>Needs</dt><dd>General expressions of stakeholder wants and wishes</dd>
+      <dt>Requirements</dt><dd>Must-have features/values for a design to be acceptable (pass/fail)</dd>
+      <dt>Evaluation Criteria</dt><dd>Used to differentiate between degrees of performance (barely acceptable → outstanding)</dd>
+      <dt>Design Parameters</dt><dd>Inputs chosen by engineers (e.g., battery capacity, case material)</dd>
+      <dt>Product Attributes</dt><dd>Outputs of interest to stakeholders (e.g., cost, mass, battery life)</dd>
+    </dl>
+    <div class="key-point">Design parameters are like <strong>inputs</strong> (engineer controls); product attributes are like <strong>outputs</strong> (stakeholder cares about). Each parameter can impact <em>multiple</em> attributes.</div>
+  </div></div>
+</div>
+</div>
+
+<!-- SATISFACTION CURVES -->
+<div id="m7-satisfaction" class="module-section">
+<h2 class="section-title">Satisfaction Curves</h2>
+<p class="section-subtitle">Module 7 · Week 8 — Constructing and interpreting satisfaction curves</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Satisfaction Curve Construction</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p><strong>X-axis:</strong> Measurable, quantifiable attribute. <strong>Y-axis:</strong> Satisfaction (0% = barely acceptable, 100% = fully satisfied).</p>
+    <h4>Three Key Points for Construction</h4>
+    <p>1. <strong>Barely acceptable</strong> performance → Satisfaction ≈ 0%<br>
+    2. <strong>What stakeholders expect</strong> → middle satisfaction (not necessarily 50%)<br>
+    3. <strong>Everything they want</strong> → Satisfaction = 100%</p>
+    <h4>Common Curve Shapes</h4>
+    <p><strong>S-curve</strong> (most common) — steep in the middle where stakeholders most notice differences. <strong>Linear</strong> — simple but usually not the best representation. <strong>Reverse S-curve</strong> — when lower values are better (e.g., cost). <strong>Peak in middle</strong> — optimal value exists. <strong>Discrete</strong> — categorical attributes. <strong>Step function</strong> — sharp drops near threshold values.</p>
+    <div class="warning-box"><strong>"All other things being equal":</strong> Each satisfaction curve considers only ONE attribute. Don't factor in trade-offs with other attributes (e.g., don't curve battery life satisfaction downward because bigger batteries are heavier — weight has its own curve).</div>
+    <h4>Requirements as Thresholds</h4>
+    <p>If there's a minimum acceptable value (requirement), any solution below it is <strong>screened out</strong>. Satisfaction = 0% at the threshold. Satisfaction plateaus at 100% once the maximum useful value is reached.</p>
+    <h4>Satisfaction Formula Used in Module 7</h4>
+    <div class="formula-box">S(x) = ½(1 − cos((x − x_min)/(x_max − x_min) × π))</div>
+    <p>For attributes where lower is better (like maintenance):</p>
+    <div class="formula-box">S(x) = ½(1 + cos((x − x_min)/(x_max − x_min) × π))</div>
+  </div></div>
+</div>
+</div>
+
+<!-- FLUID MECHANICS -->
+<div id="m7-fluids" class="module-section">
+<h2 class="section-title">Fluid Mechanics</h2>
+<p class="section-subtitle">Module 7 · Weeks 9-11 — Pressure, flow, elevation, friction, and losses</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-formula">Formula</span> Hydrostatic Pressure</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <div class="formula-box">p = ρgh</div>
+    <dl class="def">
+      <dt>p</dt><dd>Pressure (Pa) — lowercase p for pressure</dd>
+      <dt>ρ</dt><dd>Water density ≈ 1000 kg/m³</dd>
+      <dt>g</dt><dd>Gravitational acceleration ≈ 9.81 m/s²</dd>
+      <dt>h</dt><dd>Height of water column above the point (m)</dd>
+    </dl>
+    <div class="key-point">Pressure increases linearly with depth. We use atmospheric pressure as our <strong>reference (zero)</strong>. Uppercase P is reserved for <strong>Power</strong>.</div>
+    <p><strong>Key insight:</strong> Tank diameter D does NOT affect outflow rate — as D increases, weight increases but is divided over a larger area, so pressure (and thus flow) stays the same.</p>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-formula">Formula</span> Flow Rate and Velocity</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <div class="formula-box">Q = v × A</div>
+    <dl class="def">
+      <dt>Q</dt><dd>Volume flow rate (m³/s or L/min)</dd>
+      <dt>v</dt><dd>Flow velocity (m/s)</dd>
+      <dt>A</dt><dd>Cross-sectional area of pipe/nozzle (m²)</dd>
+    </dl>
+    <p>Flow moves from <strong>high pressure to low pressure</strong>. The pressure-velocity relationship:</p>
+    <div class="formula-box">ρv²/2 = p</div>
+    <h4>Continuity (Conservation of Mass)</h4>
+    <p>Water is incompressible → Q is the <strong>same everywhere</strong> in a pipe. If the nozzle is smaller than the pipe:</p>
+    <div class="formula-box">v × A = v_out × A_out</div>
+    <p>Smaller nozzle → faster exit velocity, but same volume flow rate.</p>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-formula">Formula</span> Pressure Losses (Three Types)</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <h4>1. Elevation Change</h4>
+    <div class="formula-box">p_elevation = ρg(h₁ − h₂)</div>
+    <p>Raising water from h₁ to h₂ costs pressure. When outlet elevation = water surface, no flow (no pressure difference).</p>
+
+    <h4>2. Pipe Friction</h4>
+    <div class="formula-box">p_friction = f × (L/D) × (ρv²/2)</div>
+    <dl class="def">
+      <dt>f</dt><dd>Friction factor (dimensionless)</dd>
+      <dt>L</dt><dd>Pipe length (m)</dd>
+      <dt>D</dt><dd>Pipe inner diameter (m)</dd>
+    </dl>
+    <p>Longer pipe → more friction → less flow. Like a long garden hose vs short one.</p>
+
+    <h4>3. Restrictions & Fittings</h4>
+    <div class="formula-box">p_restrictions = K × (ρv²/2)</div>
+    <dl class="def">
+      <dt>K</dt><dd>Loss coefficient (dimensionless) — from elbows, valves, tees, unions</dd>
+    </dl>
+    <p>A valve works by varying K: slightly closed → small K → reduced flow. Fully closed → K = ∞ → no flow.</p>
+
+    <h4>4. Filter Resistance</h4>
+    <div class="formula-box">p_filter = C_f × v</div>
+    <p>C_f is the filter resistance coefficient. Note: filter losses are proportional to <em>v</em> (not v²).</p>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-formula">Formula</span> Complete System Equation</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <div class="formula-box" style="font-size:14px">ρv²/2 = p₁ − ρg(h₁−h₂) − f(L/D)(ρv²/2) − K(ρv²/2) − C_f·v</div>
+    <p>Or equivalently, the pump must supply:</p>
+    <div class="formula-box" style="font-size:14px">p_pump = ρg·h_storage + f(L/D)(ρv²/2) + K(ρv²/2) + C_f·v</div>
+    <p>Each term on the right represents:</p>
+    <table>
+      <tr><th>Term</th><th>Physical Meaning</th></tr>
+      <tr><td><code>ρg·h_storage</code></td><td>Pressure to lift water to storage elevation</td></tr>
+      <tr><td><code>f(L/D)(ρv²/2)</code></td><td>Friction losses in pipe</td></tr>
+      <tr><td><code>K(ρv²/2)</code></td><td>Losses from fittings/restrictions</td></tr>
+      <tr><td><code>C_f·v</code></td><td>Filter resistance</td></tr>
+    </table>
+  </div></div>
+</div>
+</div>
+
+<!-- RWH SYSTEM -->
+<div id="m7-system" class="module-section">
+<h2 class="section-title">RWH System Design</h2>
+<p class="section-subtitle">Module 7 · Weeks 9-13 — System components, pump and system curves, operating point</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-core">Core</span> System Components</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p><strong>Full system flow:</strong> Rain → Catchment area (roof) → Collection tank → Pump → Chemical treatment (ozone/chlorine) → Filter → Storage tank (elevated) → On-demand supply → Filter (alternative location) → UV purifier → House</p>
+    <h4>Key Components</h4>
+    <dl class="def">
+      <dt>Catchment</dt><dd>Roof area that collects rainwater</dd>
+      <dt>Collection tank</dt><dd>Stores rainwater before pumping</dd>
+      <dt>Pump</dt><dd>Moves water from collection to elevated storage</dd>
+      <dt>Chemical treatment</dt><dd>Ozone or chlorine disinfection</dd>
+      <dt>Filtration</dt><dd>200μm (large particles), 5μm (silt), 1μm (pathogens). Required: 1μm filter + UV purifier.</dd>
+      <dt>UV purifier</dt><dd>Kills remaining pathogens after filtration</dd>
+      <dt>Storage tank</dt><dd>Elevated tank providing gravity-fed on-demand flow</td>
+    </dl>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Pump Curve vs System Curve</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p><strong>Pump curve:</strong> Shows pressure a pump can deliver vs flow rate. Higher Q → lower pressure. Curves downward.</p>
+    <p><strong>System curve:</strong> Shows pressure required by the system vs flow rate. Higher Q → more losses → higher pressure needed. Curves upward. Y-intercept = ρg·h_storage.</p>
+    <div class="key-point"><strong>Operating point</strong> = intersection of pump curve and system curve. This determines the actual Q and p at which the system runs. You don't choose Q — the system determines it.</div>
+    <h4>Changing the Operating Point</h4>
+    <p>• Lower storage elevation → system curve shifts down → higher Q<br>
+    • Remove filters → system curve less steep → higher Q<br>
+    • Shorter pipe / closer tank → less friction → higher Q<br>
+    • Better/bigger pump → pump curve shifts up → higher Q</p>
+    <div class="warning-box"><strong>Trade-off:</strong> Higher storage elevation improves on-demand flow to the house, but makes the pump work harder (lower Q from pump to storage).</div>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> On-Demand Flow (Storage → House)</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p>No pump on this line — driving pressure comes from elevated storage tank:</p>
+    <div class="formula-box">ρg·h_storage = f(L/D)(ρv²/2) + K(ρv²/2) + C_f·v</div>
+    <p>This is a <strong>quadratic equation</strong> in v. Rearranging: Av² + Bv + C = 0, then solve with the quadratic formula. Take the positive solution.</p>
+    <p>On the graph: the "pump" curve is a <strong>horizontal line</strong> at ρg·h_storage (constant pressure). The system curve starts at origin (no elevation to overcome on supply side). Operating point is where they intersect.</p>
+  </div></div>
+</div>
+</div>
+
+<!-- ENERGY & PUMP -->
+<div id="m7-energy" class="module-section">
+<h2 class="section-title">Energy & Pump Efficiency</h2>
+<p class="section-subtitle">Module 7 · Week 10 — Electrical energy, pump efficiency, diesel/solar calculations</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-formula">Formula</span> Energy Calculations</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <h4>Energy to Move Water</h4>
+    <div class="formula-box">E_water = p_pump × V_water</div>
+    <p>Where V_water is the volume of water moved (m³) and p_pump is pump pressure (Pa). Result in Joules.</p>
+
+    <h4>Electrical Energy (with efficiency)</h4>
+    <div class="formula-box">E_elec = E_water / η</div>
+    <p>Where η is pump efficiency (0 < η ≤ 1). η varies with flow rate — not constant for real pumps.</p>
+
+    <h4>Best Efficiency Point (BEP)</h4>
+    <p>The flow rate where η is maximum. Operating far from BEP wastes energy. Pump curves often show both p(Q) and η(Q).</p>
+
+    <h4>Power</h4>
+    <div class="formula-box">P = E / t</div>
+    <p>Power (Watts) = Energy (Joules) / Time (seconds).</p>
+  </div></div>
+</div>
+</div>
+
+<!-- FILTERS & MAINTENANCE -->
+<div id="m7-filters" class="module-section">
+<h2 class="section-title">Filters & Maintenance</h2>
+<p class="section-subtitle">Module 7 · Weeks 11-12 — Filter coefficients, filter life, maintenance modeling</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Filter System Details</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <h4>Three Filter Types</h4>
+    <table>
+      <tr><th>Filter</th><th>Size</th><th>Removes</th><th>Relative C_f</th></tr>
+      <tr><td>Bag filter</td><td>200 μm</td><td>Sand, dust, pollen</td><td>Lowest</td></tr>
+      <tr><td>Cartridge</td><td>5 μm</td><td>Silt, suspended solids</td><td>~20× higher</td></tr>
+      <tr><td>Cartridge</td><td>1 μm</td><td>Fine particles, some pathogens</td><td>~2× higher than 5μm</td></tr>
+    </table>
+    <div class="key-point"><strong>Required:</strong> 1μm filter + UV purifier on the supply line. 200μm and 5μm are optional but extend the life of downstream filters.</div>
+
+    <h4>Filter Life & Maintenance</h4>
+    <p>Filter life depends on which <em>pre-filters</em> are upstream. Without pre-filters, finer filters foul faster → more frequent replacement → more maintenance events → lower satisfaction.</p>
+    <p><strong>Trade-off:</strong> More filters = better water quality, longer individual filter life, but higher initial cost and lower flow rate (higher C_f).</p>
+
+    <h4>Scale Model Testing</h4>
+    <p>C_f,exp is measured experimentally. Real filter C_f values are scaled from the experiment:</p>
+    <div class="formula-box">C_f (200μm) = 0.00417 × C_f,exp<br>C_f (5μm) = 0.0833 × C_f,exp<br>C_f (1μm) = 0.167 × C_f,exp</div>
+  </div></div>
+</div>
+</div>
+
+<!-- RWH RISK & CURVE FITTING -->
+<div id="m7-risk" class="module-section">
+<h2 class="section-title">RWH Risk & Curve Fitting</h2>
+<p class="section-subtitle">Module 7 · Weeks 10-11 — Health/environmental risk, R², trendlines</p>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Health & Environmental Risk Matrix</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <h4>Risk Likelihood Formula</h4>
+    <div class="formula-box">Risk Likelihood = 4 − 0.5 × ln(# days between exposures)</div>
+    <p>Where # days is the period between risk exposures. Daily = 4, Weekly ≈ 3, Monthly ≈ 2, Yearly ≈ 1.</p>
+    <h4>Overall Risk Exposure</h4>
+    <p>E = sum of all individual risk scores (severity × likelihood for each health and environmental risk from each component: diesel, chlorine/ozone, batteries, etc.)</p>
+    <h4>Risk Satisfaction</h4>
+    <div class="formula-box">S(E) = ½(1 + cos((E − E_min)/(E_max − E_min) × π))</div>
+    <p>Where E_min and E_max come from the component selection guide.</p>
+  </div></div>
+</div>
+
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <h3><span class="tag tag-exam">Testable</span> Curve Fitting & R²</h3>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body"><div class="card-content">
+    <p><strong>R² (coefficient of determination)</strong> measures how well data matches the best-fit curve. Range: 0 to 1.</p>
+    <p>R² = 1 means y can be perfectly predicted from x. R² = 0 means no relationship.</p>
+    <h4>Key Points</h4>
+    <p>• Choose the curve type based on the <strong>physical phenomenon</strong> (not just highest R²)<br>
+    • A 2nd-order polynomial with 3 data points always gives R² = 1 (same # of coefficients as points)<br>
+    • When fitting a line to 2 points, it's trivial (exact solution)</p>
+    <div class="warning-box"><strong>Excel bug:</strong> When you force a linear trendline to a non-zero y-intercept, Excel shows the <em>wrong</em> R² value (same as the unforced version). Don't trust R² in this case. Google Sheets doesn't support forced intercepts for trendlines at all.</div>
+  </div></div>
+</div>
+</div>
+
+</main>
+</div>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.module-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  document.querySelector('.sidebar').classList.remove('open');
+  window.scrollTo(0, 0);
+}
+
+function toggleCard(header) {
+  header.parentElement.classList.toggle('open');
+}
+
+function searchContent(query) {
+  if (!query.trim()) {
+    document.querySelectorAll('.card').forEach(c => c.style.display = '');
+    document.querySelectorAll('.module-section').forEach(s => {
+      if (s.classList.contains('active')) s.style.display = 'block';
+      else s.style.display = 'none';
+    });
+    return;
+  }
+  const q = query.toLowerCase();
+  document.querySelectorAll('.module-section').forEach(s => s.style.display = 'block');
+  document.querySelectorAll('.card').forEach(card => {
+    const text = card.textContent.toLowerCase();
+    if (text.includes(q)) {
+      card.style.display = '';
+      card.classList.add('open');
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  document.querySelectorAll('.module-section').forEach(s => {
+    const visibleCards = s.querySelectorAll('.card:not([style*="display: none"])');
+    if (visibleCards.length === 0) s.style.display = 'none';
+  });
+}
+
+// Open first card in each section by default
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.module-section').forEach(s => {
+    const first = s.querySelector('.card');
+    if (first) first.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
