@@ -10,6 +10,15 @@ A fast, static engineering portfolio deployed from `public` on Vercel.
 - `public/assets` contains project images.
 - `public/projects` contains standalone interactive project demos.
 
+## Repository Structure
+
+- `public/index.html` contains the page structure.
+- `public/app.js` contains project content and interactions.
+- `public/styles.css` contains the visual styling.
+- `public/assets` contains the portfolio images.
+
+The `public` directory is the complete deployable website.
+
 ## Preview Locally
 
 ```bash
