@@ -1,6 +1,14 @@
-# Chiune Honda Portfolio
+# Chiune Honda Engineering Portfolio
 
-A minimal professional engineering portfolio website built as a static web app.
+A fast, static engineering portfolio deployed from `public` on Vercel.
+
+## Structure
+
+- `public/index.html` contains the page structure and contact information.
+- `public/app.js` contains project content and interactions.
+- `public/styles.css` contains the responsive visual system.
+- `public/assets` contains project images.
+- `public/projects` contains standalone interactive project demos.
 
 ## Preview Locally
 
@@ -10,10 +18,12 @@ npm run dev
 
 Open `http://localhost:5173`.
 
+Python 3 is required. On Windows, the equivalent direct command is:
+
+```powershell
+py -m http.server 5173 --directory public
+```
+
 ## Deploy
 
-This can be deployed directly to Vercel, Netlify, or GitHub Pages as a static site. No build step is required.
-
-## Update Content
-
-Project content lives in `app.js`. Visual styling lives in `styles.css`. Images are stored in `public/assets`.
+Vercel serves `public` directly with no build step. Use the **Other** framework preset if configuring the project manually.
