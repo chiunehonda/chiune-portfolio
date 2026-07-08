@@ -8,14 +8,16 @@ const projects = [
     alt: "SolidWorks render of the SUBC submarine drivetrain gearbox",
     summary:
       "Designed and validated sealed drivetrain and gearbox components for UBC’s human-powered submarine.",
+    cardSummary:
+      "Sealed drivetrain and gearbox work for UBC’s human-powered submarine.",
     tags: ["SolidWorks", "FEA", "CFD", "Machining"],
     metrics: ["100+ CAD hours", "30+ simulations", "1.8–2.1 kN design loads"],
     problem:
-      "The drivetrain needed to transfer rider input through a compact underwater assembly while controlling alignment, mass, structural loading, and manufacturing tolerances.",
+      "Package a reliable underwater drivetrain inside a tight submarine volume while controlling alignment, sealing, weight, and manufacturing tolerances.",
     work:
-      "Modelled gearbox and housing components, ran static, fatigue, and buckling studies in SolidWorks Simulation, completed flow and pressure analysis, and iterated parts for manual machining and assembly.",
+      "Built the gearbox and housing in CAD, checked structural and flow cases in simulation, then revised the design around machining and assembly constraints.",
     outcome:
-      "Topology-based pocketing and rib changes reduced component weight by 32–45%. Prototype adjustments reached approximately ±0.1–0.2 mm fabrication accuracy while maintaining a factor of safety above 1.2 in predicted load cases.",
+      "Reduced component mass with pockets and ribs, refined prototype fit to about ±0.1–0.2 mm, and kept simulated safety factors above target loads.",
     gallery: [
       "assets/subc-gearbox-cad.webp",
       "assets/subc-housing-cad.webp",
@@ -32,14 +34,16 @@ const projects = [
     alt: "Detailed SolidWorks render of a V6 engine assembly",
     summary:
       "A functional 55+ part SolidWorks assembly with linked piston, crankshaft, camshaft, and valve motion.",
+    cardSummary:
+      "A functional CAD assembly built to study real engine motion and constraints.",
     tags: ["SolidWorks", "Assemblies", "Mechanical mates"],
     metrics: ["55+ parts", "150+ mates", "Functional four-stroke motion"],
     problem:
-      "I wanted to move beyond isolated CAD parts and learn how a dense mechanical assembly behaves when geometry, motion, and constraints all interact.",
+      "Learn how a dense mechanical assembly behaves when geometry, motion, and constraints all interact.",
     work:
-      "Modelled the powertrain using lofts, boundaries, ribs, shells, drafts, patterns, and detailed part features. Gear, cam, tangent, concentric, and coincident mates connect the valvetrain and lower engine assembly.",
+      "Modelled 55+ parts and linked the crankshaft, pistons, camshaft, and valves with functional SolidWorks mates.",
     outcome:
-      "The completed model reproduces four-stroke motion through manual crankshaft rotation and became a practical study in assembly architecture, constraint management, and advanced SolidWorks features.",
+      "Manual crank rotation drives visible four-stroke motion, showing assembly planning, constraint control, and mechanical timing.",
     gallery: ["assets/v6-engine.webp", "assets/v6-piston.webp", "assets/v6-rod.webp"]
   },
   {
@@ -51,18 +55,19 @@ const projects = [
     alt: "Hydroelectric generator prototype during voltage testing",
     summary:
       "A water-driven turbine and speed-increasing gearbox that powered an LED through a DC motor.",
+    cardSummary:
+      "A compact turbine and gearbox prototype that generated usable voltage from water flow.",
     tags: ["Gear design", "Circuits", "Prototyping", "Testing"],
     metrics: ["1:5 speed increase", "75T / 15T gears", "Up to 4.7 V"],
     problem:
-      "The system had to convert a low-speed water input into enough motor speed and electrical output to visibly power an LED.",
+      "Turn slow water flow into enough motor speed and electrical output to light an LED.",
     work:
-      "Built the turbine and structure, aligned a 75-tooth driver with a 15-tooth driven gear, and connected the DC motor to an LED and voltmeter for repeated testing.",
+      "Built a spoon turbine, 75T-to-15T gear train, DC motor circuit, and test setup.",
     outcome:
-      "The final prototype generated up to 4.7 V and demonstrated the complete energy path from water flow to rotational motion, gearing, electrical generation, and circuit output.",
+      "Generated up to 4.7 V and demonstrated the full path from water flow to rotation to electrical output.",
     gallery: [
       "assets/hydro-test.webp",
-      "assets/hydro-propeller.webp",
-      "assets/portfolio-page-hydro.webp"
+      "assets/hydro-propeller.webp"
     ]
   },
   {
@@ -73,14 +78,16 @@ const projects = [
     visual: "study-guide",
     summary:
       "An original full-course study guide and interactive practice site built to make dense engineering material searchable and testable.",
+    cardSummary:
+      "A browser-based study guide and quiz system built from full-course APSC 101 material.",
     tags: ["HTML", "CSS", "JavaScript", "Information design"],
     metrics: ["Modules 5–7", "Live topic search", "Interactive answer reveal"],
     problem:
-      "Notes, quizzes, worksheets, and reference files were spread across formats, slowing focused review.",
+      "Course material was scattered across notes, quizzes, worksheets, and reference files.",
     work:
-      "Combined 87 source files into searchable module notes, collapsible concept cards, formula references, and a practice quiz with hidden answers.",
+      "Converted 87 source files into searchable notes, concept cards, formula references, and practice quizzes.",
     outcome:
-      "A fast browser-based system for reference and active recall, with no installation or backend required.",
+      "Created a fast browser-based review system for quick lookup and active recall, with no backend required.",
     gallery: ["assets/apsc-study-guide-overview.png", "assets/apsc-practice-quiz.png"],
     links: [
       {
@@ -146,22 +153,15 @@ function projectCard(project, index, featured = false) {
       >
         <span class="project-visual">
           ${projectMedia(project)}
-          <span class="project-visual-label">
-            <strong>${project.title}</strong>
-            <em>${project.categoryLabel}</em>
+          <span class="project-card-index" aria-hidden="true">
+            ${String(index + 1).padStart(2, "0")}
           </span>
         </span>
         <span class="project-card-body">
-          <span class="project-meta">
-            <span>${String(index + 1).padStart(2, "0")} / ${project.categoryLabel}</span>
-            <span>${project.year}</span>
-          </span>
+          <span class="project-card-kicker">${project.categoryLabel} · ${project.year}</span>
           <strong class="project-title">${project.title}</strong>
-          <span class="project-summary">${project.summary}</span>
-          <span class="project-tags">
-            ${project.tags.map((tag) => `<em>${tag}</em>`).join("")}
-          </span>
-          <span class="project-cta">View case study <i aria-hidden="true">↗</i></span>
+          <span class="project-summary">${project.cardSummary || project.summary}</span>
+          <span class="project-cta">Open case study <i aria-hidden="true">↗</i></span>
         </span>
       </button>
     </article>
@@ -211,28 +211,58 @@ function projectImages(project) {
   return [...new Set([project.image, ...project.gallery].filter(Boolean))];
 }
 
+function imageFrame(image = "") {
+  const frameMap = [
+    ["subc-gearbox-cad", { tone: "light", bg: "#ffffff", border: "#ffffff" }],
+    ["subc-housing-cad", { tone: "light", bg: "#ffffff", border: "#ffffff" }],
+    ["v6-engine", { tone: "original", bg: "#111111", border: "#222222" }],
+    ["v6-piston", { tone: "dark", bg: "#000000", border: "#000000" }],
+    ["v6-rod", { tone: "dark", bg: "#000000", border: "#000000" }],
+    ["apsc-study-guide", { tone: "dark", bg: "#11131a", border: "#11131a" }],
+    ["apsc-practice-quiz", { tone: "light", bg: "#ffffff", border: "#ffffff" }]
+  ];
+
+  const match = frameMap.find(([name]) => image.includes(name));
+  return match?.[1] || { tone: "dark", bg: "#0b0b0b", border: "#202020" };
+}
+
+function frameStyle(frame) {
+  return `--media-bg: ${frame.bg}; --media-border: ${frame.border};`;
+}
+
 function modalViewer(project, images) {
   const mainAlt = project.alt || `${project.title} project interface`;
+  const initialFrame = imageFrame(images[0]);
 
   return `
     <div class="modal-media">
-      <div class="modal-stage">
+      <div
+        class="modal-stage media-tone-${initialFrame.tone}"
+        data-modal-stage
+        style="${frameStyle(initialFrame)}"
+      >
         <img src="${images[0]}" alt="${mainAlt}" data-modal-main />
       </div>
       <div class="modal-thumbnails" aria-label="${project.title} image gallery">
         ${images
           .map(
-            (image, imageIndex) => `
+            (image, imageIndex) => {
+              const frame = imageFrame(image);
+              return `
               <button
                 class="modal-thumbnail ${imageIndex === 0 ? "active" : ""}"
                 type="button"
                 data-modal-thumb="${image}"
+                data-modal-tone="${frame.tone}"
+                data-modal-bg="${frame.bg}"
+                data-modal-border="${frame.border}"
                 aria-label="Show ${project.title} image ${imageIndex + 1}"
                 aria-pressed="${imageIndex === 0 ? "true" : "false"}"
               >
                 <img src="${image}" alt="" />
               </button>
-            `
+            `;
+            }
           )
           .join("")}
       </div>
@@ -262,12 +292,12 @@ function openProject(index) {
         <div class="modal-sections">
           <section>
             <span>01</span>
-            <h3>Problem</h3>
+            <h3>Goal</h3>
             <p>${project.problem}</p>
           </section>
           <section>
             <span>02</span>
-            <h3>Work</h3>
+            <h3>Built</h3>
             <p>${project.work}</p>
           </section>
           <section>
@@ -283,9 +313,14 @@ function openProject(index) {
   `;
 
   const mainImage = modalContent.querySelector("[data-modal-main]");
+  const stage = modalContent.querySelector("[data-modal-stage]");
   modalContent.querySelectorAll("[data-modal-thumb]").forEach((button) => {
     button.addEventListener("click", () => {
       mainImage.src = button.dataset.modalThumb;
+      stage.classList.remove("media-tone-light", "media-tone-dark", "media-tone-plain", "media-tone-original");
+      stage.classList.add(`media-tone-${button.dataset.modalTone}`);
+      stage.style.setProperty("--media-bg", button.dataset.modalBg);
+      stage.style.setProperty("--media-border", button.dataset.modalBorder);
       modalContent.querySelectorAll("[data-modal-thumb]").forEach((item) => {
         const isActive = item === button;
         item.classList.toggle("active", isActive);

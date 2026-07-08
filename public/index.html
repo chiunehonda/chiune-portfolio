@@ -24,7 +24,7 @@
       </a>
 
       <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="#projects">Projects</a>
+        <a href="#project-heading">Projects</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -41,7 +41,7 @@
     </header>
 
     <nav class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Mobile navigation">
-      <a href="#projects">Projects</a>
+      <a href="#project-heading">Projects</a>
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
       <a href="mailto:chonda@student.ubc.ca">Email</a>
@@ -50,15 +50,19 @@
     <main id="main">
       <section class="hero" id="top">
         <div class="hero-copy">
-          <p class="eyebrow">Mechanical Engineering · UBC</p>
-          <h1>Chiune<br />Honda.</h1>
+          <div class="hero-affiliation" aria-label="University of British Columbia affiliation">
+            <img class="ubc-logo" src="assets/ubc-logo.svg" alt="University of British Columbia" />
+            <span>Mechanical Engineering</span>
+          </div>
+          <p class="eyebrow">Engineering Portfolio</p>
+          <h1>Chiune<br />Honda</h1>
           <p class="hero-intro">
-            Mechanical Engineering student at the University of British Columbia with
-            experience in CAD, FEA, CFD, machining, electronics, and browser-based tools.
+            Mechanical Engineering student building CAD-driven hardware, prototypes,
+            and practical tools for real engineering problems.
           </p>
           <div class="hero-actions">
-            <a class="primary-link" href="#projects">
-              View projects
+            <a class="primary-link" href="#project-heading">
+              Explore projects
               <span aria-hidden="true">↓</span>
             </a>
             <div class="stage-links" aria-label="Portfolio sections">
@@ -81,22 +85,18 @@
             </li>
             <li>
               <span>2026–27</span>
-              <strong>Seeking co-op roles and a new design team after SUBC</strong>
+              <strong>Seeking co-op roles and hardware design opportunities</strong>
             </li>
           </ul>
         </div>
       </section>
 
       <section class="projects section" id="projects">
-        <div class="section-heading">
+        <div class="section-heading" id="project-heading">
           <div>
             <p class="eyebrow">01 / Projects</p>
             <h2>Projects</h2>
           </div>
-          <p>
-            Mechanical design, simulation, prototyping, and small interactive tools.
-            Select a project for the details.
-          </p>
         </div>
 
         <div class="filters" aria-label="Filter projects">
