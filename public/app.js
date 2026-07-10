@@ -330,7 +330,9 @@ function openProject(index) {
   });
 
   document.body.classList.add("modal-open");
+  modal.append(customCursor);
   modal.showModal();
+  customCursor.classList.toggle("visible", finePointer.matches);
 }
 
 function closeModal() {
@@ -358,6 +360,7 @@ modal.addEventListener("click", (event) => {
   }
 });
 modal.addEventListener("close", () => {
+  document.body.prepend(customCursor);
   document.body.classList.remove("modal-open");
   lastTrigger?.focus();
 });
@@ -377,5 +380,67 @@ mobileNav.querySelectorAll("a").forEach((link) => {
 window.addEventListener("scroll", () => {
   header.classList.toggle("scrolled", window.scrollY > 12);
 });
+
+const customCursor = document.querySelector("[data-custom-cursor]");
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+const interactiveSelector = [
+  "a[href]",
+  "button:not([disabled])",
+  "input:not([disabled])",
+  "select:not([disabled])",
+  "textarea:not([disabled])",
+  "summary",
+  "label[for]",
+  '[role="button"]:not([aria-disabled="true"])',
+  '[role="link"]:not([aria-disabled="true"])'
+].join(", ");
+let cursorFrame = null;
+let cursorX = -30;
+let cursorY = -30;
+
+function drawCustomCursor() {
+  customCursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+  cursorFrame = null;
+}
+
+function syncCustomCursor() {
+  const enabled = finePointer.matches;
+  document.documentElement.classList.toggle("custom-cursor-enabled", enabled);
+  customCursor.classList.toggle("visible", false);
+  customCursor.classList.toggle("interactive", false);
+}
+
+document.addEventListener("pointermove", (event) => {
+  if (!finePointer.matches || event.pointerType === "touch") {
+    return;
+  }
+
+  cursorX = event.clientX;
+  cursorY = event.clientY;
+  customCursor.classList.add("visible");
+  customCursor.classList.toggle(
+    "interactive",
+    event.target instanceof Element && Boolean(event.target.closest(interactiveSelector))
+  );
+
+  if (cursorFrame === null) {
+    cursorFrame = window.requestAnimationFrame(drawCustomCursor);
+  }
+});
+
+document.addEventListener("pointerout", (event) => {
+  if (!event.relatedTarget) {
+    customCursor.classList.remove("visible");
+    customCursor.classList.remove("interactive");
+  }
+});
+
+window.addEventListener("blur", () => {
+  customCursor.classList.remove("visible");
+  customCursor.classList.remove("interactive");
+});
+
+finePointer.addEventListener("change", syncCustomCursor);
+syncCustomCursor();
 
 renderProjects();

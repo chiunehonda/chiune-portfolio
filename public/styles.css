@@ -35,6 +35,41 @@ body.modal-open {
   overflow: hidden;
 }
 
+.custom-cursor {
+  position: fixed;
+  z-index: 2147483647;
+  top: 0;
+  left: 0;
+  width: 13px;
+  height: 13px;
+  border: 1px solid rgba(0, 0, 0, 0.28);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(-30px, -30px, 0) translate(-50%, -50%);
+  transition: opacity 90ms ease, background-color 140ms ease, border-color 140ms ease;
+  will-change: transform;
+}
+
+.custom-cursor.visible {
+  opacity: 1;
+}
+
+.custom-cursor.interactive {
+  border-color: rgba(0, 0, 0, 0.78);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html.custom-cursor-enabled,
+  html.custom-cursor-enabled body,
+  html.custom-cursor-enabled * {
+    cursor: none !important;
+  }
+}
+
 a {
   color: inherit;
 }
@@ -1373,5 +1408,9 @@ img {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .custom-cursor {
+    transition: none;
   }
 }
