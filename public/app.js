@@ -382,6 +382,7 @@ window.addEventListener("scroll", () => {
 });
 
 const customCursor = document.querySelector("[data-custom-cursor]");
+const heroSection = document.querySelector("[data-robot-hero]");
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 const interactiveSelector = [
   "a[href]",
@@ -397,6 +398,7 @@ const interactiveSelector = [
 let cursorFrame = null;
 let cursorX = -30;
 let cursorY = -30;
+let heroStateFrame = null;
 
 function drawCustomCursor() {
   customCursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
@@ -408,6 +410,20 @@ function syncCustomCursor() {
   document.documentElement.classList.toggle("custom-cursor-enabled", enabled);
   customCursor.classList.toggle("visible", false);
   customCursor.classList.toggle("interactive", false);
+}
+
+function syncHeroState() {
+  heroStateFrame = null;
+  const heroBottom = heroSection?.getBoundingClientRect().bottom ?? 0;
+  const heroActive = heroBottom > (header?.offsetHeight ?? 0) + 28;
+  document.body.classList.toggle("hero-active", heroActive);
+  customCursor.classList.toggle("hero-mode", heroActive && finePointer.matches);
+}
+
+function queueHeroState() {
+  if (heroStateFrame === null) {
+    heroStateFrame = window.requestAnimationFrame(syncHeroState);
+  }
 }
 
 document.addEventListener("pointermove", (event) => {
@@ -441,88 +457,306 @@ window.addEventListener("blur", () => {
 });
 
 finePointer.addEventListener("change", syncCustomCursor);
+finePointer.addEventListener("change", queueHeroState);
+window.addEventListener("scroll", queueHeroState, { passive: true });
+window.addEventListener("resize", queueHeroState);
 syncCustomCursor();
+syncHeroState();
 
 const robotStage = document.querySelector("[data-robot-stage]");
+const robotSvg = document.querySelector(".robot-arm");
 const robotShoulder = document.querySelector("[data-robot-shoulder]");
 const robotElbow = document.querySelector("[data-robot-elbow]");
 const robotWrist = document.querySelector("[data-robot-wrist]");
+const robotBaseRotor = document.querySelector("[data-robot-base-rotor]");
+const robotShoulderRotor = document.querySelector("[data-robot-shoulder-rotor]");
+const robotElbowRotor = document.querySelector("[data-robot-elbow-rotor]");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const robotReach = {
+const degreesToRadians = Math.PI / 180;
+const radiansToDegrees = 180 / Math.PI;
+const robotGeometry = {
   baseX: 244,
   baseY: 390,
   upper: 154,
   forearm: 128,
-  hand: 78
+  hand: 78,
+  minimumReach: 200
+};
+const robotBaseJoint = {
+  angle: -18 * degreesToRadians,
+  velocity: 0,
+  target: -18 * degreesToRadians,
+  frequency: 2.8
+};
+const robotSecondJoint = {
+  angle: 126 * degreesToRadians,
+  velocity: 0,
+  target: 126 * degreesToRadians,
+  frequency: 3.2
+};
+const robotThirdJoint = {
+  angle: -78 * degreesToRadians,
+  velocity: 0,
+  target: -78 * degreesToRadians,
+  frequency: 3.6
 };
 let robotFrame = null;
-let robotTargetX = 344;
-let robotTargetY = 146;
-let robotCurrentX = robotTargetX;
-let robotCurrentY = robotTargetY;
+let robotVisible = true;
+let robotBaseInitialized = false;
+let robotLastFrameTime = null;
+let robotLastAim = -Math.PI / 2;
+let robotBendDirection = 1;
+let robotPendingBendDirection = 1;
+let robotPointerAtFullReach = false;
+const robotBendSwitchAngle = 10 * degreesToRadians;
+const robotAimFreezeRadius = 28;
+const robotBendCommitTolerance = 2 * degreesToRadians;
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
-function setRobotPointer(clientX, clientY) {
-  if (!robotStage || reducedMotion.matches) {
-    return;
-  }
-
-  const stageRect = robotStage.getBoundingClientRect();
-  const localX = clamp((clientX - stageRect.left) / stageRect.width, 0.08, 0.92);
-  const localY = clamp((clientY - stageRect.top) / stageRect.height, 0.08, 0.82);
-  robotTargetX = localX * 560;
-  robotTargetY = localY * 520;
-  robotStage.style.setProperty("--robot-x", `${localX * 100}%`);
-  robotStage.style.setProperty("--robot-y", `${localY * 100}%`);
-  drawRobotArm();
+function wrapRadians(angle) {
+  return ((angle + Math.PI) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2) - Math.PI;
 }
 
-function drawRobotArm() {
-  robotFrame = null;
+function unwrapTarget(previousTarget, principalTarget) {
+  return previousTarget + wrapRadians(principalTarget - previousTarget);
+}
 
-  if (!robotShoulder || !robotElbow || !robotWrist || reducedMotion.matches) {
+function stepRobotJoint(state, deltaSeconds) {
+  const displacement = state.angle - state.target;
+  const omega = Math.PI * 2 * state.frequency;
+  const coefficient = state.velocity + omega * displacement;
+  const decay = Math.exp(-omega * deltaSeconds);
+
+  state.angle = state.target + (displacement + coefficient * deltaSeconds) * decay;
+  state.velocity = (state.velocity - omega * coefficient * deltaSeconds) * decay;
+}
+
+function robotJointIsMoving(state) {
+  return (
+    Math.abs(state.target - state.angle) > 0.05 * degreesToRadians ||
+    Math.abs(state.velocity) > 0.15 * degreesToRadians
+  );
+}
+
+function commitPendingRobotBendIfSafe() {
+  const elbowIsStraight =
+    Math.abs(wrapRadians(robotSecondJoint.angle)) <= robotBendCommitTolerance;
+  const wristIsStraight =
+    Math.abs(wrapRadians(robotThirdJoint.angle)) <= robotBendCommitTolerance;
+
+  if (robotPointerAtFullReach && elbowIsStraight && wristIsStraight) {
+    robotBendDirection = robotPendingBendDirection;
+  }
+}
+
+function setRobotTarget(clientX, clientY, viewportX, viewportY) {
+  const localX = 0.34 + viewportX * 0.48;
+  const localY = 0.14 + viewportY * 0.3;
+  const screenMatrix = robotSvg.getScreenCTM();
+
+  if (!screenMatrix || typeof robotSvg.createSVGPoint !== "function") {
     return;
   }
 
-  robotCurrentX += (robotTargetX - robotCurrentX) * 0.16;
-  robotCurrentY += (robotTargetY - robotCurrentY) * 0.16;
+  const cursorPoint = robotSvg.createSVGPoint();
+  cursorPoint.x = clientX;
+  cursorPoint.y = clientY;
+  const svgPoint = cursorPoint.matrixTransform(screenMatrix.inverse());
+  const targetDx = svgPoint.x - robotGeometry.baseX;
+  const targetDy = svgPoint.y - robotGeometry.baseY;
+  const rawDistance = Math.max(Math.hypot(targetDx, targetDy), 0.001);
+  const fullReach = robotGeometry.hand + robotGeometry.upper + robotGeometry.forearm;
+  const targetDistance = clamp(rawDistance, robotGeometry.minimumReach, fullReach);
+  robotPointerAtFullReach = rawDistance >= fullReach;
 
-  const wristTargetX = robotCurrentX;
-  const wristTargetY = robotCurrentY + robotReach.hand * 0.35;
-  const dx = wristTargetX - robotReach.baseX;
-  const dy = wristTargetY - robotReach.baseY;
-  const maxReach = robotReach.upper + robotReach.forearm - 4;
-  const minReach = Math.abs(robotReach.upper - robotReach.forearm) + 26;
-  const distance = clamp(Math.hypot(dx, dy), minReach, maxReach);
-  const aim = Math.atan2(dy, dx);
+  if (rawDistance > robotAimFreezeRadius) {
+    robotLastAim = unwrapTarget(robotLastAim, Math.atan2(targetDy, targetDx));
+  }
+
+  const aim = robotLastAim;
+  const horizontalAim = Math.cos(aim);
+  const bendSideThreshold = Math.sin(robotBendSwitchAngle);
+
+  if (Math.abs(horizontalAim) >= bendSideThreshold) {
+    robotPendingBendDirection = horizontalAim > 0 ? 1 : -1;
+  }
+
+  if (!robotBaseInitialized) {
+    robotBendDirection = robotPendingBendDirection;
+  }
+
+  const safeWristRadius = Math.abs(robotGeometry.upper - robotGeometry.forearm) + 2;
+  const wristRadius = Math.max(Math.abs(targetDistance - robotGeometry.hand), safeWristRadius);
+  const handOffset =
+    targetDistance > 0.001
+      ? Math.acos(
+          clamp(
+            (targetDistance ** 2 + robotGeometry.hand ** 2 - wristRadius ** 2) /
+              (2 * targetDistance * robotGeometry.hand),
+            -1,
+            1
+          )
+        )
+      : 0;
+  const handDirection = aim + handOffset * robotBendDirection;
+  const tipDx = targetDistance * Math.cos(aim);
+  const tipDy = targetDistance * Math.sin(aim);
+  const wristDx = tipDx - robotGeometry.hand * Math.cos(handDirection);
+  const wristDy = tipDy - robotGeometry.hand * Math.sin(handDirection);
+  const twoLinkDistance = Math.hypot(wristDx, wristDy);
   const elbowCos = clamp(
-    (distance ** 2 - robotReach.upper ** 2 - robotReach.forearm ** 2) /
-      (2 * robotReach.upper * robotReach.forearm),
+    (twoLinkDistance ** 2 - robotGeometry.upper ** 2 - robotGeometry.forearm ** 2) /
+      (2 * robotGeometry.upper * robotGeometry.forearm),
     -1,
     1
   );
-  const elbowRad = Math.acos(elbowCos);
-  const shoulderRad =
-    aim - Math.atan2(robotReach.forearm * Math.sin(elbowRad), robotReach.upper + robotReach.forearm * Math.cos(elbowRad));
-  const shoulderDeg = shoulderRad * (180 / Math.PI) + 90;
-  const elbowDeg = elbowRad * (180 / Math.PI);
-  const wristDeg = aim * (180 / Math.PI) + 90 - shoulderDeg - elbowDeg;
+  const elbowAngle = Math.acos(elbowCos) * robotBendDirection;
+  const shoulderDirection =
+    Math.atan2(wristDy, wristDx) -
+    Math.atan2(
+      robotGeometry.forearm * Math.sin(elbowAngle),
+      robotGeometry.upper + robotGeometry.forearm * Math.cos(elbowAngle)
+    );
+  const wristAngle = wrapRadians(handDirection - shoulderDirection - elbowAngle);
 
-  robotShoulder.setAttribute("transform", `translate(0 390) rotate(${shoulderDeg.toFixed(2)} 244 0)`);
-  robotElbow.setAttribute("transform", `translate(0 -154) rotate(${elbowDeg.toFixed(2)} 244 0)`);
-  robotWrist.setAttribute("transform", `translate(0 -128) rotate(${wristDeg.toFixed(2)} 244 0)`);
+  if (robotPointerAtFullReach) {
+    robotBaseJoint.target = unwrapTarget(robotBaseJoint.target, aim + Math.PI / 2);
+    robotSecondJoint.target = unwrapTarget(robotSecondJoint.target, 0);
+    robotThirdJoint.target = unwrapTarget(robotThirdJoint.target, 0);
+  } else {
+    robotBaseJoint.target = unwrapTarget(
+      robotBaseJoint.target,
+      shoulderDirection + Math.PI / 2
+    );
+    robotSecondJoint.target = unwrapTarget(robotSecondJoint.target, elbowAngle);
+    robotThirdJoint.target = unwrapTarget(robotThirdJoint.target, wristAngle);
+  }
 
-  if (Math.abs(robotTargetX - robotCurrentX) > 0.4 || Math.abs(robotTargetY - robotCurrentY) > 0.4) {
+  robotStage.style.setProperty("--robot-x", `${localX * 100}%`);
+  robotStage.style.setProperty("--robot-y", `${localY * 100}%`);
+}
+
+function applyRobotPose() {
+  const baseAngle = robotBaseJoint.angle * radiansToDegrees;
+  const secondAngle = robotSecondJoint.angle * radiansToDegrees;
+  const thirdAngle = robotThirdJoint.angle * radiansToDegrees;
+  robotShoulder.setAttribute("transform", `translate(0 390) rotate(${baseAngle.toFixed(2)} 244 0)`);
+  robotElbow.setAttribute("transform", `translate(0 -154) rotate(${secondAngle.toFixed(2)} 244 0)`);
+  robotWrist.setAttribute("transform", `translate(0 -128) rotate(${thirdAngle.toFixed(2)} 244 0)`);
+  robotBaseRotor.setAttribute("transform", `rotate(${baseAngle.toFixed(2)} 244 390)`);
+  robotShoulderRotor.setAttribute("transform", `rotate(${secondAngle.toFixed(2)} 244 -154)`);
+  robotElbowRotor.setAttribute("transform", `rotate(${thirdAngle.toFixed(2)} 244 -128)`);
+}
+
+function setRobotPointer(clientX, clientY) {
+  if (
+    !robotStage ||
+    !robotSvg ||
+    !robotShoulder ||
+    !robotElbow ||
+    !robotWrist ||
+    !robotBaseRotor ||
+    !robotShoulderRotor ||
+    !robotElbowRotor
+  ) {
+    return;
+  }
+
+  if (reducedMotion.matches && robotBaseInitialized) {
+    return;
+  }
+
+  const viewportX = clamp(clientX / window.innerWidth, 0, 1);
+  const viewportY = clamp(clientY / window.innerHeight, 0, 1);
+  setRobotTarget(clientX, clientY, viewportX, viewportY);
+
+  if (!robotBaseInitialized || reducedMotion.matches) {
+    robotBaseJoint.angle = robotBaseJoint.target;
+    robotBaseJoint.velocity = 0;
+    robotSecondJoint.angle = robotSecondJoint.target;
+    robotSecondJoint.velocity = 0;
+    robotThirdJoint.angle = robotThirdJoint.target;
+    robotThirdJoint.velocity = 0;
+    robotBaseInitialized = true;
+    commitPendingRobotBendIfSafe();
+    applyRobotPose();
+    return;
+  }
+
+  if (robotVisible && robotFrame === null) {
+    robotLastFrameTime = null;
     robotFrame = window.requestAnimationFrame(drawRobotArm);
   }
 }
 
+function drawRobotArm(timestamp) {
+  robotFrame = null;
+
+  if (
+    !robotShoulder ||
+    !robotElbow ||
+    !robotWrist ||
+    !robotBaseRotor ||
+    !robotShoulderRotor ||
+    !robotElbowRotor ||
+    !robotVisible ||
+    reducedMotion.matches
+  ) {
+    return;
+  }
+
+  const deltaSeconds =
+    robotLastFrameTime === null ? 1 / 60 : Math.min(Math.max((timestamp - robotLastFrameTime) / 1000, 0), 1 / 30);
+  robotLastFrameTime = timestamp;
+  stepRobotJoint(robotBaseJoint, deltaSeconds);
+  stepRobotJoint(robotSecondJoint, deltaSeconds);
+  stepRobotJoint(robotThirdJoint, deltaSeconds);
+  commitPendingRobotBendIfSafe();
+  applyRobotPose();
+
+  if (
+    robotJointIsMoving(robotBaseJoint) ||
+    robotJointIsMoving(robotSecondJoint) ||
+    robotJointIsMoving(robotThirdJoint)
+  ) {
+    robotFrame = window.requestAnimationFrame(drawRobotArm);
+  } else {
+    [robotBaseJoint, robotSecondJoint, robotThirdJoint].forEach((state) => {
+      state.angle = state.target;
+      state.velocity = 0;
+    });
+    commitPendingRobotBendIfSafe();
+    applyRobotPose();
+    robotLastFrameTime = null;
+  }
+}
+
 if (robotStage) {
-  const stageRect = robotStage.getBoundingClientRect();
-  setRobotPointer(stageRect.left + stageRect.width * 0.62, stageRect.top + stageRect.height * 0.38);
+  setRobotPointer(window.innerWidth * 0.5, window.innerHeight * 0.38);
+
+  if ("IntersectionObserver" in window) {
+    const robotObserver = new IntersectionObserver(
+      ([entry]) => {
+        robotVisible = entry.isIntersecting;
+        if (!robotVisible && robotFrame !== null) {
+          window.cancelAnimationFrame(robotFrame);
+          robotFrame = null;
+          robotLastFrameTime = null;
+          robotBaseJoint.velocity = 0;
+          robotSecondJoint.velocity = 0;
+          robotThirdJoint.velocity = 0;
+        } else if (robotVisible && robotFrame === null) {
+          robotLastFrameTime = null;
+          robotFrame = window.requestAnimationFrame(drawRobotArm);
+        }
+      },
+      { rootMargin: "120px 0px" }
+    );
+    robotObserver.observe(robotStage);
+  }
 
   document.addEventListener("pointermove", (event) => {
     if (event.pointerType !== "touch") {
