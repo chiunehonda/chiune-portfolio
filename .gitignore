@@ -1,6 +1,8 @@
 .vercel/
 node_modules/
 tmp/
+.pnpm-store/
+dist/
 
 .DS_Store
 Thumbs.db
