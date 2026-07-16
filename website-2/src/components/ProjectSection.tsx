@@ -43,7 +43,7 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [activeImage, setActiveImage] = useState(0);
   const closeRef = useRef<HTMLButtonElement>(null);
   const currentImage = project.images[activeImage];
-  const lightMedia = /subc-.*cad|v6-|apsc-/.test(
+  const lightMedia = /subc-.*cad|v6-|apsc-practice/.test(
     currentImage.src,
   );
 

@@ -39,14 +39,14 @@ const storyFrames: StoryImage[] = [
     position: "center 44%",
     supportingImages: [
       {
-        src: "/media/story/community-classroom.webp",
-        alt: "Chiune and classmates together after class",
-        position: "center 58%",
+        src: "/media/story/friends-backpacking.webp",
+        alt: "Chiune and friends together before a backpacking trip",
+        position: "center 61%",
       },
       {
-        src: "/media/story/community-campus-group.webp",
-        alt: "Chiune and friends together on campus",
-        position: "center 54%",
+        src: "/media/story/friends-coast.webp",
+        alt: "Chiune and friends together at the coast",
+        position: "center 58%",
       },
     ],
   },
