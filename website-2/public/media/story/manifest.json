@@ -1,0 +1,110 @@
+[
+  {
+    "source": "IMG_7919.HEIC",
+    "output": "chiune-wide-opener.webp",
+    "width": 2000,
+    "height": 1500
+  },
+  {
+    "source": "IMG_7724.JPG",
+    "output": "chiune-mountain-summit.webp",
+    "width": 1467,
+    "height": 2200
+  },
+  {
+    "source": "IMG_7453.HEIC",
+    "output": "chiune-alpine-water.webp",
+    "width": 1650,
+    "height": 2200
+  },
+  {
+    "source": "IMG_4812.heic",
+    "output": "chiune-nara-deer.webp",
+    "width": 2200,
+    "height": 1238
+  },
+  {
+    "source": "IMG_1331.jpeg",
+    "output": "chiune-alpine-profile-opener.webp",
+    "width": 3200,
+    "height": 1800
+  },
+  {
+    "source": "IMG_1331.jpeg",
+    "output": "chiune-alpine-profile-opener-mobile.webp",
+    "width": 1600,
+    "height": 2000
+  },
+  {
+    "source": "IMG_1133.JPG",
+    "output": "chiune-summit-hero-desktop.webp",
+    "width": 2880,
+    "height": 1620
+  },
+  {
+    "source": "IMG_1133.JPG",
+    "output": "chiune-summit-hero-mobile.webp",
+    "width": 1200,
+    "height": 1500
+  },
+  {
+    "source": "IMG_1126.JPG",
+    "output": "friends-alpine-summit-story.webp",
+    "width": 2560,
+    "height": 1440
+  },
+  {
+    "source": "DSCF0011.JPEG",
+    "output": "friends-beach-sunset-story.webp",
+    "width": 2560,
+    "height": 1440
+  },
+  {
+    "source": "IMG_4583.jpg",
+    "output": "chiune-japan-temple.webp",
+    "width": 1467,
+    "height": 2200
+  },
+  {
+    "source": "0E3B1D54-4C91-4785-8F60-A1EF9AFFC3EF.JPG",
+    "output": "chiune-technical-night.webp",
+    "width": 1170,
+    "height": 1560
+  },
+  {
+    "source": "IMG_7905.JPG",
+    "output": "friends-backpacking.webp",
+    "width": 2200,
+    "height": 1467
+  },
+  {
+    "source": "IMG_6695.JPG",
+    "output": "friends-coast.webp",
+    "width": 2048,
+    "height": 1536
+  },
+  {
+    "source": "IMG_5718.JPG",
+    "output": "city-night.webp",
+    "width": 2200,
+    "height": 1459
+  },
+  {
+    "source": "99D67FDE-7B17-4B01-A4FC-2F9CFC048450 (1).JPG",
+    "output": "community-classroom.webp",
+    "width": 1440,
+    "height": 1918
+  },
+  {
+    "source": "IMG_2611.JPG",
+    "output": "community-forest-group.webp",
+    "width": 2316,
+    "height": 1536
+  },
+  {
+    "source": "363ADABA-C603-4BAF-98E2-D5D4BD372FFC.JPG",
+    "output": "community-campus-group.webp",
+    "width": 1180,
+    "height": 1572
+  }
+]
