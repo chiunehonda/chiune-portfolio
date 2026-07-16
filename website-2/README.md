@@ -4,9 +4,9 @@ This directory contains the immersive photo-led redesign used by the active port
 
 ## Safety boundary
 
-- Website 1 still lives in `../public`.
 - The `website-1` Git tag points to the preserved Website 1 release.
-- The root `../vercel.json` builds this directory and serves `dist`.
+- Website 1's files are archived in `../website-1/public`.
+- The verified build from this directory is copied into root `../public` for deployment.
 
 ## Local development
 
@@ -27,4 +27,4 @@ The Vite build output is written to `website-2/dist`.
 
 ## Deployment and rollback
 
-Vercel runs the install and build commands declared in the root `vercel.json`, then serves this directory's `dist` output. Reverting to Website 1 remains possible by restoring the `website-1` tag or pointing Vercel back to the root static `public` directory.
+Vercel serves the root `../public` directory directly. After this source is built, the verified `dist` contents are copied there for a zero-build static deployment. Reverting to Website 1 remains possible by restoring the `website-1` tag or copying `../website-1/public` back into root `../public`.

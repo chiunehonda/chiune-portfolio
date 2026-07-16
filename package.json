@@ -3,15 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@11.9.0",
-  "engines": {
-    "node": "24.x"
-  },
   "scripts": {
-    "dev": "pnpm --dir website-2 dev",
-    "build": "pnpm --dir website-2 build",
-    "lint": "pnpm --dir website-2 lint",
-    "preview": "pnpm --dir website-2 preview",
-    "dev:website-1": "python -m http.server 5173 --directory public"
+    "dev": "python3 -m http.server 5173 --directory public"
   }
 }
