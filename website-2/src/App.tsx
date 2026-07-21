@@ -2,32 +2,30 @@ import { useEffect } from "react";
 import { CustomCursor } from "@/components/CustomCursor";
 import { ExperienceContact } from "@/components/ExperienceContact";
 import { PhotoStory, type StoryImage } from "@/components/PhotoStory";
+import { ProjectHighlight } from "@/components/ProjectHighlight";
 import { ProjectSection } from "@/components/ProjectSection";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ScrollExpandMedia } from "@/components/ui/scroll-expansion-hero";
 
 const storyFrames: StoryImage[] = [
   {
-    src: "/media/story/chiune-alpine-water.webp",
-    alt: "Chiune overlooking alpine water from a rocky shoreline",
-    label: "Outside",
-    position: "center 52%",
-  },
-  {
     src: "/media/story/city-night.webp",
     alt: "Chiune and friends together in Shibuya at night",
     label: "Travel",
+    location: "Tokyo, Japan",
     position: "center 56%",
   },
   {
     src: "/media/story/friends-alpine-summit-story.webp",
     alt: "Chiune and a friend at an alpine summit above a mountain lake",
     label: "The summit",
+    location: "Summit of Panorama Ridge",
   },
   {
     src: "/media/story/friends-beach-sunset-story.webp",
     alt: "Chiune and friends together on the beach at sunset",
     label: "The coast",
+    location: "Wreck Beach",
     position: "12% 50%",
     lighting: "left",
   },
@@ -99,6 +97,7 @@ function App() {
           mediaAlt="Chiune at a mountain summit"
         />
         <PhotoStory frames={storyFrames} />
+        <ProjectHighlight />
         <ProjectSection />
         <ExperienceContact />
       </main>

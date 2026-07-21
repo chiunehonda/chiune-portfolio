@@ -11,6 +11,7 @@ export interface StoryImage {
   src: string;
   alt: string;
   label: string;
+  location?: string;
   position?: string;
   fit?: "cover" | "contain";
   lighting?: "default" | "left";
@@ -98,7 +99,7 @@ function StoryFrame({ frame, index, total }: StoryFrameProps) {
           aria-hidden="true"
         />
         <motion.div
-          className="story-caption"
+          className={`story-caption ${frame.location ? "has-location" : ""}`}
           style={{
             opacity: reducedMotion ? 1 : captionOpacity,
             y: reducedMotion ? 0 : captionY,
@@ -108,6 +109,9 @@ function StoryFrame({ frame, index, total }: StoryFrameProps) {
             {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
           </p>
           <h3>{frame.label}</h3>
+          {frame.location && (
+            <span className="story-caption-location">{frame.location}</span>
+          )}
         </motion.div>
       </motion.div>
     </article>

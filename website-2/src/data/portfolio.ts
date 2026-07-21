@@ -18,7 +18,6 @@ export interface ProjectCaseStudy {
   timeframe: string;
   cardSummary: string;
   summary: string;
-  metrics: string[];
   goal: string;
   built: string;
   result: string;
@@ -47,13 +46,12 @@ export const projects: ProjectCaseStudy[] = [
       "Sealed drivetrain and gearbox work for UBC’s human-powered submarine.",
     summary:
       "Designed and validated sealed drivetrain and gearbox components for UBC’s human-powered submarine.",
-    metrics: ["100+ CAD hours", "30+ simulations", "1.8–2.1 kN design loads"],
     goal:
-      "Package a reliable underwater drivetrain inside a tight submarine volume while controlling alignment, sealing, weight, and manufacturing tolerances.",
+      "Package a reliable underwater drivetrain within the submarine’s tight volume while managing alignment, sealing, manufacturing tolerances, and design loads of 1.8–2.1 kN.",
     built:
-      "Built the gearbox and housing in CAD, checked structural and flow cases in simulation, then revised the design around machining and assembly constraints.",
+      "Spent 100+ hours modelling the gearbox and housing, then ran 30+ structural and flow simulations before revising the design for machining and assembly.",
     result:
-      "Reduced component mass with pockets and ribs, refined prototype fit to about ±0.1–0.2 mm, and kept simulated safety factors above target loads.",
+      "Reduced mass with pockets and ribs, refined prototype fit to approximately ±0.1–0.2 mm, and maintained simulated safety factors above the design target.",
     images: [
       {
         src: "/media/projects/subc-drivetrain-cad-raw.png",
@@ -83,13 +81,12 @@ export const projects: ProjectCaseStudy[] = [
       "A functional CAD assembly built to study real engine motion and constraints.",
     summary:
       "A functional 55+ part SolidWorks assembly with linked piston, crankshaft, camshaft, and valve motion.",
-    metrics: ["55+ parts", "150+ mates", "Functional four-stroke motion"],
     goal:
-      "Learn how a dense mechanical assembly behaves when geometry, motion, and constraints all interact.",
+      "Build a functional 55+ part V6 assembly to study how geometry, constraints, and four-stroke timing interact.",
     built:
-      "Modelled 55+ parts and linked the crankshaft, pistons, camshaft, and valves with functional SolidWorks mates.",
+      "Modelled the crankshaft, pistons, camshaft, and valves, then coordinated 150+ SolidWorks mates to link their motion.",
     result:
-      "Manual crank rotation drives visible four-stroke motion, showing assembly planning, constraint control, and mechanical timing.",
+      "Manual crank rotation drives functional four-stroke piston and valve motion, demonstrating assembly planning, constraint control, and mechanical timing.",
     images: [
       {
         src: "/media/projects/v6-engine-raw.webp",
@@ -115,13 +112,12 @@ export const projects: ProjectCaseStudy[] = [
       "A compact turbine and gearbox prototype that generated usable voltage from water flow.",
     summary:
       "A water-driven turbine and speed-increasing gearbox that powered an LED through a DC motor.",
-    metrics: ["1:5 speed increase", "75T / 15T gears", "Up to 4.7 V"],
     goal:
-      "Turn slow water flow into enough motor speed and electrical output to light an LED.",
+      "Convert slow water flow into a 1:5 speed increase and enough electrical output to light an LED.",
     built:
-      "Built a spoon turbine, 75T-to-15T gear train, DC motor circuit, and test setup.",
+      "Built a spoon turbine, 75-tooth driver, 15-tooth driven gear, DC motor circuit, and repeatable test setup.",
     result:
-      "Generated up to 4.7 V and demonstrated the full path from water flow to rotation to electrical output.",
+      "Generated up to 4.7 V and demonstrated the complete path from water flow to rotation and electrical output.",
     images: [
       {
         src: "/media/projects/hydro-generator-cover-raw.webp",
@@ -144,16 +140,15 @@ export const projects: ProjectCaseStudy[] = [
     categoryLabel: "Software",
     timeframe: "Independent project · 2026",
     cardSummary:
-      "A browser-based study guide and quiz system built from full-course APSC 101 material.",
+      "An original study guide and quiz system used by 30+ APSC 101 students.",
     summary:
       "An original full-course study guide and interactive practice site built to make dense engineering material searchable and testable.",
-    metrics: ["Modules 5–7", "Live topic search", "Interactive answer reveal"],
     goal:
-      "Course material was scattered across notes, quizzes, worksheets, and reference files.",
+      "Turn scattered APSC 101 notes, quizzes, worksheets, and references into one searchable study system.",
     built:
-      "Converted 87 source files into searchable notes, concept cards, formula references, and practice quizzes.",
+      "Converted 87 source files into structured notes, formula references, concept cards, and quizzes with live topic search and interactive answer reveals.",
     result:
-      "Created a fast browser-based review system for quick lookup and active recall, with no backend required.",
+      "Used by 30+ APSC 101 students for quick lookup and active recall, with no backend required.",
     images: [
       {
         src: "/media/projects/apsc-study-guide-overview.png",
@@ -177,13 +172,60 @@ export const projects: ProjectCaseStudy[] = [
   },
 ];
 
+export const projectHighlight = {
+  status: "Project highlight / In progress",
+  title: "SO-101 Robot Arm",
+  summary:
+    "Building the SO-101 as a hands-on robotics platform, then redesigning its printed structure around measured loads, repeatable motion, and simulation.",
+  stages: [
+    {
+      label: "01 / Concept",
+      title: "System baseline",
+      description:
+        "Assemble and program the SO-101 before changing its mechanical design.",
+      visual: "arm",
+    },
+    {
+      label: "02 / Redesign",
+      title: "Joint development",
+      description:
+        "Use measured behavior and motor loads to guide stronger printed joints.",
+      visual: "joint",
+    },
+    {
+      label: "03 / Validation",
+      title: "Test, simulate, repeat",
+      description:
+        "Compare bench observations, ANSYS load cases, and the next printed iteration.",
+      visual: "validation",
+    },
+  ],
+} as const;
+
 export const experience = {
   company: "StarSolutions",
-  role: "Engineer Shadowing / Intern",
+  role: "Mechanical / Electrical Engineering Intern",
   location: "Richmond, BC",
-  timeframe: "Aug 2024",
+  timeframe: "Current",
   summary:
-    "Re-engineered a USB-SIM card reader for a portable enclosure, completed precision soldering and product testing, and reviewed certification documentation with mechanical and electrical engineers.",
+    "Supporting active RF hardware development through mechanical design, electrical documentation, and component research.",
+  projects: [
+    {
+      id: "rf-adapter",
+      title: "NEX10-to-SMA Adapter",
+      summary:
+        "Developing a chassis-mounted RF connector interface in SolidWorks, translating engineer-reviewed integration requirements into an assembly and manufacturing drawing.",
+      visual: "adapter",
+    },
+    {
+      id: "chassis-documentation",
+      title: "5G Chassis Integration Diagram",
+      summary:
+        "Created a cable and block diagram that translates mechanical packaging and electrical interfaces into clear build documentation for an ongoing chassis program.",
+      visual: "chassis",
+    },
+  ],
+  disclosure: "Generalized to protect proprietary information.",
 } as const;
 
 export const contact = {

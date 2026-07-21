@@ -132,6 +132,7 @@ export function ScrollExpandMedia({
         >
           <p>Mechanical Engineering · UBC</p>
           <span>Building toward mechatronics</span>
+          <span className="expansion-location-tag">Summit of Mount Brunswick</span>
         </motion.div>
       </div>
     </section>
