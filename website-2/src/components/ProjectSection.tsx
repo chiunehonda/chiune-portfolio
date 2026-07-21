@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { MouseEvent } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 import { projects, type ProjectCaseStudy } from "@/data/portfolio";
 
@@ -103,17 +104,8 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
           >
             Close <X size={16} aria-hidden="true" />
           </button>
-          <p className="project-dialog-meta">
-            {project.timeframe} / {project.categoryLabel}
-          </p>
           <h2 id="project-dialog-title">{project.title}</h2>
           <p className="project-dialog-summary">{project.summary}</p>
-
-          <ul className="project-metrics" aria-label="Project outcomes">
-            {project.metrics.map((metric) => (
-              <li key={metric}>{metric}</li>
-            ))}
-          </ul>
 
           <dl className="project-detail-list">
             <div>
@@ -147,17 +139,38 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
 
 export function ProjectSection() {
   const [activeProject, setActiveProject] = useState<ProjectCaseStudy | null>(null);
+  const reducedMotion = useReducedMotion();
 
   return (
     <section className="projects-section" aria-labelledby="projects-heading">
-      <header className="projects-heading" id="projects">
+      <motion.header
+        className="projects-heading"
+        id="all-projects"
+        initial={reducedMotion ? false : { opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.35 }}
+        transition={{
+          duration: reducedMotion ? 0 : 0.76,
+          ease: [0.2, 0.7, 0.2, 1],
+        }}
+      >
         <div>
           <p className="section-index">02 / Selected work</p>
           <h2 id="projects-heading">Projects</h2>
         </div>
-      </header>
+      </motion.header>
 
-      <div className="project-grid">
+      <motion.div
+        className="project-grid"
+        initial={reducedMotion ? false : { opacity: 0, y: 22 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.12 }}
+        transition={{
+          duration: reducedMotion ? 0 : 0.72,
+          delay: reducedMotion ? 0 : 0.08,
+          ease: [0.2, 0.7, 0.2, 1],
+        }}
+      >
         {projects.map((project, index) => (
           <article
             className={`project-card project-card-${index + 1}`}
@@ -166,9 +179,6 @@ export function ProjectSection() {
             <button type="button" onClick={() => setActiveProject(project)}>
               <ProjectPreview project={project} />
               <span className="project-card-copy">
-                <span className="project-card-number">
-                  {String(index + 1).padStart(2, "0")} / {project.categoryLabel}
-                </span>
                 <strong>{project.title}</strong>
                 <span>{project.cardSummary}</span>
                 <em>
@@ -178,7 +188,7 @@ export function ProjectSection() {
             </button>
           </article>
         ))}
-      </div>
+      </motion.div>
 
       {activeProject && (
         <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
