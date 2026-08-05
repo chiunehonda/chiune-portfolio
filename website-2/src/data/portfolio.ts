@@ -49,9 +49,9 @@ export const projects: ProjectCaseStudy[] = [
     goal:
       "Deliver 180 RPM to two concentric, counter-rotating output shafts while minimizing gearbox mass and volume and preserving alignment, strength, serviceability, and underwater reliability.",
     built:
-      "Combined AGMA bevel-gear stress calculations, shaft free-body and DE-Goodman fatigue analysis, and SolidWorks static FEA on the gears and housing plates. Iterated rib and pocket geometry around critical load paths, then redesigned the 6061-T6 housing for CNC machining, bearing alignment, and assembly.",
+      "Used AGMA gear calculations, DE-Goodman shaft fatigue analysis, and SolidWorks static FEA to iterate the bevel gears and ribbed, pocketed 6061-T6 housing plates for CNC machining and bearing alignment.",
     result:
-      "Achieved a 38% modeled bottom-plate mass reduction in the selected pocketed configuration—from 2.35 lb to 1.45 lb—and carried the four-plate housing, 1144 carbon-steel bevel gears, concentric shafts, bearings, bushings, and mechanical retainers into a manufactured gearbox.",
+      "Reduced modeled bottom-plate mass by 38%—from 2.35 lb to 1.45 lb—then manufactured and assembled the four-plate housing, 1144 carbon-steel bevel gears, concentric shafts, bearings, bushings, and retainers.",
     images: [
       {
         src: "/media/projects/subc-drivetrain-cad-raw.png",
