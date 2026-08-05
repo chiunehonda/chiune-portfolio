@@ -43,31 +43,35 @@ export const projects: ProjectCaseStudy[] = [
     categoryLabel: "Mechanical",
     timeframe: "2025–2026",
     cardSummary:
-      "Sealed drivetrain and gearbox work for UBC’s human-powered submarine.",
+      "A 2:1 contra-rotating gearbox developed through CAD, calculations, FEA, and machining.",
     summary:
-      "Designed and validated sealed drivetrain and gearbox components for UBC’s human-powered submarine.",
+      "Designed and analyzed a compact 2:1 straight-bevel gearbox that transfers pilot power to UBC SUBC’s counter-rotating propellers.",
     goal:
-      "Package a reliable underwater drivetrain within the submarine’s tight volume while managing alignment, sealing, manufacturing tolerances, and design loads of 1.8–2.1 kN.",
+      "Deliver 180 RPM to two concentric, counter-rotating output shafts while minimizing gearbox mass and volume and preserving alignment, strength, serviceability, and underwater reliability.",
     built:
-      "Spent 100+ hours modelling the gearbox and housing, then ran 30+ structural and flow simulations before revising the design for machining and assembly.",
+      "Combined AGMA bevel-gear stress calculations, shaft free-body and DE-Goodman fatigue analysis, and SolidWorks static FEA on the gears and housing plates. Iterated rib and pocket geometry around critical load paths, then redesigned the 6061-T6 housing for CNC machining, bearing alignment, and assembly.",
     result:
-      "Reduced mass with pockets and ribs, refined prototype fit to approximately ±0.1–0.2 mm, and maintained simulated safety factors above the design target.",
+      "Achieved a 38% modeled bottom-plate mass reduction in the selected pocketed configuration—from 2.35 lb to 1.45 lb—and carried the four-plate housing, 1144 carbon-steel bevel gears, concentric shafts, bearings, bushings, and mechanical retainers into a manufactured gearbox.",
     images: [
       {
         src: "/media/projects/subc-drivetrain-cad-raw.png",
         alt: "SolidWorks render of the SUBC submarine drivetrain gearbox",
       },
       {
-        src: "/media/projects/subc-installed-drivetrain-raw.webp",
-        alt: "Physical SUBC drivetrain installed beside the submarine hull",
+        src: "/media/projects/subc-bevel-gear-fea.png",
+        alt: "SolidWorks static FEA stress contour on the SUBC bevel gear and set-screw interface",
+      },
+      {
+        src: "/media/projects/subc-pocketed-plate-fea.png",
+        alt: "SolidWorks static FEA stress contour on the pocketed SUBC gearbox bottom plate",
       },
       {
         src: "/media/projects/subc-built-gearbox-raw.webp",
         alt: "Top view of the machined SUBC bevel gearbox",
       },
       {
-        src: "/media/projects/subc-full-hull-raw.webp",
-        alt: "SUBC human-powered submarine hull in the workshop",
+        src: "/media/projects/subc-installed-drivetrain-raw.webp",
+        alt: "Physical SUBC drivetrain installed beside the submarine hull",
       },
     ],
   },
