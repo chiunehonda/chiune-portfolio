@@ -45,13 +45,13 @@ export const projects: ProjectCaseStudy[] = [
     cardSummary:
       "A 2:1 contra-rotating gearbox developed through CAD, calculations, FEA, and machining.",
     summary:
-      "Designed and analyzed a compact 2:1 straight-bevel gearbox that transfers pilot power to UBC SUBC’s counter-rotating propellers.",
+      "Designed a compact 2:1 straight-bevel gearbox to transfer pilot power to UBC SUBC’s counter-rotating propellers.",
     goal:
-      "Deliver 180 RPM to two concentric, counter-rotating output shafts while minimizing gearbox mass and volume and preserving alignment, strength, serviceability, and underwater reliability.",
+      "Deliver 180 RPM to concentric, counter-rotating shafts while minimizing gearbox mass and maintaining alignment, strength, serviceability, and underwater reliability.",
     built:
-      "Used AGMA gear calculations, DE-Goodman shaft fatigue analysis, and SolidWorks static FEA to iterate the bevel gears and ribbed, pocketed 6061-T6 housing plates for CNC machining and bearing alignment.",
+      "Combined AGMA gear calculations, DE-Goodman shaft fatigue analysis, and SolidWorks static FEA to iterate bevel gears and ribbed, pocketed 6061-T6 housing plates for CNC machining.",
     result:
-      "Reduced modeled bottom-plate mass by 38%—from 2.35 lb to 1.45 lb—then manufactured and assembled the four-plate housing, 1144 carbon-steel bevel gears, concentric shafts, bearings, bushings, and retainers.",
+      "Reduced modeled bottom-plate mass by 38%—from 2.35 lb to 1.45 lb—then manufactured and assembled the four-plate housing, bevel gears, concentric shafts, bearings, bushings, and retainers.",
     images: [
       {
         src: "/media/projects/subc-drivetrain-cad-raw.png",
