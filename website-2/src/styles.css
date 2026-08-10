@@ -645,11 +645,8 @@ img {
 
 .project-highlight-gallery {
   min-width: 0;
-  padding: clamp(0.75rem, 1.4vw, 1.25rem);
   overflow: hidden;
-  border: 1px solid var(--line-strong);
   border-radius: clamp(1rem, 1.8vw, 1.4rem);
-  background: #0d0d0d;
 }
 
 .project-highlight-viewport {
@@ -657,9 +654,10 @@ img {
   width: 100%;
   max-height: min(63svh, 45rem);
   overflow: hidden;
-  aspect-ratio: 4 / 3;
-  border-radius: clamp(0.65rem, 1.2vw, 0.95rem);
-  background: var(--off-white);
+  aspect-ratio: 16 / 10;
+  border: 0.125px solid rgba(255, 255, 255, 0.04);
+  border-radius: inherit;
+  background: #0a0a0a;
 }
 
 .project-highlight-slide {
@@ -671,10 +669,16 @@ img {
   overflow: hidden;
 }
 
-.highlight-technical-visual {
+.project-highlight-media {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
+}
+
+video.project-highlight-media {
+  background: #050505;
 }
 
 .project-highlight-slots {
@@ -704,21 +708,38 @@ img {
 .project-highlight-slots button span {
   width: clamp(1.35rem, 2vw, 1.85rem);
   height: 1px;
-  background: rgba(16, 16, 16, 0.48);
-  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.78);
   transition: background 180ms ease, transform 180ms ease;
 }
 
 .project-highlight-slots button.is-active span,
 .project-highlight-slots button:hover span,
 .project-highlight-slots button:focus-visible span {
-  background: #0a0a0a;
+  background: #fff;
   transform: scaleY(2);
 }
 
 .project-highlight-slots button:focus-visible {
-  outline: 1px solid rgba(16, 16, 16, 0.7);
+  outline: 1px solid rgba(255, 255, 255, 0.78);
   outline-offset: -0.35rem;
+}
+
+.project-highlight-video-toggle {
+  position: absolute;
+  top: clamp(0.65rem, 1.4vw, 1.1rem);
+  left: clamp(0.65rem, 1.4vw, 1.1rem);
+  z-index: 3;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: color 180ms ease;
 }
 
 .project-highlight-image-next {
@@ -740,6 +761,7 @@ img {
 }
 
 .project-highlight-image-next::before,
+.project-highlight-video-toggle::before,
 .experience-image-next::before {
   position: absolute;
   z-index: 0;
@@ -752,19 +774,24 @@ img {
 }
 
 .project-highlight-image-next svg,
+.project-highlight-video-toggle svg,
 .experience-image-next svg {
   position: relative;
   z-index: 1;
 }
 
 .project-highlight-image-next:hover,
-.project-highlight-image-next:focus-visible {
+.project-highlight-image-next:focus-visible,
+.project-highlight-video-toggle:hover,
+.project-highlight-video-toggle:focus-visible {
   color: #080808;
   outline: none;
 }
 
 .project-highlight-image-next:hover::before,
 .project-highlight-image-next:focus-visible::before,
+.project-highlight-video-toggle:hover::before,
+.project-highlight-video-toggle:focus-visible::before,
 .experience-image-next:hover::before,
 .experience-image-next:focus-visible::before {
   border-color: #fff;

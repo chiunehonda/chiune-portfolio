@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { contact, experience, siteIdentity } from "@/data/portfolio";
+import { contact, experiences, siteIdentity } from "@/data/portfolio";
 
 function ChassisArchitectureVisual() {
   return (
@@ -61,15 +61,19 @@ function ChassisArchitectureVisual() {
 export function ExperienceContact() {
   const [activeProject, setActiveProject] = useState(0);
   const reducedMotion = useReducedMotion();
-  const project = experience.projects[activeProject];
+  const slides = experiences.flatMap((experience) =>
+    experience.projects.map((project) => ({ ...project, experience })),
+  );
+  const project = slides[activeProject];
+  const experience = project.experience;
 
   const showNextProject = () => {
-    setActiveProject((current) => (current + 1) % experience.projects.length);
+    setActiveProject((current) => (current + 1) % slides.length);
   };
 
   const showPreviousProject = () => {
     setActiveProject((current) =>
-      (current - 1 + experience.projects.length) % experience.projects.length,
+      (current - 1 + slides.length) % slides.length,
     );
   };
 
@@ -82,7 +86,7 @@ export function ExperienceContact() {
               className="experience-gallery"
               role="region"
               aria-roledescription="carousel"
-              aria-label="Current StarSolutions projects"
+              aria-label="Engineering experience projects"
               onKeyDown={(event) => {
                 if (event.key === "ArrowRight") {
                   event.preventDefault();
@@ -95,7 +99,7 @@ export function ExperienceContact() {
               }}
             >
               <p className="sr-only" aria-live="polite">
-                Project {activeProject + 1} of {experience.projects.length}: {project.title}
+                Project {activeProject + 1} of {slides.length}: {project.title}
               </p>
               <div className="experience-viewport">
                 <AnimatePresence mode="wait" initial={false}>
@@ -132,7 +136,7 @@ export function ExperienceContact() {
                 </button>
 
                 <div className="experience-slots" aria-label="Choose internship project">
-                  {experience.projects.map((item, index) => (
+                  {slides.map((item, index) => (
                     <button
                       key={item.id}
                       type="button"

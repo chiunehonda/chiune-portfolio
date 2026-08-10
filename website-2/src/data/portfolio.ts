@@ -1,3 +1,5 @@
+import projectDatabase from "./projects.json";
+
 export type ProjectCategory = "mechanical" | "mechatronics" | "software";
 
 export interface PortfolioImage {
@@ -35,7 +37,7 @@ export const siteIdentity = {
   availability: "Open to 2026–27 co-op and hardware design opportunities",
 } as const;
 
-export const projects: ProjectCaseStudy[] = [
+const legacyProjects: ProjectCaseStudy[] = [
   {
     id: "subc-drivetrain",
     title: "SUBC Submarine Drivetrain",
@@ -176,6 +178,15 @@ export const projects: ProjectCaseStudy[] = [
   },
 ];
 
+// Keep the presentation layer typed while project facts remain portable JSON.
+export const projects = projectDatabase.projects.filter(
+  (project) => project.public && project.portfolioVisibility !== "highlight",
+) as ProjectCaseStudy[];
+
+// Compile-time guard while migrating: the previous literal stays available for
+// quick comparison but is never rendered or used as a factual source.
+void legacyProjects;
+
 export const projectHighlight = {
   status: "Project highlight / In progress",
   title: "SO-101 Robot Arm",
@@ -183,54 +194,70 @@ export const projectHighlight = {
     "Building the SO-101 as a hands-on robotics platform, then redesigning its printed structure around measured loads, repeatable motion, and simulation.",
   stages: [
     {
-      label: "01 / Concept",
-      title: "System baseline",
+      label: "01 / Motion test",
+      title: "Hands-on motion check",
       description:
-        "Assemble and program the SO-101 before changing its mechanical design.",
-      visual: "arm",
+        "Checking the assembled arm and gripper movement on the living-room worktable.",
+      media: {
+        kind: "video",
+        src: "/media/projects/robot-arm/robot-arm-motion.mp4",
+        poster: "/media/projects/robot-arm/robot-arm-motion-poster.webp",
+        alt: "The assembled SO-101 robot arm being moved through its range of motion on a living-room table",
+      },
     },
     {
-      label: "02 / Redesign",
-      title: "Joint development",
+      label: "02 / Assembly",
+      title: "Bench-ready arm",
       description:
-        "Use measured behavior and motor loads to guide stronger printed joints.",
-      visual: "joint",
+        "The assembled arm, printed links, servos, wiring, and gripper in warm living-room light.",
+      media: {
+        kind: "image",
+        src: "/media/projects/robot-arm/robot-arm-assembled.webp",
+        alt: "Assembled SO-101 robot arm stretched across a folding table in warm living-room light",
+      },
     },
     {
-      label: "03 / Validation",
-      title: "Test, simulate, repeat",
+      label: "03 / Build session",
+      title: "Building it together",
       description:
-        "Compare bench observations, ANSYS load cases, and the next printed iteration.",
-      visual: "validation",
+        "A short look at the hands-on assembly process with parts, tools, and laptops spread across the table.",
+      media: {
+        kind: "video",
+        src: "/media/projects/robot-arm/robot-arm-assembly.mp4",
+        poster: "/media/projects/robot-arm/robot-arm-assembly-poster.webp",
+        alt: "Two builders assembling the SO-101 robot arm together at a living-room table",
+      },
+    },
+    {
+      label: "04 / Workbench",
+      title: "Living-room build day",
+      description:
+        "Printed parts, servos, hand tools, and reference videos laid out for assembly.",
+      media: {
+        kind: "image",
+        src: "/media/projects/robot-arm/robot-arm-build-table.webp",
+        alt: "Robot arm parts, tools, and reference videos spread across a living-room worktable",
+      },
+    },
+    {
+      label: "05 / Detail",
+      title: "Gripper and joints",
+      description:
+        "A close look at the printed structure, wiring, servo joints, and gripper mechanism.",
+      media: {
+        kind: "image",
+        src: "/media/projects/robot-arm/robot-arm-gripper-detail.webp",
+        alt: "Close view of the SO-101 gripper, printed links, servo joints, and exposed wiring",
+      },
     },
   ],
 } as const;
 
-export const experience = {
-  company: "StarSolutions",
-  role: "Mechanical / Electrical Engineering Intern",
-  location: "Richmond, BC",
-  timeframe: "Current",
-  summary:
-    "Supporting active RF hardware development through mechanical design, electrical documentation, and component research.",
-  projects: [
-    {
-      id: "rf-adapter",
-      title: "NEX10-to-SMA Adapter",
-      summary:
-        "Developing a chassis-mounted RF connector interface in SolidWorks, translating engineer-reviewed integration requirements into an assembly and manufacturing drawing.",
-      visual: "adapter",
-    },
-    {
-      id: "chassis-documentation",
-      title: "5G Chassis Integration Diagram",
-      summary:
-        "Created a cable and block diagram that translates mechanical packaging and electrical interfaces into clear build documentation for an ongoing chassis program.",
-      visual: "chassis",
-    },
-  ],
-  disclosure: "Generalized to protect proprietary information.",
-} as const;
+export const experiences = projectDatabase.experiences.filter(
+  (entry) => entry.public,
+);
+
+export const experience = experiences[0];
 
 export const contact = {
   heading: "Let’s build something useful.",
