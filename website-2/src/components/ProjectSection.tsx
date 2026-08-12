@@ -44,7 +44,7 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [activeImage, setActiveImage] = useState(0);
   const closeRef = useRef<HTMLButtonElement>(null);
   const currentImage = project.images[activeImage];
-  const lightMedia = /subc-.*(?:cad|fea)|v6-|apsc-practice/.test(
+  const lightMedia = /subc-.*(?:cad|fea)|v6-|apsc-practice|\/media\/experience\//.test(
     currentImage.src,
   );
 
@@ -74,8 +74,13 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
         aria-labelledby="project-dialog-title"
       >
         <div className="project-dialog-gallery">
-          <div className={`project-dialog-main-image ${lightMedia ? "is-light" : ""}`}>
-            <img src={currentImage.src} alt={currentImage.alt} />
+          <div className="project-dialog-primary">
+            <div className={`project-dialog-main-image ${lightMedia ? "is-light" : ""}`}>
+              <img src={currentImage.src} alt={currentImage.alt} />
+            </div>
+            {currentImage.caption && (
+              <p className="project-dialog-image-caption">{currentImage.caption}</p>
+            )}
           </div>
           {project.images.length > 1 && (
             <div className="project-dialog-thumbs" aria-label="Project images">
@@ -104,6 +109,10 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
           >
             Close <X size={16} aria-hidden="true" />
           </button>
+          <p className="project-dialog-meta">
+            <span>{project.categoryLabel}</span>
+            <span>{project.timeframe}</span>
+          </p>
           <h2 id="project-dialog-title">{project.title}</h2>
           <p className="project-dialog-summary">{project.summary}</p>
 
@@ -121,6 +130,10 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
               <dd>{project.result}</dd>
             </div>
           </dl>
+
+          {project.disclosure && (
+            <p className="project-dialog-disclosure">{project.disclosure}</p>
+          )}
 
           {project.links && (
             <div className="project-dialog-links">

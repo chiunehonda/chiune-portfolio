@@ -1,33 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-05",
-  "experiences": [
-    {
-      "id": "starsolutions-internship",
-      "company": "StarSolutions",
-      "role": "Mechanical / Electrical Engineering Intern",
-      "location": "Richmond, BC",
-      "timeframe": "Current",
-      "status": "current",
-      "public": true,
-      "summary": "Supporting active RF hardware development through mechanical design, electrical documentation, and component research.",
-      "projects": [
-        {
-          "id": "rf-adapter",
-          "title": "NEX10-to-SMA Adapter",
-          "summary": "Developing a chassis-mounted RF connector interface in SolidWorks, translating engineer-reviewed integration requirements into an assembly and manufacturing drawing.",
-          "visual": "adapter"
-        },
-        {
-          "id": "chassis-documentation",
-          "title": "5G Chassis Integration Diagram",
-          "summary": "Created a cable and block diagram that translates mechanical packaging and electrical interfaces into clear build documentation for an ongoing chassis program.",
-          "visual": "chassis"
-        }
-      ],
-      "disclosure": "Generalized to protect proprietary information."
-    }
-  ],
+  "updatedAt": "2026-08-12",
+  "experiences": [],
   "projects": [
     {
       "id": "subc-drivetrain",
@@ -38,7 +12,7 @@
       "status": "completed",
       "public": true,
       "cardSummary": "A 2:1 contra-rotating gearbox developed through CAD, calculations, FEA, and machining.",
-      "summary": "Designed a compact 2:1 straight-bevel gearbox to transfer pilot power to UBC SUBC’s counter-rotating propellers.",
+      "summary": "Designed a compact 2:1 straight-bevel gearbox to transfer pilot power to UBC SUBC's counter-rotating propellers.",
       "goal": "Deliver 180 RPM to concentric, counter-rotating shafts while minimizing gearbox mass and maintaining alignment, strength, serviceability, and underwater reliability.",
       "built": "Combined AGMA gear calculations, DE-Goodman shaft fatigue analysis, and SolidWorks static FEA to iterate bevel gears and ribbed, pocketed 6061-T6 housing plates for CNC machining.",
       "result": "Reduced modeled bottom-plate mass by 38%—from 2.35 lb to 1.45 lb—then manufactured and assembled the four-plate housing, bevel gears, concentric shafts, bearings, bushings, and retainers.",
@@ -80,6 +54,132 @@
         {
           "src": "/media/projects/subc-installed-drivetrain-raw.webp",
           "alt": "Physical SUBC drivetrain installed beside the submarine hull"
+        }
+      ]
+    },
+    {
+      "id": "starsolutions-engineering-internship",
+      "title": "Star Solutions Engineering Internship",
+      "category": "mechatronics",
+      "categoryLabel": "Engineering Internship",
+      "timeframe": "Mechanical / Electrical Engineering Intern · Jul–Aug 2026",
+      "status": "completed",
+      "public": true,
+      "cardSummary": "A mechanical and electrical engineering internship spanning RF hardware design, supplier sourcing, VNA validation, and integration documentation.",
+      "summary": "During a two-month internship at Star Solutions in Richmond, BC, supported development of the iCell COMPAC-N LTE network-in-a-box through mechanical design, supplier sourcing, vector network analyzer testing, and electrical integration documentation.",
+      "goal": "Support the engineering team with practical improvements to RF hardware integration, reliability, sourcing, and build documentation while working within an active commercial chassis program.",
+      "built": "Designed a direct chassis-mounted NEX10-to-SMA adapter in SolidWorks, produced a three-sheet manufacturing drawing, and fit-checked a 3D-printed prototype. Researched suppliers and compared quotations, validated two four-way RF splitters at 4.01 GHz with a Keysight E5071C across 24 measurements plus amplitude unbalance, and created an end-to-end COMPAC-N cable and block diagram.",
+      "result": "The splitter measurements averaged 2.0% deviation from datasheet typicals and passed every applicable hard limit. Supplier quotes proposed $18.71 per unit at MOQ 100 and $13.72 at MOQ 300—about 81–86% below the approximately $100 off-the-shelf baseline—with four validation samples and a 4–5-week lead time; these were quoted terms, not realized savings, purchases, or production results.",
+      "disclosure": "Completed as part of a Mechanical / Electrical Engineering internship. Published with Star Solutions' explicit permission; only employer-reviewed and approved artifacts are shown.",
+      "skills": [
+        "SolidWorks",
+        "manufacturing drawings",
+        "RF connectors",
+        "vector network analyzer testing",
+        "supplier sourcing",
+        "technical documentation",
+        "cable and block diagrams"
+      ],
+      "verifiedFacts": [
+        "Completed a Mechanical / Electrical Engineering internship at Star Solutions in Richmond, BC from July through August 2026.",
+        "Supported the iCell COMPAC-N LTE network-in-a-box through mechanical design, sourcing, RF validation, and integration documentation.",
+        "Designed a direct chassis-mounted NEX10-to-SMA adapter to address an over-torque failure mode and remove intermediate cabling.",
+        "Produced a three-sheet manufacturing drawing and fit-checked a 3D-printed prototype for engineering review.",
+        "Received supplier quotes of $18.71 per unit at MOQ 100 and $13.72 per unit at MOQ 300, with four validation samples and a 4–5-week proposed lead time.",
+        "Quoted terms were approximately 81–86% below the approximately $100 off-the-shelf baseline, but were not realized savings, completed purchases, or production results.",
+        "Validated two 250–6000 MHz four-way RF splitters at 4.01 GHz with a Keysight E5071C vector network analyzer.",
+        "Analyzed 24 insertion-loss, isolation, and VSWR measurements plus amplitude unbalance, reaching 2.0% mean deviation from datasheet typicals while passing all applicable hard limits.",
+        "Created an end-to-end cable and block diagram documenting RF, baseband, CPU, power, dual-amplifier, band-pass-filter, and numbered interface connections.",
+        "Star Solutions explicitly approved the displayed artifacts for public use."
+      ],
+      "images": [
+        {
+          "src": "/media/experience/starsolutions/nex10-sma-manufacturing-drawing.png",
+          "alt": "Engineer-approved manufacturing drawing for the NEX10-to-SMA chassis adapter",
+          "caption": "Three-sheet manufacturing package prepared during the Star Solutions internship."
+        },
+        {
+          "src": "/media/experience/nex10-sma-adapter.png",
+          "alt": "SolidWorks assembly preview of the chassis-mounted NEX10-to-SMA adapter",
+          "caption": "SolidWorks adapter design created and prototype fit-checked during the internship."
+        },
+        {
+          "src": "/media/experience/starsolutions/supplier-quote-redacted.png",
+          "alt": "Approved supplier quotation terms showing unit prices, quantities, sample plan, and lead time with personal information removed",
+          "caption": "Quoted terms only; not realized savings, purchases, or production results."
+        },
+        {
+          "src": "/media/experience/starsolutions/rf-validation-results.png",
+          "alt": "Validation-report charts comparing measured RF splitter performance with datasheet values",
+          "caption": "Two four-way RF splitters measured at 4.01 GHz with a Keysight E5071C."
+        },
+        {
+          "src": "/media/experience/starsolutions/compac-n-cable-block-diagram.png",
+          "alt": "Approved cable and block diagram for the iCell COMPAC-N LTE network-in-a-box chassis",
+          "caption": "Employer-approved integration diagram documenting the chassis interfaces."
+        }
+      ]
+    },
+    {
+      "id": "sonous-acoustic-drone-sensing",
+      "title": "Acoustic Drone Detection Project",
+      "category": "mechatronics",
+      "categoryLabel": "Mechatronics",
+      "timeframe": "Independent team project · 2026",
+      "status": "in-progress",
+      "public": true,
+      "cardSummary": "An in-progress team engineering project combining embedded audio, machine-learning inference, bearing estimation, multi-node fusion, and operator mapping.",
+      "summary": "Developing an acoustic drone-sensing prototype while debugging the first Raspberry Pi/ReSpeaker/GPS node and designing its enclosure; two additional stationary nodes are planned to complete the three-node prototype.",
+      "goal": "Detect audible drones, estimate their bearing, and explore multi-node position estimates while maintaining source traceability and explicit data-license boundaries.",
+      "built": "Built a source-traceable data and evaluation pipeline and integrated YAMNet and PANNs/CNN14 inference, six-channel ReSpeaker capture, raw-channel direction finding, GPS/PPS-aware node messages, robust local-ENU bearing fusion, and tactical operator mapping. Software demonstrations include single-node and explicitly synthetic three-node scenarios.",
+      "result": "A license-safe YAMNet head reached 0.900 F1, 0.925 balanced accuracy, and 0.984 ROC-AUC across 90 out-of-fold recordings in five-fold leakage-aware cross-validation. Physical-node debugging, enclosure development, field calibration, and field validation remain in progress; two additional stationary nodes are planned.",
+      "skills": [
+        "Python",
+        "YAMNet",
+        "PANNs/CNN14",
+        "digital signal processing",
+        "acoustic localization",
+        "Raspberry Pi",
+        "ReSpeaker",
+        "GPS/PPS",
+        "sensor fusion",
+        "geospatial mapping",
+        "experimental design",
+        "data provenance"
+      ],
+      "verifiedFacts": [
+        "The source-traceable data pipeline covers 2,090 audio clips and 1,614 leakage groups.",
+        "A license-safe YAMNet classification head was evaluated with five-fold leakage-aware cross-validation.",
+        "Across 90 out-of-fold recordings, it reached 0.900 F1, 0.925 balanced accuracy, and 0.984 ROC-AUC.",
+        "A separate standardized benchmark covered 2,292 unique clips with no missing files.",
+        "The license-safe CC0 arm of that benchmark reached 0.9329 ROC-AUC and 0.2592 recall at a false-positive rate of at most 2%.",
+        "A research-only arm reached 0.9548 ROC-AUC and 0.6392 recall at a false-positive rate of at most 2%, but includes non-commercially licensed audio and must not be presented as a commercial model.",
+        "Initial PANNs/CNN14 baselines produced excessive false alarms and are not field-ready.",
+        "Six-channel audio capture, raw-channel direction finding, GPS/PPS-aware messages, robust local-ENU bearing fusion, and operator mapping are implemented in software.",
+        "The three-node fusion visual is a synthetic software demonstration, not a field result or measured localization-accuracy claim.",
+        "The first physical node is being debugged and its enclosure is in development; two additional stationary nodes are planned.",
+        "Field calibration and field validation are incomplete."
+      ],
+      "images": [
+        {
+          "src": "/media/projects/sonous/multinode-fusion-synthetic.png",
+          "alt": "Synthetic three-node software demonstration showing bearing lines and a fused target estimate",
+          "caption": "Synthetic software demonstration; not a field localization result."
+        },
+        {
+          "src": "/media/projects/sonous/single-node-direction-demo.png",
+          "alt": "single-node direction-finding software demonstration using test data",
+          "caption": "Single-node software demonstration using test data; not a field-performance result."
+        },
+        {
+          "src": "/media/projects/sonous/cross-validation-fold-variability.png",
+          "alt": "Cross-validation fold-by-fold performance variability for the acoustic classifier",
+          "caption": "Five-fold leakage-aware software evaluation; not a field-performance result."
+        },
+        {
+          "src": "/media/projects/sonous/cross-validation-confusion-matrices.png",
+          "alt": "Cross-validation confusion matrices for the acoustic classifier",
+          "caption": "Out-of-fold software evaluation of the license-safe YAMNet head; not a field-performance result."
         }
       ]
     },
@@ -235,7 +335,20 @@
         "AI training is in progress.",
         "Printed-joint redesign and ANSYS validation are planned and must not be described as completed."
       ],
-      "images": []
+      "images": [
+        {
+          "src": "/media/projects/robot-arm/robot-arm-assembled.webp",
+          "alt": "Assembled SO-101 robot arm on a workbench"
+        },
+        {
+          "src": "/media/projects/robot-arm/robot-arm-build-table.webp",
+          "alt": "SO-101 robot arm components and tools during assembly"
+        },
+        {
+          "src": "/media/projects/robot-arm/robot-arm-gripper-detail.webp",
+          "alt": "Close view of the assembled SO-101 robot arm gripper"
+        }
+      ]
     }
   ]
 }

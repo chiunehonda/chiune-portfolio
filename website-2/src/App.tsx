@@ -1,6 +1,6 @@
 import { useEffect } from "react";
+import { Contact } from "@/components/Contact";
 import { CustomCursor } from "@/components/CustomCursor";
-import { ExperienceContact } from "@/components/ExperienceContact";
 import { PhotoStory, type StoryImage } from "@/components/PhotoStory";
 import { ProjectHighlight } from "@/components/ProjectHighlight";
 import { ProjectSection } from "@/components/ProjectSection";
@@ -99,7 +99,7 @@ function App() {
         <PhotoStory frames={storyFrames} />
         <ProjectHighlight />
         <ProjectSection />
-        <ExperienceContact />
+        <Contact />
       </main>
     </>
   );

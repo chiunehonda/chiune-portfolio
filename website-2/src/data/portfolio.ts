@@ -5,6 +5,7 @@ export type ProjectCategory = "mechanical" | "mechatronics" | "software";
 export interface PortfolioImage {
   src: string;
   alt: string;
+  caption?: string;
 }
 
 export interface PortfolioLink {
@@ -25,6 +26,7 @@ export interface ProjectCaseStudy {
   result: string;
   images: PortfolioImage[];
   links?: PortfolioLink[];
+  disclosure?: string;
 }
 
 export const siteIdentity = {
@@ -252,12 +254,6 @@ export const projectHighlight = {
     },
   ],
 } as const;
-
-export const experiences = projectDatabase.experiences.filter(
-  (entry) => entry.public,
-);
-
-export const experience = experiences[0];
 
 export const contact = {
   heading: "Let’s build something useful.",

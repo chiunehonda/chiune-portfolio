@@ -1,5 +1,18 @@
 # Chiune Honda Engineering Portfolio
 
+## Shared project data
+
+The portfolio and Career-Ops stay in separate folders and separate Git histories. Career-Ops owns project and experience records in `data/portfolio.json`; this repository receives only records explicitly marked `public: true` in `website-2/src/data/projects.json`.
+
+After changing project facts, run:
+
+```powershell
+npm.cmd run sync:from-career-ops
+npm.cmd run validate:projects
+```
+
+Add or edit the underlying facts through Career-Ops first. Set `CAREER_OPS_ROOT` to use an explicit installation; otherwise the sync checks `C:\Windows\System32\career-ops` first, then the legacy `C:\Users\Chiune Honda\Documents\career-ops` location.
+
 This repository keeps both portfolio generations so the active site can be changed without losing the previous version. Vercel serves the static contents of `public` directly.
 
 ## Active site: Website 2

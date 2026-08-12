@@ -4,6 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "python3 -m http.server 5173 --directory public"
+    "dev": "python3 -m http.server 5173 --directory public",
+    "sync:career-ops": "node scripts/sync-career-ops.mjs",
+    "sync:from-career-ops": "node scripts/sync-career-ops.mjs",
+    "test:career-ops-sync": "node scripts/test-career-ops-sync.mjs",
+    "validate:projects": "node scripts/validate-projects.mjs"
   }
 }
