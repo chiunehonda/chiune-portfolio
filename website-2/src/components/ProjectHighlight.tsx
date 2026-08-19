@@ -104,6 +104,7 @@ function HighlightVideo({
 
 export function ProjectHighlight() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [instantChange, setInstantChange] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
   const isInView = useInView(galleryRef, { amount: 0.35 });
@@ -111,16 +112,20 @@ export function ProjectHighlight() {
   const media = stage.media;
 
   const selectSlide = (index: number) => {
+    setInstantChange(false);
     setActiveSlide(index);
   };
 
-  const showNext = () => {
-    selectSlide((activeSlide + 1) % projectHighlight.stages.length);
+  const showNext = (instant = false) => {
+    setInstantChange(instant);
+    setActiveSlide((index) => (index + 1) % projectHighlight.stages.length);
   };
 
-  const showPrevious = () => {
-    selectSlide(
-      (activeSlide - 1 + projectHighlight.stages.length) %
+  const showPrevious = (instant = false) => {
+    setInstantChange(instant);
+    setActiveSlide(
+      (index) =>
+        (index - 1 + projectHighlight.stages.length) %
         projectHighlight.stages.length,
     );
   };
@@ -149,13 +154,19 @@ export function ProjectHighlight() {
             aria-roledescription="carousel"
             aria-label="SO-101 robot arm project media"
             onKeyDown={(event) => {
+              if (
+                event.target instanceof HTMLElement &&
+                event.target.closest(".project-highlight-video-toggle")
+              ) {
+                return;
+              }
               if (event.key === "ArrowRight") {
                 event.preventDefault();
-                showNext();
+                showNext(true);
               }
               if (event.key === "ArrowLeft") {
                 event.preventDefault();
-                showPrevious();
+                showPrevious(true);
               }
             }}
           >
@@ -163,17 +174,31 @@ export function ProjectHighlight() {
               Slide {activeSlide + 1} of {projectHighlight.stages.length}: {stage.title}
             </p>
             <div className="project-highlight-viewport">
-              <AnimatePresence mode="wait" initial={false}>
+              <AnimatePresence mode="sync" initial={false} custom={instantChange}>
                 <motion.figure
                   key={media.src}
                   className="project-highlight-slide"
-                  initial={reducedMotion ? false : { opacity: 0, x: 24 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={reducedMotion ? undefined : { opacity: 0, x: -18 }}
-                  transition={{
-                    duration: reducedMotion ? 0 : 0.34,
-                    ease: [0.2, 0.7, 0.2, 1],
+                  custom={instantChange}
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: (isInstant: boolean) => ({
+                      opacity: 1,
+                      transition: {
+                        duration: isInstant ? 0 : reducedMotion ? 0.125 : 0.2,
+                        ease: [0.23, 1, 0.32, 1],
+                      },
+                    }),
+                    removed: (isInstant: boolean) => ({
+                      opacity: 0,
+                      transition: {
+                        duration: isInstant ? 0 : reducedMotion ? 0.125 : 0.2,
+                        ease: [0.23, 1, 0.32, 1],
+                      },
+                    }),
                   }}
+                  initial="hidden"
+                  animate="visible"
+                  exit="removed"
                 >
                   {media.kind === "video" ? (
                     <HighlightVideo
@@ -199,7 +224,7 @@ export function ProjectHighlight() {
               <button
                 className="project-highlight-image-next"
                 type="button"
-                onClick={showNext}
+                onClick={() => showNext()}
                 aria-label="Show next project media"
               >
                 <ArrowRight size={16} aria-hidden="true" />

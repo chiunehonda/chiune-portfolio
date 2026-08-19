@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-12",
+  "updatedAt": "2026-08-17",
   "experiences": [],
   "projects": [
     {
@@ -129,10 +129,10 @@
       "status": "in-progress",
       "public": true,
       "cardSummary": "An in-progress team engineering project combining embedded audio, machine-learning inference, bearing estimation, multi-node fusion, and operator mapping.",
-      "summary": "Developing an acoustic drone-sensing prototype while debugging the first Raspberry Pi/ReSpeaker/GPS node and designing its enclosure; two additional stationary nodes are planned to complete the three-node prototype.",
+      "summary": "Field-testing a nearly complete mobile Raspberry Pi/ReSpeaker/GPS node with encouraging early results while developing its enclosure, building two stationary nodes, and implementing triangulation software for the three-node prototype.",
       "goal": "Detect audible drones, estimate their bearing, and explore multi-node position estimates while maintaining source traceability and explicit data-license boundaries.",
       "built": "Built a source-traceable data and evaluation pipeline and integrated YAMNet and PANNs/CNN14 inference, six-channel ReSpeaker capture, raw-channel direction finding, GPS/PPS-aware node messages, robust local-ENU bearing fusion, and tactical operator mapping. Software demonstrations include single-node and explicitly synthetic three-node scenarios.",
-      "result": "A license-safe YAMNet head reached 0.900 F1, 0.925 balanced accuracy, and 0.984 ROC-AUC across 90 out-of-fold recordings in five-fold leakage-aware cross-validation. Physical-node debugging, enclosure development, field calibration, and field validation remain in progress; two additional stationary nodes are planned.",
+      "result": "A license-safe YAMNet head reached 0.900 F1, 0.925 balanced accuracy, and 0.984 ROC-AUC across 90 out-of-fold recordings in five-fold leakage-aware cross-validation. The mobile node is practically finished and entering field testing with encouraging early results; its enclosure, two stationary nodes, triangulation software, quantitative field calibration, and final validation remain in progress.",
       "skills": [
         "Python",
         "YAMNet",
@@ -157,8 +157,9 @@
         "Initial PANNs/CNN14 baselines produced excessive false alarms and are not field-ready.",
         "Six-channel audio capture, raw-channel direction finding, GPS/PPS-aware messages, robust local-ENU bearing fusion, and operator mapping are implemented in software.",
         "The three-node fusion visual is a synthetic software demonstration, not a field result or measured localization-accuracy claim.",
-        "The first physical node is being debugged and its enclosure is in development; two additional stationary nodes are planned.",
-        "Field calibration and field validation are incomplete."
+        "The mobile physical node is practically finished and is entering field testing with encouraging early results; its enclosure remains in development.",
+        "Two stationary nodes are being built, and triangulation software is under development to complete the three-node prototype.",
+        "Quantitative field calibration and final field validation remain incomplete; no measured localization-accuracy claim has been established."
       ],
       "images": [
         {
@@ -313,27 +314,27 @@
       "title": "SO-101 Robot Arm",
       "category": "mechatronics",
       "categoryLabel": "Mechatronics",
-      "timeframe": "In progress",
-      "status": "in-progress",
+      "timeframe": "Completed baseline build · 2026; claw redesign in progress",
+      "status": "completed",
       "public": true,
       "portfolioVisibility": "highlight",
-      "cardSummary": "A hands-on robotics platform for assembly, programming, measurement-driven redesign, and validation.",
-      "summary": "Building and programming an SO-101 robot arm before redesigning its printed structure around measured behaviour and motor loads.",
-      "goal": "Establish a working system baseline, redesign printed joints, and compare bench observations with ANSYS load cases.",
-      "built": "Completed assembly and calibration and began working on AI training; structural redesign and FEA validation remain planned work.",
-      "result": "In progress; do not claim completed redesign, FEA results, or final performance improvements.",
+      "cardSummary": "A completed SO-101 robot-arm platform with follow-on claw redesign and finite element analysis in progress.",
+      "summary": "Completed the baseline SO-101 robot-arm project and began redesigning the claw mechanism while running finite element analysis on the revised design.",
+      "goal": "Use the completed robot as a test platform, improve the claw function, and evaluate the revised claw structurally under load.",
+      "built": "Completed the baseline robot-arm project; current follow-on work covers claw-mechanism redesign and finite element analysis.",
+      "result": "The baseline project is complete. Claw redesign and finite element analysis are in progress; final redesign performance and validation results have not been established.",
       "skills": [
         "robotics",
         "assembly",
         "calibration",
         "Python",
-        "ANSYS",
+        "finite element analysis",
         "iterative design"
       ],
       "verifiedFacts": [
-        "Completed physical assembly and calibration of the SO-101 robot arm.",
-        "AI training is in progress.",
-        "Printed-joint redesign and ANSYS validation are planned and must not be described as completed."
+        "Completed the baseline SO-101 robot-arm project.",
+        "Claw-mechanism redesign is in progress.",
+        "Finite element analysis of the revised claw design is in progress; final validation results have not been established."
       ],
       "images": [
         {
