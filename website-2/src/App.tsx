@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Contact } from "@/components/Contact";
 import { CustomCursor } from "@/components/CustomCursor";
+import { ExperienceSection } from "@/components/ExperienceSection";
 import { PhotoStory, type StoryImage } from "@/components/PhotoStory";
 import { ProjectHighlight } from "@/components/ProjectHighlight";
 import { ProjectSection } from "@/components/ProjectSection";
@@ -86,8 +87,8 @@ function App() {
   return (
     <>
       <CustomCursor />
-      <a className="skip-link" href="#projects">
-        Skip to projects
+      <a className="skip-link" href="#experience">
+        Skip to experience
       </a>
       <SiteHeader />
       <main id="top">
@@ -97,6 +98,7 @@ function App() {
           mediaAlt="Chiune at a mountain summit"
         />
         <PhotoStory frames={storyFrames} />
+        <ExperienceSection />
         <ProjectHighlight />
         <ProjectSection />
         <Contact />

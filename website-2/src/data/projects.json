@@ -1,7 +1,78 @@
 {
   "schemaVersion": 1,
   "updatedAt": "2026-08-24",
-  "experiences": [],
+  "experiences": [
+    {
+      "id": "starsolutions-internship-2026",
+      "company": "Star Solutions",
+      "role": "Mechanical / Electrical Engineering Intern",
+      "location": "Richmond, BC",
+      "timeframe": "Jul–Aug 2026",
+      "public": true,
+      "summary": "Supported iCell COMPAC-N RF hardware through mechanical design, supplier sourcing, VNA testing, and integration documentation.",
+      "disclosure": "Completed as part of a Mechanical / Electrical Engineering internship. Published with Star Solutions' explicit permission; only employer-reviewed and approved artifacts are shown.",
+      "website": "https://www.starsolutions.com/",
+      "logo": {
+        "src": "/media/brand/star-solutions-logo.png",
+        "alt": "Star Solutions"
+      },
+      "projects": [
+        {
+          "id": "starsolutions-rf-adapter",
+          "title": "RF hardware design",
+          "summary": "Designed a chassis-mounted RF adapter, manufacturing package, and prototype fit-check.",
+          "image": {
+            "src": "/media/experience/nex10-sma-adapter.png",
+            "alt": "SolidWorks assembly preview of the chassis-mounted NEX10-to-SMA adapter"
+          }
+        },
+        {
+          "id": "starsolutions-rf-validation",
+          "title": "RF validation and integration",
+          "summary": "Validated RF splitters with a VNA and mapped COMPAC-N system interfaces.",
+          "image": {
+            "src": "/media/experience/starsolutions/rf-validation-results.png",
+            "alt": "Validation-report charts comparing measured RF splitter performance with datasheet values"
+          }
+        }
+      ]
+    },
+    {
+      "id": "subc-drivetrain-team-2025-2026",
+      "company": "SUBC — UBC’s Submarine Design Team",
+      "role": "Drivetrain Subteam Member",
+      "location": "Vancouver, BC",
+      "timeframe": "2025–2026",
+      "public": true,
+      "summary": "Designed, simulated, and built sealed drivetrain components for UBC’s human-powered submarine.",
+      "disclosure": "Student design-team experience. Results shown reflect completed design, simulation, machining, and assembly work.",
+      "website": "https://subc.ca/",
+      "logo": {
+        "src": "/media/brand/ubc-logo.svg",
+        "alt": "The University of British Columbia"
+      },
+      "projects": [
+        {
+          "id": "subc-drivetrain-design",
+          "title": "Drivetrain design",
+          "summary": "Designed a compact 2:1 contra-rotating gearbox for a human-powered submarine.",
+          "image": {
+            "src": "/media/projects/subc-drivetrain-cad-raw.png",
+            "alt": "SolidWorks render of the SUBC submarine drivetrain gearbox"
+          }
+        },
+        {
+          "id": "subc-drivetrain-analysis-build",
+          "title": "Analysis and build",
+          "summary": "Ran 30+ simulations, reduced mass, and carried the design through machining and assembly.",
+          "image": {
+            "src": "/media/projects/subc-built-gearbox-raw.webp",
+            "alt": "Top view of the machined SUBC bevel gearbox"
+          }
+        }
+      ]
+    }
+  ],
   "projects": [
     {
       "id": "subc-drivetrain",

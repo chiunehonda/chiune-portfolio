@@ -350,7 +350,7 @@ export function ProjectSection() {
         }}
       >
         <div>
-          <p className="section-index">02 / Selected work</p>
+          <p className="section-index">03 / Selected work</p>
           <h2 id="projects-heading">Projects</h2>
         </div>
       </motion.header>
@@ -360,6 +360,7 @@ export function ProjectSection() {
           <motion.article
             className="project-showcase"
             key={project.id}
+            id={`project-${project.id}`}
             aria-labelledby={`project-${project.id}-heading`}
             initial={{
               opacity: reducedMotion ? 0.65 : 0,

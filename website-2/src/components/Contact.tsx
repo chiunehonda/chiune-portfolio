@@ -18,7 +18,7 @@ export function Contact() {
             ease: [0.2, 0.7, 0.2, 1],
           }}
         >
-          <p className="section-index">03 / Contact</p>
+          <p className="section-index">04 / Contact</p>
           <h2 id="contact-heading">{contact.heading}</h2>
           <p>{contact.summary}</p>
         </motion.div>

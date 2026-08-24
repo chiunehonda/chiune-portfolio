@@ -13,6 +13,27 @@ export interface PortfolioLink {
   href: string;
 }
 
+export interface PortfolioExperienceProject {
+  id: string;
+  title: string;
+  summary: string;
+  image: PortfolioImage;
+}
+
+export interface PortfolioExperience {
+  id: string;
+  company: string;
+  role: string;
+  location: string;
+  timeframe: string;
+  public: boolean;
+  summary: string;
+  disclosure: string;
+  website: string;
+  logo: PortfolioImage;
+  projects: PortfolioExperienceProject[];
+}
+
 export interface ProjectCaseStudy {
   id: string;
   title: string;
@@ -184,6 +205,8 @@ const legacyProjects: ProjectCaseStudy[] = [
 export const projects = projectDatabase.projects.filter(
   (project) => project.public && project.portfolioVisibility !== "highlight",
 ) as ProjectCaseStudy[];
+
+export const experiences = projectDatabase.experiences as PortfolioExperience[];
 
 // Compile-time guard while migrating: the previous literal stays available for
 // quick comparison but is never rendered or used as a factual source.
