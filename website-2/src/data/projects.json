@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-17",
+  "updatedAt": "2026-08-24",
   "experiences": [],
   "projects": [
     {
@@ -220,6 +220,64 @@
         {
           "src": "/media/projects/v6-connecting-rod-raw.webp",
           "alt": "SolidWorks render and toolpath study of the V6 connecting rod"
+        }
+      ]
+    },
+    {
+      "id": "radiator-conjugate-heat-transfer",
+      "title": "Radiator Conjugate Heat Transfer (CFD)",
+      "category": "mechanical",
+      "categoryLabel": "Thermal-Fluids",
+      "timeframe": "Independent project · 2026",
+      "status": "in-progress",
+      "public": true,
+      "cardSummary": "A 903,945-element ANSYS Fluent study combining a quantitative convection baseline with explicit-air flow visualization.",
+      "summary": "Developed a simplified conjugate heat-transfer model of a serpentine radiator passage, preserved the working convection baseline, and added an external-air domain to visualize coolant-to-air heat transfer.",
+      "goal": "Build a defensible thermal-fluid workflow for studying how coolant flow and radiator-face air velocity affect heat removal, outlet temperature, and pressure drop.",
+      "built": "Created water and external-air fluid domains with aluminum shell conduction, a 1 mm tube wall, the energy equation, standard k-epsilon turbulence, coupled thermal boundaries, a 903,945-element tetrahedral mesh, report definitions, velocity vectors, and temperature contours.",
+      "result": "The simplified convection-boundary baseline converged from a 373 K coolant inlet to approximately 371.232 K at the outlet and estimated approximately 1.03 kW of heat removal at 0.13919 kg/s. The explicit-air case is retained as a qualitative visualization pending interface cleanup, fin/core representation, and formal validation.",
+      "skills": [
+        "ANSYS Fluent",
+        "conjugate heat transfer",
+        "CFD",
+        "thermal-fluid analysis",
+        "turbulence modelling",
+        "tetrahedral meshing",
+        "simulation reporting",
+        "experimental design"
+      ],
+      "verifiedFacts": [
+        "Built a simplified ANSYS Fluent radiator model with a 903,945-element tetrahedral mesh.",
+        "Modelled water and external-air fluid domains with aluminum shell conduction and a 1 mm tube wall.",
+        "Enabled the energy equation and standard k-epsilon turbulence model.",
+        "The convection-boundary baseline used a 373 K coolant inlet at 0.5 m/s and converged to approximately 371.232 K at the outlet.",
+        "The reported coolant mass flow was approximately 0.13919 kg/s and the simplified baseline estimated approximately 1.03 kW of heat removal.",
+        "Preserved the working convection-boundary case before developing the explicit-air visualization model.",
+        "The modelling workflow began from imported shell geometry for the serpentine tube and radiator fins.",
+        "Created velocity-vector and temperature-contour visualizations for the external-air case.",
+        "The explicit-air model is qualitative until interface warnings are resolved, the fin/core effect is represented, and mass/energy balance plus mesh-independence checks are completed.",
+        "The planned air-speed and coolant-flow sensitivity runs have not yet been completed."
+      ],
+      "images": [
+        {
+          "src": "/media/projects/radiator-cfd/radiator-full-geometry-ansys.png",
+          "alt": "ANSYS Meshing view of the full radiator geometry with the serpentine tube, dense fins, and perimeter frame",
+          "caption": "Full imported radiator geometry before the simplified thermal-fluid model was separated into tractable domains."
+        },
+        {
+          "src": "/media/projects/radiator-cfd/radiator-airflow-temperature.png",
+          "alt": "ANSYS Fluent scene showing airflow velocity vectors beside the serpentine radiator temperature contour",
+          "caption": "Current explicit-air visualization; a clean graphics-only export will replace this initial capture."
+        },
+        {
+          "src": "/media/projects/radiator-cfd/radiator-clean-model-ansys.png",
+          "alt": "Clean ANSYS geometry view of the complete radiator model with serpentine tube and dense fin pack",
+          "caption": "Complete radiator model showing the coolant path integrated with the fin pack."
+        },
+        {
+          "src": "/media/projects/radiator-cfd/radiator-fluent-residuals.png",
+          "alt": "ANSYS Fluent scaled-residual plot and solver controls during a radiator CFD calculation",
+          "caption": "Residual monitoring during an ANSYS Fluent solution run."
         }
       ]
     },
