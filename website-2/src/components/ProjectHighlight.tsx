@@ -152,7 +152,7 @@ export function ProjectHighlight() {
             className="project-highlight-gallery"
             role="region"
             aria-roledescription="carousel"
-            aria-label="SO-101 robot arm project media"
+            aria-label={`${projectHighlight.title} project media`}
             onKeyDown={(event) => {
               if (
                 event.target instanceof HTMLElement &&
@@ -203,14 +203,18 @@ export function ProjectHighlight() {
                   {media.kind === "video" ? (
                     <HighlightVideo
                       src={media.src}
-                      poster={media.poster}
+                      poster={media.poster ?? ""}
                       alt={media.alt}
                       isInView={isInView}
                       reducedMotion={reducedMotion}
                     />
                   ) : (
                     <img
-                      className="project-highlight-media"
+                      className={`project-highlight-media ${
+                        media.src.endsWith("echo-dashboard-devices.png")
+                          ? "is-contained-dashboard"
+                          : ""
+                      }`}
                       src={media.src}
                       alt={media.alt}
                     />

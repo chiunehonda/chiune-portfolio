@@ -14,7 +14,7 @@ interface ProjectCarouselProps {
   reducedMotion: boolean | null;
 }
 
-function ProjectCarousel({ project, reducedMotion }: ProjectCarouselProps) {
+export function ProjectCarousel({ project, reducedMotion }: ProjectCarouselProps) {
   const [activeImage, setActiveImage] = useState(0);
   const [instantChange, setInstantChange] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -37,7 +37,14 @@ function ProjectCarousel({ project, reducedMotion }: ProjectCarouselProps) {
 
   useEffect(() => {
     if (!isNearView) return;
-    project.images.forEach(({ src }) => {
+    project.images.forEach(({ src, kind, poster }) => {
+      if (kind === "video") {
+        if (!poster) return;
+        const image = new Image();
+        image.src = poster;
+        void image.decode().catch(() => undefined);
+        return;
+      }
       const image = new Image();
       image.src = src;
       void image.decode().catch(() => undefined);
@@ -96,7 +103,7 @@ function ProjectCarousel({ project, reducedMotion }: ProjectCarouselProps) {
       }}
     >
       <p className="sr-only" aria-live="polite">
-        Image {activeImage + 1} of {project.images.length}.
+        Media {activeImage + 1} of {project.images.length}.
       </p>
       <div
         className={`project-highlight-viewport project-showcase-viewport ${
@@ -129,14 +136,28 @@ function ProjectCarousel({ project, reducedMotion }: ProjectCarouselProps) {
             animate="visible"
             exit="removed"
           >
-            <img
-              className={`project-highlight-media project-showcase-media ${
-                alignsMediaLeft ? "is-left-crop" : ""
-              }`}
-              src={currentImage.src}
-              alt={currentImage.alt}
-              loading="lazy"
-            />
+            {currentImage.kind === "video" ? (
+              <video
+                className="project-highlight-media project-showcase-media"
+                src={currentImage.src}
+                poster={currentImage.poster}
+                aria-label={currentImage.alt}
+                controls
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              />
+            ) : (
+              <img
+                className={`project-highlight-media project-showcase-media ${
+                  alignsMediaLeft ? "is-left-crop" : ""
+                }`}
+                src={currentImage.src}
+                alt={currentImage.alt}
+                loading="lazy"
+              />
+            )}
             {currentImage.caption && (
               <figcaption className="project-showcase-caption">
                 {currentImage.caption}
@@ -165,7 +186,7 @@ function ProjectCarousel({ project, reducedMotion }: ProjectCarouselProps) {
                   key={image.src}
                   type="button"
                   className={index === activeImage ? "is-active" : ""}
-                  aria-label={`Show image ${index + 1} of ${project.images.length}: ${image.alt}`}
+                  aria-label={`Show media ${index + 1} of ${project.images.length}: ${image.alt}`}
                   aria-pressed={index === activeImage}
                   tabIndex={index === activeImage ? 0 : -1}
                   ref={(element) => {
@@ -192,7 +213,7 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
-function ProjectModal({ project, onClose }: ProjectModalProps) {
+export function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [activeImage, setActiveImage] = useState(0);
   const closeRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLElement>(null);
@@ -251,24 +272,37 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
         <div className="project-dialog-gallery">
           <div className="project-dialog-primary">
             <div className={`project-dialog-main-image ${lightMedia ? "is-light" : ""}`}>
-              <img src={currentImage.src} alt={currentImage.alt} />
+              {currentImage.kind === "video" ? (
+                <video
+                  src={currentImage.src}
+                  poster={currentImage.poster}
+                  aria-label={currentImage.alt}
+                  controls
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                />
+              ) : (
+                <img src={currentImage.src} alt={currentImage.alt} />
+              )}
             </div>
             {currentImage.caption && (
               <p className="project-dialog-image-caption">{currentImage.caption}</p>
             )}
           </div>
           {project.images.length > 1 && (
-            <div className="project-dialog-thumbs" aria-label="Project images">
+            <div className="project-dialog-thumbs" aria-label="Project media">
               {project.images.map((image, index) => (
                 <button
                   key={image.src}
                   type="button"
                   className={index === activeImage ? "is-active" : ""}
-                  aria-label={`Show image ${index + 1} of ${project.images.length}`}
+                  aria-label={`Show media ${index + 1} of ${project.images.length}`}
                   aria-pressed={index === activeImage}
                   onClick={() => setActiveImage(index)}
                 >
-                  <img src={image.src} alt="" />
+                  <img src={image.kind === "video" ? image.poster : image.src} alt="" />
                 </button>
               ))}
             </div>
@@ -326,6 +360,62 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
   );
 }
 
+interface ProjectShowcaseProps {
+  project: ProjectCaseStudy;
+  indexLabel: string;
+  compact?: boolean;
+  onOpen: (project: ProjectCaseStudy, trigger: HTMLButtonElement) => void;
+}
+
+export function ProjectShowcase({
+  project,
+  indexLabel,
+  compact = false,
+  onOpen,
+}: ProjectShowcaseProps) {
+  const reducedMotion = useReducedMotion();
+
+  return (
+    <motion.article
+      className={`project-showcase ${compact ? "experience-project-showcase" : ""}`}
+      id={`project-${project.id}`}
+      aria-labelledby={`project-${project.id}-heading`}
+      initial={{
+        opacity: reducedMotion ? 0.65 : 0,
+        transform: reducedMotion ? "translateY(0px)" : "translateY(8px)",
+      }}
+      whileInView={{ opacity: 1, transform: "translateY(0px)" }}
+      viewport={{ once: true, amount: 0.2, margin: "0px 0px -100px 0px" }}
+      transition={{
+        duration: reducedMotion ? 0.2 : 0.6,
+        ease: [0.23, 1, 0.32, 1],
+      }}
+    >
+      <div className="project-highlight-inner project-showcase-inner">
+        <ProjectCarousel project={project} reducedMotion={reducedMotion} />
+
+        <div className="project-highlight-copy project-showcase-copy">
+          <p className="project-highlight-status">{indexLabel}</p>
+          <h3 id={`project-${project.id}-heading`}>{project.title}</h3>
+          <p className="project-highlight-summary">{project.cardSummary}</p>
+          <button
+            className="project-showcase-cta"
+            type="button"
+            aria-haspopup="dialog"
+            aria-label={`Learn more about ${project.title}`}
+            onClick={(event) => onOpen(project, event.currentTarget)}
+          >
+            <span>Learn more</span>
+            <i aria-hidden="true">
+              <ArrowRight size={15} />
+            </i>
+          </button>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
 export function ProjectSection() {
   const [activeProject, setActiveProject] = useState<ProjectCaseStudy | null>(null);
   const lastTriggerRef = useRef<HTMLButtonElement | null>(null);
@@ -357,55 +447,15 @@ export function ProjectSection() {
 
       <div className="project-grid">
         {projects.map((project, index) => (
-          <motion.article
-            className="project-showcase"
+          <ProjectShowcase
             key={project.id}
-            id={`project-${project.id}`}
-            aria-labelledby={`project-${project.id}-heading`}
-            initial={{
-              opacity: reducedMotion ? 0.65 : 0,
-              transform: reducedMotion
-                ? "translateY(0px)"
-                : "translateY(8px)",
+            project={project}
+            indexLabel={`${String(index + 1).padStart(2, "0")} / ${project.categoryLabel}`}
+            onOpen={(selectedProject, trigger) => {
+              lastTriggerRef.current = trigger;
+              setActiveProject(selectedProject);
             }}
-            whileInView={{ opacity: 1, transform: "translateY(0px)" }}
-            viewport={{
-              once: true,
-              amount: 0.2,
-              margin: "0px 0px -100px 0px",
-            }}
-            transition={{
-              duration: reducedMotion ? 0.2 : 0.6,
-              ease: [0.23, 1, 0.32, 1],
-            }}
-          >
-            <div className="project-highlight-inner project-showcase-inner">
-              <ProjectCarousel project={project} reducedMotion={reducedMotion} />
-
-              <div className="project-highlight-copy project-showcase-copy">
-                <p className="project-highlight-status">
-                  {String(index + 1).padStart(2, "0")} / {project.categoryLabel}
-                </p>
-                <h3 id={`project-${project.id}-heading`}>{project.title}</h3>
-                <p className="project-highlight-summary">{project.cardSummary}</p>
-                <button
-                  className="project-showcase-cta"
-                  type="button"
-                  aria-haspopup="dialog"
-                  aria-label={`Learn more about ${project.title}`}
-                  onClick={(event) => {
-                    lastTriggerRef.current = event.currentTarget;
-                    setActiveProject(project);
-                  }}
-                >
-                  <span>Learn more</span>
-                  <i aria-hidden="true">
-                    <ArrowRight size={15} />
-                  </i>
-                </button>
-              </div>
-            </div>
-          </motion.article>
+          />
         ))}
       </div>
 

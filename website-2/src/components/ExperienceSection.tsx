@@ -1,5 +1,11 @@
-import { ArrowDown, ArrowRight } from "lucide-react";
-import { experiences } from "@/data/portfolio";
+import { useRef, useState } from "react";
+import { ArrowDown } from "lucide-react";
+import {
+  experiences,
+  projectById,
+  type ProjectCaseStudy,
+} from "@/data/portfolio";
+import { ProjectModal, ProjectShowcase } from "@/components/ProjectSection";
 
 const relatedProjectByExperience: Record<string, string> = {
   "starsolutions-internship-2026": "starsolutions-engineering-internship",
@@ -15,6 +21,14 @@ function getBrandClass(experienceId: string) {
 }
 
 export function ExperienceSection() {
+  const [activeProject, setActiveProject] = useState<ProjectCaseStudy | null>(null);
+  const lastTriggerRef = useRef<HTMLButtonElement | null>(null);
+
+  const closeActiveProject = () => {
+    setActiveProject(null);
+    window.requestAnimationFrame(() => lastTriggerRef.current?.focus());
+  };
+
   return (
     <section
       className="experience-section"
@@ -32,46 +46,55 @@ export function ExperienceSection() {
         <div className="experience-list">
           {experiences.map((experience) => {
             const relatedProjectId = relatedProjectByExperience[experience.id];
+            const relatedProject = relatedProjectId
+              ? projectById[relatedProjectId]
+              : undefined;
             const companyLabel =
               companyLabelByExperience[experience.id] ?? experience.company;
 
             return (
-              <article
-                className={`experience-item ${getBrandClass(experience.id)}`}
+              <div
+                className="experience-entry"
                 key={experience.id}
-                aria-labelledby={`experience-${experience.id}-title`}
               >
-                <div className="experience-logo" aria-hidden="true">
-                  <img
-                    src={experience.logo.src}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
+                <article
+                  className={`experience-item ${getBrandClass(experience.id)}`}
+                  aria-labelledby={`experience-${experience.id}-title`}
+                >
+                  <div className="experience-logo" aria-hidden="true">
+                    <img
+                      src={experience.logo.src}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+
+                  <div className="experience-intro">
+                    <p className="experience-company">
+                      <span>{companyLabel}</span>
+                      <span>{experience.timeframe}</span>
+                    </p>
+                    <h3 id={`experience-${experience.id}-title`}>
+                      {experience.role}
+                    </h3>
+
+                    <p className="experience-summary">{experience.summary}</p>
+                  </div>
+                </article>
+
+                {relatedProject && (
+                  <ProjectShowcase
+                    project={relatedProject}
+                    indexLabel={`Experience project / ${relatedProject.categoryLabel}`}
+                    compact
+                    onOpen={(selectedProject, trigger) => {
+                      lastTriggerRef.current = trigger;
+                      setActiveProject(selectedProject);
+                    }}
                   />
-                </div>
-
-                <div className="experience-intro">
-                  <p className="experience-company">
-                    <span>{companyLabel}</span>
-                    <span>{experience.timeframe}</span>
-                  </p>
-                  <h3 id={`experience-${experience.id}-title`}>
-                    {experience.role}
-                  </h3>
-
-                  <p className="experience-summary">{experience.summary}</p>
-
-                  {relatedProjectId && (
-                    <a
-                      className="experience-project-link"
-                      href={`#project-${relatedProjectId}`}
-                    >
-                      View project
-                      <ArrowRight size={15} aria-hidden="true" />
-                    </a>
-                  )}
-                </div>
-              </article>
+                )}
+              </div>
             );
           })}
         </div>
@@ -85,6 +108,10 @@ export function ExperienceSection() {
           </a>
         </div>
       </div>
+
+      {activeProject && (
+        <ProjectModal project={activeProject} onClose={closeActiveProject} />
+      )}
     </section>
   );
 }

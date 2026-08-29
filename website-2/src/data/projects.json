@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-24",
+  "updatedAt": "2026-08-29",
   "experiences": [
     {
       "id": "starsolutions-internship-2026",
@@ -85,14 +85,16 @@
       "cardSummary": "A 2:1 contra-rotating gearbox developed through CAD, calculations, FEA, and machining.",
       "summary": "Designed a compact 2:1 straight-bevel gearbox to transfer pilot power to UBC SUBC's counter-rotating propellers.",
       "goal": "Deliver 180 RPM to concentric, counter-rotating shafts while minimizing gearbox mass and maintaining alignment, strength, serviceability, and underwater reliability.",
-      "built": "Combined AGMA gear calculations, DE-Goodman shaft fatigue analysis, and SolidWorks static FEA to iterate bevel gears and ribbed, pocketed 6061-T6 housing plates for CNC machining.",
-      "result": "Reduced modeled bottom-plate mass by 38%—from 2.35 lb to 1.45 lb—then manufactured and assembled the four-plate housing, bevel gears, concentric shafts, bearings, bushings, and retainers.",
+      "built": "Combined AGMA gear calculations, DE-Goodman shaft fatigue analysis, and SolidWorks static FEA to iterate bevel gears and ribbed, pocketed 6061-T6 housing plates, then carried parts through waterjet cutting and other shop machining processes.",
+      "result": "Reduced modeled bottom-plate mass by 38%—from 2.35 lb to 1.45 lb—then manufactured and assembled the four-plate housing, bevel gears, concentric shafts, bearings, bushings, and retainers, gaining hands-on waterjet and mechanical machining experience.",
       "skills": [
         "SolidWorks",
         "static FEA",
         "AGMA gear analysis",
         "DE-Goodman fatigue analysis",
         "CNC design",
+        "waterjet cutting",
+        "mechanical machining",
         "tolerance and fit"
       ],
       "verifiedFacts": [
@@ -103,6 +105,7 @@
         "Reduced modeled bottom-plate mass by 38%, from 2.35 lb to 1.45 lb.",
         "Designed the housing around 6061-T6 plates and CNC manufacturing.",
         "Manufactured and assembled the four-plate housing, 1144 carbon-steel bevel gears, concentric shafts, bearings, bushings, and retainers.",
+        "Used waterjet cutting and other shop machining processes while producing mechanical parts.",
         "Spent 100+ hours modelling the gearbox and housing and completed 30+ structural and flow simulations."
       ],
       "images": [
@@ -125,6 +128,11 @@
         {
           "src": "/media/projects/subc-installed-drivetrain-raw.webp",
           "alt": "Physical SUBC drivetrain installed beside the submarine hull"
+        },
+        {
+          "src": "/media/projects/subc-waterjet-cut-plate.webp",
+          "alt": "Aluminum plate after waterjet cutting, showing the cut SUBC mark and mounting features",
+          "caption": "Supporting evidence of hands-on waterjet cutting and mechanical shop work."
         }
       ]
     },
@@ -165,24 +173,39 @@
       ],
       "images": [
         {
+          "src": "/media/experience/starsolutions/nex10-sma-adapter-updated.webp",
+          "alt": "Updated SolidWorks model of the chassis-mounted NEX10-to-SMA adapter",
+          "caption": "Updated adapter assembly with the SolidWorks interface cropped out to keep the model central."
+        },
+        {
+          "src": "/media/experience/starsolutions/adapter-prototype.webp",
+          "alt": "Black 3D-printed NEX10-to-SMA adapter prototype",
+          "caption": "3D-printed prototype used to check the adapter geometry and fit."
+        },
+        {
+          "src": "/media/experience/starsolutions/rf-chassis-open.webp",
+          "alt": "Open iCell COMPAC-N chassis showing internal RF hardware, circuit board, and cabling",
+          "caption": "Open chassis view showing the physical RF and electrical integration environment."
+        },
+        {
+          "src": "/media/experience/starsolutions/network-analyzer-setup.webp",
+          "alt": "Keysight vector network analyzer and RF lab equipment used during the internship",
+          "caption": "Vector network analyzer setup used for RF hardware characterization."
+        },
+        {
+          "src": "/media/experience/starsolutions/rf-integration-detail.webp",
+          "alt": "Close-up of coaxial cabling and RF modules installed in the chassis",
+          "caption": "Close-up of the chassis RF modules, adapters, and coaxial cable routing."
+        },
+        {
           "src": "/media/experience/starsolutions/nex10-sma-manufacturing-drawing.png",
           "alt": "Engineer-approved manufacturing drawing for the NEX10-to-SMA chassis adapter",
           "caption": "Three-sheet manufacturing package prepared during the Star Solutions internship."
         },
         {
-          "src": "/media/experience/nex10-sma-adapter.png",
-          "alt": "SolidWorks assembly preview of the chassis-mounted NEX10-to-SMA adapter",
-          "caption": "SolidWorks adapter design created and prototype fit-checked during the internship."
-        },
-        {
           "src": "/media/experience/starsolutions/supplier-quote-redacted.png",
           "alt": "Approved supplier quotation terms showing unit prices, quantities, sample plan, and lead time with personal information removed",
           "caption": "Quoted terms only; not realized savings, purchases, or production results."
-        },
-        {
-          "src": "/media/experience/starsolutions/rf-validation-results.png",
-          "alt": "Validation-report charts comparing measured RF splitter performance with datasheet values",
-          "caption": "Two four-way RF splitters measured at 4.01 GHz with a Keysight E5071C."
         },
         {
           "src": "/media/experience/starsolutions/compac-n-cable-block-diagram.png",
@@ -193,17 +216,18 @@
     },
     {
       "id": "sonous-acoustic-drone-sensing",
-      "title": "Acoustic Drone Detection Project",
+      "title": "Sonous Systems — Echo",
       "category": "mechatronics",
       "categoryLabel": "Mechatronics",
       "timeframe": "Independent team project · 2026",
       "status": "in-progress",
       "public": true,
-      "cardSummary": "An in-progress team engineering project combining embedded audio, machine-learning inference, bearing estimation, multi-node fusion, and operator mapping.",
-      "summary": "Field-testing a nearly complete mobile Raspberry Pi/ReSpeaker/GPS node with encouraging early results while developing its enclosure, building two stationary nodes, and implementing triangulation software for the three-node prototype.",
+      "portfolioVisibility": "highlight",
+      "cardSummary": "Echo is Sonous Systems’ in-progress acoustic sensing product, combining embedded audio, machine-learning inference, bearing estimation, multi-node fusion, and operator interfaces.",
+      "summary": "Developing Echo at Sonous Systems, our startup: a distributed acoustic-sensing system built around enclosed Raspberry Pi/ReSpeaker/GPS nodes, a tactical dashboard, and compact companion displays intended for watches and other accessible devices.",
       "goal": "Detect audible drones, estimate their bearing, and explore multi-node position estimates while maintaining source traceability and explicit data-license boundaries.",
-      "built": "Built a source-traceable data and evaluation pipeline and integrated YAMNet and PANNs/CNN14 inference, six-channel ReSpeaker capture, raw-channel direction finding, GPS/PPS-aware node messages, robust local-ENU bearing fusion, and tactical operator mapping. Software demonstrations include single-node and explicitly synthetic three-node scenarios.",
-      "result": "A license-safe YAMNet head reached 0.900 F1, 0.925 balanced accuracy, and 0.984 ROC-AUC across 90 out-of-fold recordings in five-fold leakage-aware cross-validation. The mobile node is practically finished and entering field testing with encouraging early results; its enclosure, two stationary nodes, triangulation software, quantitative field calibration, and final validation remain in progress.",
+      "built": "Built a source-traceable data and evaluation pipeline and integrated YAMNet and PANNs/CNN14 inference, six-channel ReSpeaker capture, raw-channel direction finding, GPS/PPS-aware node messages, robust local-ENU bearing fusion, and tactical operator mapping. Designed the selected Echo node enclosure in SolidWorks and developed dashboard concepts spanning the main operator view and compact circular wearable/accessibility displays.",
+      "result": "A license-safe YAMNet head reached 0.900 F1, 0.925 balanced accuracy, and 0.984 ROC-AUC across 90 out-of-fold recordings in five-fold leakage-aware cross-validation. The mobile node is practically finished and entering field testing with encouraging early results; enclosure production, two stationary nodes, triangulation software, interface deployment, quantitative field calibration, and final validation remain in progress.",
       "skills": [
         "Python",
         "YAMNet",
@@ -228,30 +252,42 @@
         "Initial PANNs/CNN14 baselines produced excessive false alarms and are not field-ready.",
         "Six-channel audio capture, raw-channel direction finding, GPS/PPS-aware messages, robust local-ENU bearing fusion, and operator mapping are implemented in software.",
         "The three-node fusion visual is a synthetic software demonstration, not a field result or measured localization-accuracy claim.",
-        "The mobile physical node is practically finished and is entering field testing with encouraging early results; its enclosure remains in development.",
+        "Sonous Systems is the startup name and Echo is the product name.",
+        "The selected SolidWorks enclosure design is intended for each Echo sensing node; enclosure production remains in progress.",
+        "The dashboard concept includes a main operator view and small circular layouts intended for watches and other accessible devices; deployment remains planned.",
+        "The mobile physical node is practically finished and is entering field testing with encouraging early results.",
         "Two stationary nodes are being built, and triangulation software is under development to complete the three-node prototype.",
         "Quantitative field calibration and final field validation remain incomplete; no measured localization-accuracy claim has been established."
       ],
       "images": [
         {
-          "src": "/media/projects/sonous/multinode-fusion-synthetic.png",
-          "alt": "Synthetic three-node software demonstration showing bearing lines and a fused target estimate",
-          "caption": "Synthetic software demonstration; not a field localization result."
+          "src": "/media/projects/sonous/echo-project-demo.mp4",
+          "alt": "Outdoor demonstration of the Sonous Systems Echo acoustic sensing node",
+          "caption": "Echo project demonstration with the sensing hardware operating outdoors.",
+          "kind": "video",
+          "poster": "/media/projects/sonous/echo-project-demo-poster.webp"
         },
         {
-          "src": "/media/projects/sonous/single-node-direction-demo.png",
-          "alt": "single-node direction-finding software demonstration using test data",
-          "caption": "Single-node software demonstration using test data; not a field-performance result."
+          "src": "/media/projects/sonous/echo-enclosure-top.webp",
+          "alt": "Top perspective of the selected Echo node enclosure assembly in SolidWorks",
+          "caption": "Selected enclosure design intended for each Echo sensing node; production remains in progress."
         },
         {
-          "src": "/media/projects/sonous/cross-validation-fold-variability.png",
-          "alt": "Cross-validation fold-by-fold performance variability for the acoustic classifier",
-          "caption": "Five-fold leakage-aware software evaluation; not a field-performance result."
+          "src": "/media/projects/sonous/echo-dashboard-devices.png",
+          "alt": "Echo interface concept across a primary display, circular watch layouts, and a compact rectangular device",
+          "caption": "The circular layouts are intended for watches and other accessible companion devices."
         },
         {
-          "src": "/media/projects/sonous/cross-validation-confusion-matrices.png",
-          "alt": "Cross-validation confusion matrices for the acoustic classifier",
-          "caption": "Out-of-fold software evaluation of the license-safe YAMNet head; not a field-performance result."
+          "src": "/media/projects/sonous/echo-enclosure-side.webp",
+          "alt": "Side cutaway view of the selected Echo node enclosure assembly in SolidWorks",
+          "caption": "Side view showing the enclosure structure and internal component arrangement."
+        },
+        {
+          "src": "/media/projects/sonous/echo-dashboard-demo.mov",
+          "alt": "Animated Echo operator dashboard and companion display concept",
+          "caption": "Dashboard concept in motion; interface deployment remains planned.",
+          "kind": "video",
+          "poster": "/media/projects/sonous/echo-dashboard-devices.png"
         }
       ]
     },
@@ -446,7 +482,6 @@
       "timeframe": "Completed baseline build · 2026; claw redesign in progress",
       "status": "completed",
       "public": true,
-      "portfolioVisibility": "highlight",
       "cardSummary": "A completed SO-101 robot-arm platform with follow-on claw redesign and finite element analysis in progress.",
       "summary": "Completed the baseline SO-101 robot-arm project and began redesigning the claw mechanism while running finite element analysis on the revised design.",
       "goal": "Use the completed robot as a test platform, improve the claw function, and evaluate the revised claw structurally under load.",
@@ -467,16 +502,40 @@
       ],
       "images": [
         {
+          "src": "/media/projects/robot-arm/robot-arm-working-motion-a.mp4",
+          "alt": "SO-101 robot arm moving through a commanded working sequence",
+          "caption": "Trimmed motion sequence showing the completed arm operating through multiple joint positions.",
+          "kind": "video",
+          "poster": "/media/projects/robot-arm/robot-arm-working-motion-a-poster.webp"
+        },
+        {
+          "src": "/media/projects/robot-arm/robot-arm-working-motion-b.mp4",
+          "alt": "SO-101 robot arm completing a second live motion test",
+          "caption": "Second trimmed operating sequence with the arm moving between upright and extended poses.",
+          "kind": "video",
+          "poster": "/media/projects/robot-arm/robot-arm-working-motion-b-poster.webp"
+        },
+        {
+          "src": "/media/projects/robot-arm/robot-arm-assembly.mp4",
+          "alt": "Two builders assembling the SO-101 robot arm at a worktable",
+          "caption": "Hands-on assembly session with printed parts, servos, wiring, and tools.",
+          "kind": "video",
+          "poster": "/media/projects/robot-arm/robot-arm-assembly-poster.webp"
+        },
+        {
           "src": "/media/projects/robot-arm/robot-arm-assembled.webp",
-          "alt": "Assembled SO-101 robot arm on a workbench"
+          "alt": "Assembled SO-101 robot arm on a workbench",
+          "caption": "Completed baseline SO-101 platform before the ongoing structural redesign work."
         },
         {
-          "src": "/media/projects/robot-arm/robot-arm-build-table.webp",
-          "alt": "SO-101 robot arm components and tools during assembly"
+          "src": "/media/projects/robot-arm/robot-arm-handle-redesign.webp",
+          "alt": "SolidWorks model of an evolving robot-arm handle redesign",
+          "caption": "Current handle redesign in SolidWorks; geometry remains under active iteration."
         },
         {
-          "src": "/media/projects/robot-arm/robot-arm-gripper-detail.webp",
-          "alt": "Close view of the assembled SO-101 robot arm gripper"
+          "src": "/media/projects/robot-arm/robot-arm-claw-redesign.webp",
+          "alt": "SolidWorks model of an evolving robot-arm claw redesign",
+          "caption": "Current claw redesign concept; final geometry and validation remain in progress."
         }
       ]
     }

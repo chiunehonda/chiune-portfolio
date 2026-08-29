@@ -6,6 +6,8 @@ export interface PortfolioImage {
   src: string;
   alt: string;
   caption?: string;
+  kind?: "image" | "video";
+  poster?: string;
 }
 
 export interface PortfolioLink {
@@ -202,9 +204,30 @@ const legacyProjects: ProjectCaseStudy[] = [
 ];
 
 // Keep the presentation layer typed while project facts remain portable JSON.
-export const projects = projectDatabase.projects.filter(
-  (project) => project.public && project.portfolioVisibility !== "highlight",
+const allPublicProjects = projectDatabase.projects.filter(
+  (project) => project.public,
 ) as ProjectCaseStudy[];
+
+export const projectById = Object.fromEntries(
+  allPublicProjects.map((project) => [project.id, project]),
+) as Record<string, ProjectCaseStudy>;
+
+export const experienceProjectIds = [
+  "starsolutions-engineering-internship",
+  "subc-drivetrain",
+] as const;
+
+const selectedWorkOrder = [
+  "so-101-robot-arm",
+  "radiator-conjugate-heat-transfer",
+  "v6-engine",
+  "hydroelectric-generator",
+  "apsc-101-study-system",
+] as const;
+
+export const projects = selectedWorkOrder
+  .map((id) => projectById[id])
+  .filter(Boolean) as ProjectCaseStudy[];
 
 export const experiences = projectDatabase.experiences as PortfolioExperience[];
 
@@ -212,71 +235,29 @@ export const experiences = projectDatabase.experiences as PortfolioExperience[];
 // quick comparison but is never rendered or used as a factual source.
 void legacyProjects;
 
+const highlightedProject = projectById["sonous-acoustic-drone-sensing"];
+const highlightStageCopy = [
+  ["01 / Field demo", "Echo outdoors"],
+  ["02 / Enclosure", "Node enclosure"],
+  ["03 / Companion displays", "Dashboard across devices"],
+  ["04 / Internal layout", "Inside an Echo node"],
+  ["05 / Dashboard", "Operator interface in motion"],
+] as const;
+
 export const projectHighlight = {
   status: "Project highlight / In progress",
-  title: "SO-101 Robot Arm",
-  summary:
-    "Building the SO-101 as a hands-on robotics platform, then redesigning its printed structure around measured loads, repeatable motion, and simulation.",
-  stages: [
-    {
-      label: "01 / Motion test",
-      title: "Hands-on motion check",
-      description:
-        "Checking the assembled arm and gripper movement on the living-room worktable.",
-      media: {
-        kind: "video",
-        src: "/media/projects/robot-arm/robot-arm-motion.mp4",
-        poster: "/media/projects/robot-arm/robot-arm-motion-poster.webp",
-        alt: "The assembled SO-101 robot arm being moved through its range of motion on a living-room table",
-      },
+  title: highlightedProject.title,
+  summary: highlightedProject.cardSummary,
+  stages: highlightedProject.images.map((media, index) => ({
+    label: highlightStageCopy[index]?.[0] ?? `${String(index + 1).padStart(2, "0")} / Media`,
+    title: highlightStageCopy[index]?.[1] ?? media.alt,
+    description: media.caption ?? media.alt,
+    media: {
+      ...media,
+      kind: media.kind ?? "image",
     },
-    {
-      label: "02 / Assembly",
-      title: "Bench-ready arm",
-      description:
-        "The assembled arm, printed links, servos, wiring, and gripper in warm living-room light.",
-      media: {
-        kind: "image",
-        src: "/media/projects/robot-arm/robot-arm-assembled.webp",
-        alt: "Assembled SO-101 robot arm stretched across a folding table in warm living-room light",
-      },
-    },
-    {
-      label: "03 / Build session",
-      title: "Building it together",
-      description:
-        "A short look at the hands-on assembly process with parts, tools, and laptops spread across the table.",
-      media: {
-        kind: "video",
-        src: "/media/projects/robot-arm/robot-arm-assembly.mp4",
-        poster: "/media/projects/robot-arm/robot-arm-assembly-poster.webp",
-        alt: "Two builders assembling the SO-101 robot arm together at a living-room table",
-      },
-    },
-    {
-      label: "04 / Workbench",
-      title: "Living-room build day",
-      description:
-        "Printed parts, servos, hand tools, and reference videos laid out for assembly.",
-      media: {
-        kind: "image",
-        src: "/media/projects/robot-arm/robot-arm-build-table.webp",
-        alt: "Robot arm parts, tools, and reference videos spread across a living-room worktable",
-      },
-    },
-    {
-      label: "05 / Detail",
-      title: "Gripper and joints",
-      description:
-        "A close look at the printed structure, wiring, servo joints, and gripper mechanism.",
-      media: {
-        kind: "image",
-        src: "/media/projects/robot-arm/robot-arm-gripper-detail.webp",
-        alt: "Close view of the SO-101 gripper, printed links, servo joints, and exposed wiring",
-      },
-    },
-  ],
-} as const;
+  })),
+};
 
 export const contact = {
   heading: "Let’s build something useful.",

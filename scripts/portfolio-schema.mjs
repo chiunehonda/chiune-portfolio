@@ -30,7 +30,10 @@ function missingFields(record, fields) {
 }
 
 function hasValidImage(image) {
-  return isNonEmptyString(image?.src) && isNonEmptyString(image?.alt);
+  return isNonEmptyString(image?.src)
+    && isNonEmptyString(image?.alt)
+    && (image?.kind === undefined || image.kind === "image" || image.kind === "video")
+    && (image?.kind !== "video" || isNonEmptyString(image?.poster));
 }
 
 export function validatePortfolioDatabase(database, source = "portfolio database") {
