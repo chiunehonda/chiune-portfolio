@@ -236,19 +236,31 @@ export const experiences = projectDatabase.experiences as PortfolioExperience[];
 void legacyProjects;
 
 const highlightedProject = projectById["sonous-acoustic-drone-sensing"];
+const sonousElectronicsBench: PortfolioImage = {
+  src: "/media/projects/sonous/echo-electronics-bench.webp",
+  alt: "Raspberry Pi and connected breakout board on an electronics bench during Echo node development",
+  caption:
+    "Bench setup showing the Raspberry Pi, connected breakout hardware, wiring, and powered development state.",
+};
+const highlightedProjectMedia = [
+  ...highlightedProject.images.slice(0, 3),
+  sonousElectronicsBench,
+  ...highlightedProject.images.slice(3),
+];
 const highlightStageCopy = [
   ["01 / Field demo", "Echo outdoors"],
   ["02 / Enclosure", "Node enclosure"],
   ["03 / Companion displays", "Dashboard across devices"],
-  ["04 / Internal layout", "Inside an Echo node"],
-  ["05 / Dashboard", "Operator interface in motion"],
+  ["04 / Electronics", "Echo node bench setup"],
+  ["05 / Internal layout", "Inside an Echo node"],
+  ["06 / Dashboard", "Operator interface in motion"],
 ] as const;
 
 export const projectHighlight = {
   status: "Project highlight / In progress",
   title: highlightedProject.title,
   summary: highlightedProject.cardSummary,
-  stages: highlightedProject.images.map((media, index) => ({
+  stages: highlightedProjectMedia.map((media, index) => ({
     label: highlightStageCopy[index]?.[0] ?? `${String(index + 1).padStart(2, "0")} / Media`,
     title: highlightStageCopy[index]?.[1] ?? media.alt,
     description: media.caption ?? media.alt,
