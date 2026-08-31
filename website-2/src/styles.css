@@ -1082,6 +1082,13 @@ video.project-highlight-media {
   align-self: center;
 }
 
+.project-highlight-brand {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 clamp(0.8rem, 1.4vh, 1.1rem);
+}
+
 .project-highlight-status {
   margin: 0 0 clamp(0.9rem, 1.6vh, 1.25rem);
   color: #aaa9a4;

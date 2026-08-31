@@ -252,6 +252,11 @@ export function ProjectHighlight() {
           </div>
 
           <div className="project-highlight-copy">
+            <img
+              className="project-highlight-brand"
+              src="/media/projects/sonous/sonous-header-dark.svg"
+              alt="Sonous — Acoustic Operations"
+            />
             <p className="project-highlight-status">{projectHighlight.status}</p>
             <h2 id="project-highlight-heading">{projectHighlight.title}</h2>
             <p className="project-highlight-summary">{projectHighlight.summary}</p>

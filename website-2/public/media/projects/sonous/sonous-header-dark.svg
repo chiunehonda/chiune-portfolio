@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="1000 0 2280 700" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
+  <title id="title">Sonous header — dark mode</title>
+  <desc id="desc">Sonous logo and Acoustic Operations wordmark in white, grey, and orange on black.</desc>
+  <g transform="translate(1084 60) scale(.45)">
+    <g fill="none" stroke="#E89F43" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M403 239 L586 515"/><path d="M165 426 L586 515"/><path d="M394 1060 L586 515"/></g>
+    <g stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M267 30 L54 180 L159 299 L268 190 Z" fill="#8F959B"/><path d="M295 25 L512 174 L512 295 L295 175 Z" fill="#000000"/><path d="M39 204 L159 338 L164 520 L67 654 Z" fill="#000000"/><path d="M174 558 L92 674 L281 927 L447 926 Z" fill="#8F959B"/><path d="M20 924 L182 1085 L182 1247 L20 1103 Z" fill="#8F959B"/><path d="M314 956 L476 956 L218 1257 L218 1070 Z" fill="#000000"/></g>
+    <g fill="#FFFFFF"><circle cx="403" cy="239" r="23"/><circle cx="165" cy="426" r="22"/><circle cx="394" cy="1060" r="23"/></g><circle cx="586" cy="515" r="44" fill="#000000" stroke="#FFFFFF" stroke-width="13"/>
+  </g>
+  <path d="M1378 289 H1532" fill="none" stroke="#E89F43" stroke-width="10" stroke-linecap="round"/><circle cx="1532" cy="289" r="15" fill="#FFFFFF"/>
+  <g fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif"><text x="1600" y="365" font-size="250" font-weight="700" letter-spacing="24">SONOUS</text><text x="1614" y="485" font-size="52" font-weight="700" letter-spacing="18" fill="#B9BDC1">ACOUSTIC OPERATIONS</text></g>
+  <rect x="1614" y="548" width="1430" height="12" fill="#E89F43"/><g fill="#FFFFFF"><circle cx="3090" cy="554" r="10"/><circle cx="3150" cy="554" r="10"/><circle cx="3210" cy="554" r="10"/></g>
+</svg>
