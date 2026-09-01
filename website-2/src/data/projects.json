@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-29",
+  "updatedAt": "2026-09-01",
   "experiences": [
     {
       "id": "starsolutions-internship-2026",
@@ -268,9 +268,9 @@
           "poster": "/media/projects/sonous/echo-project-demo-poster.webp"
         },
         {
-          "src": "/media/projects/sonous/echo-enclosure-top.webp",
-          "alt": "Top perspective of the selected Echo node enclosure assembly in SolidWorks",
-          "caption": "Selected enclosure design intended for each Echo sensing node; production remains in progress."
+          "src": "/media/projects/sonous/echo-field-hardware.webp",
+          "alt": "Sonous Echo field test setup with a drone controller, laptop, sensing hardware, and test vehicles",
+          "caption": "Field test setup for the Echo acoustic sensing system."
         },
         {
           "src": "/media/projects/sonous/echo-dashboard-devices.png",
@@ -278,9 +278,9 @@
           "caption": "The circular layouts are intended for watches and other accessible companion devices."
         },
         {
-          "src": "/media/projects/sonous/echo-enclosure-side.webp",
-          "alt": "Side cutaway view of the selected Echo node enclosure assembly in SolidWorks",
-          "caption": "Side view showing the enclosure structure and internal component arrangement."
+          "src": "/media/projects/sonous/echo-enclosure-top.webp",
+          "alt": "Top perspective of the selected Echo node enclosure assembly in SolidWorks",
+          "caption": "Selected enclosure design intended for each Echo sensing node; production remains in progress."
         },
         {
           "src": "/media/projects/sonous/echo-dashboard-demo.mov",

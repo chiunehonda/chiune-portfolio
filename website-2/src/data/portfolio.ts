@@ -243,16 +243,16 @@ const sonousElectronicsBench: PortfolioImage = {
     "Bench setup showing the Raspberry Pi, connected breakout hardware, wiring, and powered development state.",
 };
 const highlightedProjectMedia = [
-  ...highlightedProject.images.slice(0, 3),
+  ...highlightedProject.images.slice(0, 4),
   sonousElectronicsBench,
-  ...highlightedProject.images.slice(3),
+  ...highlightedProject.images.slice(4, 5),
 ];
 const highlightStageCopy = [
   ["01 / Field demo", "Echo outdoors"],
-  ["02 / Enclosure", "Node enclosure"],
+  ["02 / Field testing", "Echo test setup"],
   ["03 / Companion displays", "Dashboard across devices"],
-  ["04 / Electronics", "Echo node bench setup"],
-  ["05 / Internal layout", "Inside an Echo node"],
+  ["04 / Enclosure", "Node enclosure"],
+  ["05 / Electronics", "Echo node bench setup"],
   ["06 / Dashboard", "Operator interface in motion"],
 ] as const;
 
