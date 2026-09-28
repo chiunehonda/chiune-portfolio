@@ -218,7 +218,6 @@ export const experienceProjectIds = [
 ] as const;
 
 const selectedWorkOrder = [
-  "so-101-robot-arm",
   "radiator-conjugate-heat-transfer",
   "v6-engine",
   "hydroelectric-generator",
