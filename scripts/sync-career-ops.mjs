@@ -5,6 +5,8 @@ import { validatePortfolioDatabase } from "./portfolio-schema.mjs";
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const defaultCareerOpsRoots = [
+  "C:\\Users\\Chiune Honda\\Documents\\career-ops\\career-ops",
+  "C:\\Users\\Chiune Honda\\career-ops",
   "C:\\Windows\\System32\\career-ops",
   "C:\\Users\\Chiune Honda\\Documents\\career-ops",
 ];

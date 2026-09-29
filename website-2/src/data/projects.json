@@ -1,7 +1,34 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28",
+  "updatedAt": "2026-09-29",
   "experiences": [
+    {
+      "id": "ubc-solar-vehicle-dynamics-2026",
+      "company": "UBC Solar",
+      "role": "Vehicle Dynamics Designer",
+      "location": "Vancouver, BC",
+      "timeframe": "Sep 2026–present",
+      "status": "in-progress",
+      "public": true,
+      "summary": "Recently joined the vehicle dynamics team for UBC Solar's student-built solar car. Design work is in progress; technical outcomes will be added when verified.",
+      "disclosure": "Current student design-team role. No design outcomes or performance results are claimed yet.",
+      "website": "https://www.ubcsolar.com/",
+      "logo": {
+        "src": "/media/brand/ubc-solar-logo.png",
+        "alt": "UBC Solar"
+      },
+      "projects": [
+        {
+          "id": "ubc-solar-vehicle-dynamics-work",
+          "title": "Vehicle dynamics",
+          "summary": "Current design-team work; requirements, design decisions, and results are still being developed.",
+          "image": {
+            "src": "/media/brand/ubc-solar-logo.png",
+            "alt": "UBC Solar wordmark"
+          }
+        }
+      ]
+    },
     {
       "id": "starsolutions-internship-2026",
       "company": "Star Solutions",

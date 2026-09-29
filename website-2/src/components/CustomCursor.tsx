@@ -6,7 +6,7 @@ export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches) return;
 
     let frame = 0;
     let currentX = window.innerWidth / 2;
@@ -30,16 +30,10 @@ export function CustomCursor() {
     };
     const over = (event: PointerEvent) => {
       const target = event.target as Element | null;
-      cursorRef.current?.classList.toggle(
-        "is-clickable",
-        Boolean(target?.closest(clickableSelector)),
-      );
+      cursorRef.current?.classList.toggle("is-clickable", Boolean(target?.closest(clickableSelector)));
     };
     const scroll = () => {
-      cursorRef.current?.classList.toggle(
-        "is-compact",
-        window.scrollY > window.innerHeight * 1.35,
-      );
+      cursorRef.current?.classList.toggle("is-compact", window.scrollY > window.innerHeight * 1.35);
     };
     const leave = () => cursorRef.current?.classList.remove("is-visible");
 
