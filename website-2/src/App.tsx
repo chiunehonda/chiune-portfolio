@@ -5,11 +5,17 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { SakuraLeft } from "@/components/SakuraLeft";
 
 const featuredIds = [
-  "subc-drivetrain", "sonous-acoustic-drone-sensing", "starsolutions-engineering-internship",
+  "subc-drivetrain", "sonous-acoustic-drone-sensing", "so-101-robot-arm", "starsolutions-engineering-internship",
   "radiator-conjugate-heat-transfer", "v6-engine", "hydroelectric-generator", "apsc-101-study-system",
 ] as const;
 
 const notes: Record<string, { situation: string; action: string; evidence: string; next: string }> = {
+  "so-101-robot-arm": {
+    situation: "The arm had to become a reliable working platform before any redesign could be judged. Mechanical fit, cable routing, motor setup, calibration, code, and feedback all affect whether a commanded move becomes useful motion.",
+    action: "The control process moved from controller connection and motor calibration to running Python motion commands. Telemetry and live tests were used to inspect how the assembled arm responded. The media follows that sequence from assembly and wiring through motion tests, then shows the claw and handle CAD work now underway.",
+    evidence: "The baseline arm is assembled, calibrated, and shown moving in the test clips. The redesign images show work in progress; they do not establish an improved grip, a finished handle, or a validated FEA result.",
+    next: "Finish the claw and handle geometry, compare the revised claw under representative loads, then test the physical changes against the working baseline.",
+  },
   "subc-drivetrain": {
     situation: "The package had to turn human input into two concentric propeller outputs inside a limited hull envelope. Output speed, shaft alignment, mass, serviceability, and underwater reliability were the governing requirements.",
     action: "The design cycle connected hand calculations to a buildable layout: AGMA gear sizing, DE-Goodman shaft fatigue checks, and static FEA on gears and housing. Pocketing and ribs removed material where the model showed it was less useful. A four-plate 6061-T6 housing kept machining and assembly access in view, a practical DFMA decision.",
@@ -102,7 +108,7 @@ function App() {
       <a href="#/" className="back-link"><ArrowLeft size={16} /> Back to work</a>
       <div className="eyebrow">{detail.categoryLabel} <span>/</span> {detail.timeframe}</div>
       <h1>{detail.title}</h1>
-      <p className="case-deck">{detail.summary}</p>
+      <p className="case-deck">{detail.subtitle && <><small>{detail.subtitle}</small><br /></>}{detail.summary}</p>
       <div className="case-hero-media"><Media media={detail.images[0]} eager /></div>
       <div className="case-body">
         <aside className="case-index" aria-label="Case study sections"><span>CASE STUDY</span>{[["situation", "01 / Situation"], ["task", "02 / Task"], ["action", "03 / Action"], ["result", "04 / Result"], ["next", "05 / Next cycle"]].map(([id, label]) => <button type="button" key={id} onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })}>{label}</button>)}</aside>

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29",
+  "updatedAt": "2026-10-23",
   "experiences": [
     {
       "id": "ubc-solar-vehicle-dynamics-2026",
@@ -495,6 +495,86 @@
         {
           "label": "Visit practice quiz",
           "href": "/projects/apsc101-practice-midterm.html"
+        }
+      ]
+    },
+    {
+      "id": "so-101-robot-arm",
+      "title": "6-Degree-of-Freedom Robot Arm",
+      "category": "mechatronics",
+      "categoryLabel": "Mechatronics",
+      "timeframe": "SO-101 platform · five arm joints + gripper · 2026",
+      "status": "completed",
+      "public": true,
+      "portfolioVisibility": "highlight",
+      "cardSummary": "Assembled and wired a working arm, brought up its control code and telemetry, and began redesigning the claw.",
+      "subtitle": "From a box of printed parts to controlled motion",
+      "summary": "Built the arm through mechanical assembly, servo wiring, setup, calibration, and Python-based control. Motion tests established a working baseline; the claw and handle are now being redesigned.",
+      "goal": "Build and bring up a working arm, verify its commanded motion and telemetry, then use the baseline to guide a stronger, more usable claw design.",
+      "built": "Assembled the printed structure and servos, routed and connected the wiring, and calibrated the arm. The software setup used Ubuntu through WSL2, a dedicated LeRobot Python environment, and USB-connected controllers. After establishing a working baseline, began iterating the claw and handle geometry in CAD and running finite element analysis on the revised claw.",
+      "result": "The assembled and calibrated arm completed live motion tests. Claw and handle redesign remain in progress, as does finite element analysis of the revised claw; final redesign performance and validation results have not been established.",
+      "skills": [
+        "robotics",
+        "assembly",
+        "calibration",
+        "Python",
+        "finite element analysis",
+        "iterative design",
+        "wiring",
+        "telemetry"
+      ],
+      "verifiedFacts": [
+        "Completed assembly, wiring, setup, calibration, and a working SO-101 robot-arm baseline.",
+        "Used Python control, commanded motion tests, and telemetry during bring-up.",
+        "Claw-mechanism redesign is in progress.",
+        "Finite element analysis of the revised claw design is in progress; final validation results have not been established."
+      ],
+      "images": [
+        {
+          "src": "/media/projects/robot-arm/robot-arm-assembled.webp",
+          "alt": "Assembled robot arm with its wiring visible on the workbench",
+          "caption": "Completed baseline arm after assembly, wiring, setup, and calibration."
+        },
+        {
+          "src": "/media/projects/robot-arm/robot-arm-build-table.webp",
+          "alt": "Printed arm components, servos, and tools laid out for assembly",
+          "caption": "The build began with printed links, servos, fasteners, and wiring laid out on the worktable."
+        },
+        {
+          "src": "/media/projects/robot-arm/robot-arm-assembly.mp4",
+          "alt": "Builders assembling and wiring the robot arm at a worktable",
+          "caption": "Assembly footage shows the hands-on fit-up and wiring process.",
+          "kind": "video",
+          "poster": "/media/projects/robot-arm/robot-arm-assembly-poster.webp"
+        },
+        {
+          "src": "/media/projects/robot-arm/robot-arm-both-arms-a.mp4",
+          "alt": "Uncropped vertical video showing the leader arm on the right and follower arm on the left during motion testing",
+          "caption": "Both arms in frame: the hand-guided leader on the right and the responding follower on the left.",
+          "kind": "video",
+          "poster": "/media/projects/robot-arm/robot-arm-both-arms-a-poster.webp"
+        },
+        {
+          "src": "/media/projects/robot-arm/robot-arm-both-arms-b.mp4",
+          "alt": "Second uncropped motion clip showing the leader and follower robot arms together",
+          "caption": "The second motion sequence keeps the leader and follower visible together as their positions change.",
+          "kind": "video",
+          "poster": "/media/projects/robot-arm/robot-arm-both-arms-b-poster.webp"
+        },
+        {
+          "src": "/media/projects/robot-arm/robot-arm-gripper-detail.webp",
+          "alt": "Close view of the assembled robot arm gripper",
+          "caption": "A close view of the original gripper that informs the redesign."
+        },
+        {
+          "src": "/media/projects/robot-arm/robot-arm-claw-redesign.webp",
+          "alt": "CAD view of the robot arm claw redesign in progress",
+          "caption": "Claw geometry under active redesign and finite element analysis; no final validation result is claimed."
+        },
+        {
+          "src": "/media/projects/robot-arm/robot-arm-handle-redesign.webp",
+          "alt": "CAD view of the robot arm handle redesign in progress",
+          "caption": "Handle concept under iteration; final geometry has not been selected."
         }
       ]
     }

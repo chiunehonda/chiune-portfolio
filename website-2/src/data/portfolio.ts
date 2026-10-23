@@ -43,6 +43,7 @@ export interface ProjectCaseStudy {
   categoryLabel: string;
   timeframe: string;
   cardSummary: string;
+  subtitle?: string;
   summary: string;
   goal: string;
   built: string;

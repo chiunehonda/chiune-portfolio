@@ -32,3 +32,4 @@
 @media(hover:hover) and (pointer:fine){.flip-heading[data-revealing] .flip-japanese{opacity:1;transition-duration:100ms}}
 .flip-heading:focus-visible{outline:2px solid var(--pink);outline-offset:3px}.flip-heading:focus-visible .flip-japanese{mask-image:none;opacity:1}
 @media(prefers-reduced-motion:reduce){.flip-japanese{transition:none}}
+.case-figure video[src*="robot-arm-both-arms"]{display:block;width:min(100%,315px);height:auto;max-height:min(70svh,560px);margin-inline:auto}
