@@ -1,6 +1,11 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-23",
+  "updatedAt": "2026-10-24",
+  "selfReportedSkills": [
+    "GD&T",
+    "DFMA",
+    "FMEA"
+  ],
   "experiences": [
     {
       "id": "ubc-solar-vehicle-dynamics-2026",
@@ -10,8 +15,8 @@
       "timeframe": "Sep 2026–present",
       "status": "in-progress",
       "public": true,
-      "summary": "Recently joined the vehicle dynamics team for UBC Solar's student-built solar car. Design work is in progress; technical outcomes will be added when verified.",
-      "disclosure": "Current student design-team role. No design outcomes or performance results are claimed yet.",
+      "summary": "Joined UBC Solar's vehicle dynamics team and began evaluating suspension-rocker concepts in ANSYS FEA. Aluminum and carbon-fibre options remain under consideration.",
+      "disclosure": "Current student design-team role. Rocker concepts and material choices are in progress; no final design, manufactured part, or validated performance result is claimed.",
       "website": "https://www.ubcsolar.com/",
       "logo": {
         "src": "/media/brand/ubc-solar-logo.png",
@@ -20,8 +25,8 @@
       "projects": [
         {
           "id": "ubc-solar-vehicle-dynamics-work",
-          "title": "Vehicle dynamics",
-          "summary": "Current design-team work; requirements, design decisions, and results are still being developed.",
+          "title": "Suspension rocker development",
+          "summary": "Comparing early aluminum and carbon-fibre rocker concepts with ANSYS FEA; design selection and validation are still in progress.",
           "image": {
             "src": "/media/brand/ubc-solar-logo.png",
             "alt": "UBC Solar wordmark"
@@ -37,7 +42,7 @@
       "timeframe": "Jul–Aug 2026",
       "public": true,
       "summary": "Supported iCell COMPAC-N RF hardware through mechanical design, supplier sourcing, VNA testing, and integration documentation.",
-      "disclosure": "Completed as part of a Mechanical / Electrical Engineering internship. Published with Star Solutions' explicit permission; only employer-reviewed and approved artifacts are shown.",
+      "disclosure": "Completed as part of a Mechanical / Electrical Engineering internship. Earlier technical materials were reviewed and approved for public display by Star Solutions; the finished-part and chassis fit-check photos were supplied by Chiune.",
       "website": "https://www.starsolutions.com/",
       "logo": {
         "src": "/media/brand/star-solutions-logo.png",
@@ -47,19 +52,19 @@
         {
           "id": "starsolutions-rf-adapter",
           "title": "RF hardware design",
-          "summary": "Designed a chassis-mounted RF adapter, manufacturing package, and prototype fit-check.",
+          "summary": "Designed a chassis-mounted RF adapter through CAD, a 3D-printed fit check, manufacturing drawings, and a finished metal part.",
           "image": {
-            "src": "/media/experience/nex10-sma-adapter.png",
-            "alt": "SolidWorks assembly preview of the chassis-mounted NEX10-to-SMA adapter"
+            "src": "/media/experience/starsolutions/nex10-sma-manufactured.jpg",
+            "alt": "Finished metal NEX10-to-SMA chassis adapter"
           }
         },
         {
           "id": "starsolutions-rf-validation",
           "title": "RF validation and integration",
-          "summary": "Validated RF splitters with a VNA and mapped COMPAC-N system interfaces.",
+          "summary": "Used a Keysight E5071C to test two four-way splitters at 4.01 GHz; 24 measurements passed applicable limits.",
           "image": {
-            "src": "/media/experience/starsolutions/rf-validation-results.png",
-            "alt": "Validation-report charts comparing measured RF splitter performance with datasheet values"
+            "src": "/media/experience/starsolutions/network-analyzer-setup.webp",
+            "alt": "Keysight E5071C vector network analyzer used for RF splitter testing"
           }
         }
       ]
@@ -71,12 +76,12 @@
       "location": "Vancouver, BC",
       "timeframe": "2025–2026",
       "public": true,
-      "summary": "Designed, simulated, and built sealed drivetrain components for UBC’s human-powered submarine.",
+      "summary": "Worked on SUBC's drivetrain design, focusing on gearbox-plate weight reduction through calculations and FEA, plus a SolidWorks backplate model, drawing, and machining work.",
       "disclosure": "Student design-team experience. Results shown reflect completed design, simulation, machining, and assembly work.",
       "website": "https://subc.ca/",
       "logo": {
-        "src": "/media/brand/ubc-logo.svg",
-        "alt": "The University of British Columbia"
+        "src": "/media/brand/subc-logo.svg",
+        "alt": "SUBC"
       },
       "projects": [
         {
@@ -91,16 +96,84 @@
         {
           "id": "subc-drivetrain-analysis-build",
           "title": "Analysis and build",
-          "summary": "Ran 30+ simulations, reduced mass, and carried the design through machining and assembly.",
+          "summary": "Compared plate concepts with FEA and took a frame backplate from CAD and drawing into machining.",
           "image": {
             "src": "/media/projects/subc-built-gearbox-raw.webp",
             "alt": "Top view of the machined SUBC bevel gearbox"
           }
         }
       ]
+    },
+    {
+      "id": "sonous-echo-development-2026",
+      "company": "Sonous Systems",
+      "role": "Co-Founder and Chief Technical Officer",
+      "location": "Vancouver, BC",
+      "timeframe": "2026–present",
+      "status": "in-progress",
+      "public": true,
+      "summary": "Developing the Echo acoustic-sensing prototype across SolidWorks enclosure design, six-channel audio capture, Python model evaluation, direction finding, and operator views.",
+      "disclosure": "Early-stage Sonous Systems work. Offline classifier results are measured; quantitative field detection and localization performance remain unverified.",
+      "website": "https://sonous.ca/",
+      "logo": {
+        "src": "/media/brand/sonous-logo.png",
+        "alt": "Sonous Systems"
+      },
+      "projects": [
+        {
+          "id": "sonous-echo-development",
+          "title": "Echo acoustic sensing",
+          "summary": "Designed the node enclosure and built the audio-data and evaluation pipeline; field validation remains in progress.",
+          "image": {
+            "src": "/media/projects/sonous/site-poster.jpg",
+            "alt": "Echo acoustic sensing node and mobile rover concept"
+          }
+        }
+      ]
     }
   ],
   "projects": [
+    {
+      "id": "ubc-solar-suspension-rockers",
+      "title": "UBC Solar Suspension Rockers",
+      "category": "mechanical",
+      "categoryLabel": "Vehicle Dynamics",
+      "timeframe": "UBC Solar · Sep 2026–present",
+      "status": "in-progress",
+      "public": true,
+      "cardSummary": "Evaluating aluminum and carbon-fibre suspension-rocker concepts through ANSYS FEA.",
+      "summary": "Started suspension-rocker development for UBC Solar's vehicle dynamics team. Aluminum and carbon-fibre options are being compared; the design has not been selected or built.",
+      "goal": "Reduce rocker mass while preserving the strength, stiffness, wheel-to-shock load path, and intended suspension motion ratio.",
+      "built": "Current work: generate and compare front rocker concepts, including a D1 aluminum twin-plate option modeled in CAD, then evaluate candidate geometries with ANSYS FEA against suspension loads and packaging requirements.",
+      "result": "Material selection and geometry validation are in progress; manufacturing and physical testing have not started.",
+      "skills": [
+        "ANSYS FEA",
+        "suspension design",
+        "mechanical design",
+        "material comparison",
+        "vehicle dynamics"
+      ],
+      "verifiedFacts": [
+        "Joined the UBC Solar vehicle dynamics team in September 2026.",
+        "Started work on suspension-rocker concepts for the team's solar car.",
+        "Aluminum and carbon-fibre options are under consideration; no material has been selected.",
+        "Different rocker designs are currently being evaluated with ANSYS FEA.",
+        "No completed rocker, measured mass saving, or validated performance result is claimed.",
+        "The supplied front_D1_aluminium_twin_plates STEP model documents an aluminum twin-plate front rocker concept under consideration, not a selected or manufactured design."
+      ],
+      "images": [
+        {
+          "src": "/media/brand/ubc-solar-logo.png",
+          "alt": "UBC Solar logo",
+          "caption": "UBC Solar team logo."
+        },
+        {
+          "src": "/media/projects/ubc-solar-existing-steel-rocker.png",
+          "alt": "CAD view of UBC Solar's existing steel suspension rocker",
+          "caption": "Existing steel rocker used as the baseline for the in-progress redesign; this is not a completed new design."
+        }
+      ]
+    },
     {
       "id": "subc-drivetrain",
       "title": "SUBC Submarine Drivetrain",
@@ -109,19 +182,21 @@
       "timeframe": "2025–2026",
       "status": "completed",
       "public": true,
-      "cardSummary": "A 2:1 contra-rotating gearbox developed through CAD, calculations, FEA, and machining.",
-      "summary": "Designed a compact 2:1 straight-bevel gearbox to transfer pilot power to UBC SUBC's counter-rotating propellers.",
-      "goal": "Deliver 180 RPM to concentric, counter-rotating shafts while minimizing gearbox mass and maintaining alignment, strength, serviceability, and underwater reliability.",
-      "built": "Combined AGMA gear calculations, DE-Goodman shaft fatigue analysis, and SolidWorks static FEA to iterate bevel gears and ribbed, pocketed 6061-T6 housing plates, then carried parts through waterjet cutting and other shop machining processes.",
-      "result": "Reduced modeled bottom-plate mass by 38%—from 2.35 lb to 1.45 lb—then manufactured and assembled the four-plate housing, bevel gears, concentric shafts, bearings, bushings, and retainers, gaining hands-on waterjet and mechanical machining experience.",
+      "cardSummary": "Drivetrain design work focused on FEA-guided plate weight reduction and a machined frame backplate.",
+      "summary": "Contributed to SUBC's 2:1 contra-rotating drivetrain, with a focus on lighter gearbox plates and a frame backplate taken from CAD into the shop.",
+      "goal": "The drivetrain subteam designs and refines the pilot-to-propeller powertrain for SUBC's human-powered submarine. My focus was reducing plate mass while checking load paths and developing a frame backplate that could be drawn and machined.",
+      "built": "Developed spreadsheet-based gear-force and mounting-reaction load cases for SolidWorks static FEA, alongside AGMA gear calculations and DE-Goodman shaft fatigue analysis. Compared uncut, pocketed, and ribbed bottom-plate concepts; modeled the frame backplate in SolidWorks, prepared its dimensioned drawing, and worked on its machining.",
+      "result": "Compared a 2.35 lb uncut bottom-plate model with a 1.45 lb pocketed concept, a 38% modeled mass reduction, and also studied a 1.51 lb alternative. Produced the frame-backplate CAD model and machining drawing and brought the part into the mill while the team manufactured and assembled the drivetrain.",
       "skills": [
         "SolidWorks",
         "static FEA",
+        "FEA Load Development",
         "AGMA gear analysis",
         "DE-Goodman fatigue analysis",
         "CNC design",
         "waterjet cutting",
-        "mechanical machining",
+        "Lathe",
+        "Milling",
         "tolerance and fit"
       ],
       "verifiedFacts": [
@@ -129,7 +204,11 @@
         "Targeted 180 RPM through concentric, counter-rotating output shafts.",
         "Used AGMA bevel-gear stress calculations and DE-Goodman shaft fatigue analysis.",
         "Ran SolidWorks static FEA on the bevel gears and housing plates.",
+        "The small-bevel-pair spreadsheet uses the design report's nominal 110 W per propeller at 90 RPM and a 24:12 tooth pair, calculates 180 RPM output and 8.61/4.30 ft-lbf shaft torques, then resolves one gear-force case into 137.7 lbf tangential, 22.4 lbf radial, and 44.8 lbf axial components.",
+        "A separate bottom-plate spreadsheet starts with larger/smaller gear tangential inputs of 162.824/181.476 lbf; over a 5.75 in support span, it resolves the larger-gear input to 54.9 and 108.0 lbf reactions, then halves those values for two mounting holes at each location. The source workbooks do not document a direct handoff between their differing gear-force inputs.",
         "Reduced modeled bottom-plate mass by 38%, from 2.35 lb to 1.45 lb.",
+        "Compared an uncut 2.35 lb bottom-plate model, a pocketed 1.45 lb concept, and a 1.51 lb alternative in SolidWorks stress studies; the images alone do not establish physical validation or a passing safety factor.",
+        "Modeled a frame backplate in SolidWorks, prepared a dimensioned drawing showing its recessed pocket, center bore, and four-hole pattern, and worked on machining the part.",
         "Designed the housing around 6061-T6 plates and CNC manufacturing.",
         "Manufactured and assembled the four-plate housing, 1144 carbon-steel bevel gears, concentric shafts, bearings, bushings, and retainers.",
         "Used waterjet cutting and other shop machining processes while producing mechanical parts.",
@@ -149,6 +228,31 @@
           "alt": "SolidWorks static FEA stress contour on the pocketed SUBC gearbox bottom plate"
         },
         {
+          "src": "/media/projects/subc-plate-uncut-fea.png",
+          "alt": "SolidWorks stress study of the uncut SUBC gearbox bottom-plate concept",
+          "caption": "Uncut baseline · 2.35 lb modeled mass."
+        },
+        {
+          "src": "/media/projects/subc-plate-pocketed-fea.png",
+          "alt": "SolidWorks stress study showing cutouts in a pocketed SUBC gearbox bottom-plate concept",
+          "caption": "Pocketed concept · 1.45 lb modeled mass, 38% below the uncut baseline."
+        },
+        {
+          "src": "/media/projects/subc-plate-xrib-fea.png",
+          "alt": "SolidWorks stress study of an alternate X-rib SUBC gearbox bottom-plate concept",
+          "caption": "Alternate X-rib concept · 1.51 lb modeled mass."
+        },
+        {
+          "src": "/media/projects/subc-backplate-drawing.png",
+          "alt": "Dimensioned SolidWorks drawing of the SUBC frame backplate with a recessed pocket, center bore, and four mounting holes",
+          "caption": "SolidWorks backplate drawing used to plan the pocket, bore, and mounting features."
+        },
+        {
+          "src": "/media/projects/subc-backplate-machining.png",
+          "alt": "SUBC frame backplate positioned on a milling machine with its pocket and center bore visible",
+          "caption": "Backplate machining in progress at the mill."
+        },
+        {
           "src": "/media/projects/subc-built-gearbox-raw.webp",
           "alt": "Top view of the machined SUBC bevel gearbox"
         },
@@ -160,6 +264,26 @@
           "src": "/media/projects/subc-waterjet-cut-plate.webp",
           "alt": "Aluminum plate after waterjet cutting, showing the cut SUBC mark and mounting features",
           "caption": "Supporting evidence of hands-on waterjet cutting and mechanical shop work."
+        },
+        {
+          "src": "/media/projects/subc-drivetrain-assembly.jpg",
+          "alt": "Team members fitting drivetrain components into the machined SUBC gearbox housing on a workbench",
+          "caption": "Fitting the drivetrain components into the machined gearbox housing."
+        },
+        {
+          "src": "/media/projects/subc-poolside-setup.jpg",
+          "alt": "SUBC submarine hull and drivetrain held at the edge of a swimming pool",
+          "caption": "The SUBC submarine and drivetrain during poolside setup."
+        }
+      ],
+      "links": [
+        {
+          "label": "View backplate drawing (PDF)",
+          "href": "/media/projects/subc-backplate-drawing.pdf"
+        },
+        {
+          "label": "Download SolidWorks backplate model",
+          "href": "/media/projects/subc-backplate-model.sldprt"
         }
       ]
     },
@@ -171,19 +295,22 @@
       "timeframe": "Mechanical / Electrical Engineering Intern · Jul–Aug 2026",
       "status": "completed",
       "public": true,
-      "cardSummary": "A mechanical and electrical engineering internship spanning RF hardware design, supplier sourcing, VNA validation, and integration documentation.",
-      "summary": "During a two-month internship at Star Solutions in Richmond, BC, supported development of the iCell COMPAC-N LTE network-in-a-box through mechanical design, supplier sourcing, vector network analyzer testing, and electrical integration documentation.",
-      "goal": "Support the engineering team with practical improvements to RF hardware integration, reliability, sourcing, and build documentation while working within an active commercial chassis program.",
-      "built": "Designed a direct chassis-mounted NEX10-to-SMA adapter in SolidWorks, produced a three-sheet manufacturing drawing, and fit-checked a 3D-printed prototype. Researched suppliers and compared quotations, validated two four-way RF splitters at 4.01 GHz with a Keysight E5071C across 24 measurements plus amplitude unbalance, and created an end-to-end COMPAC-N cable and block diagram.",
-      "result": "The splitter measurements averaged 2.0% deviation from datasheet typicals and passed every applicable hard limit. Supplier quotes proposed $18.71 per unit at MOQ 100 and $13.72 at MOQ 300—about 81–86% below the approximately $100 off-the-shelf baseline—with four validation samples and a 4–5-week lead time; these were quoted terms, not realized savings, purchases, or production results.",
-      "disclosure": "Completed as part of a Mechanical / Electrical Engineering internship. Published with Star Solutions' explicit permission; only employer-reviewed and approved artifacts are shown.",
+      "cardSummary": "Used SolidWorks and DFMA principles to take a chassis-mounted RF adapter through a 3D-printed fit check, three-sheet drawing, and finished metal part.",
+      "summary": "At Star Solutions, I designed one direct chassis-mounted NEX10-to-SMA adapter in SolidWorks to address an over-torque failure mode and eliminate an intermediate cable from the design. I checked a 3D-printed prototype, prepared a three-sheet manufacturing drawing, and received the metal part shown here. I also tested two four-way RF splitters at 4.01 GHz with a Keysight E5071C.",
+      "goal": "Apply design for manufacture and assembly (DFMA) to a direct panel-mounted RF connection: reduce intermediate hardware, account for chassis-wall thickness and inside-nut installation, and document a part a supplier could quote. Separately, verify two four-way splitters against RF datasheet limits at 4.01 GHz.",
+      "built": "Modeled the NEX10-to-SMA adapter in SolidWorks around panel thickness, nut access, thread engagement, and cable clearance. Produced a three-sheet manufacturing drawing and a 3D-printed fit check before receiving the finished metal part. Used a Keysight E5071C vector network analyzer to collect 24 insertion-loss, isolation, and VSWR measurements across two four-way splitters at 4.01 GHz, plus amplitude-unbalance values. Compared supplier quotations and mapped the COMPAC-N cable and block interfaces in Microsoft Visio.",
+      "result": "The finished metal adapter was manufactured and received; the photos document its progression from CAD and printed prototype to physical hardware, not production qualification. The splitter measurements averaged 2.0% deviation from datasheet typicals and passed applicable hard limits. Amplitude unbalance was 0.135 and 0.150 dB against a 0.6 dB maximum. Supplier prices of $18.71 per unit at MOQ 100 and $13.72 at MOQ 300, with four proposed samples and a 4–5-week lead time, were quoted terms rather than realized savings or purchases.",
+      "disclosure": "Completed as part of a Mechanical / Electrical Engineering internship. Earlier technical materials were reviewed and approved for public display by Star Solutions; the finished-part and chassis fit-check photos were supplied by Chiune.",
       "skills": [
         "SolidWorks",
+        "DFMA",
+        "3D printing",
         "manufacturing drawings",
         "RF connectors",
-        "vector network analyzer testing",
+        "Keysight E5071C VNA",
+        "S-parameter testing",
         "supplier sourcing",
-        "technical documentation",
+        "Microsoft Visio",
         "cable and block diagrams"
       ],
       "verifiedFacts": [
@@ -191,33 +318,62 @@
         "Supported the iCell COMPAC-N LTE network-in-a-box through mechanical design, sourcing, RF validation, and integration documentation.",
         "Designed a direct chassis-mounted NEX10-to-SMA adapter to address an over-torque failure mode and remove intermediate cabling.",
         "Produced a three-sheet manufacturing drawing and fit-checked a 3D-printed prototype for engineering review.",
+        "Applied DFMA reasoning to panel thickness, internal nut access, thread engagement, and removal of intermediate cabling in the proposed adapter design.",
+        "A finished metal NEX10-to-SMA adapter was manufactured and received after the CAD and printed-prototype stages.",
         "Received supplier quotes of $18.71 per unit at MOQ 100 and $13.72 per unit at MOQ 300, with four validation samples and a 4–5-week proposed lead time.",
         "Quoted terms were approximately 81–86% below the approximately $100 off-the-shelf baseline, but were not realized savings, completed purchases, or production results.",
         "Validated two 250–6000 MHz four-way RF splitters at 4.01 GHz with a Keysight E5071C vector network analyzer.",
         "Analyzed 24 insertion-loss, isolation, and VSWR measurements plus amplitude unbalance, reaching 2.0% mean deviation from datasheet typicals while passing all applicable hard limits.",
+        "Measured amplitude unbalance of 0.135 and 0.150 dB for the two splitters against a 0.6 dB datasheet maximum.",
         "Created an end-to-end cable and block diagram documenting RF, baseband, CPU, power, dual-amplifier, band-pass-filter, and numbered interface connections.",
-        "Star Solutions explicitly approved the displayed artifacts for public use."
+        "Used Microsoft Visio for integration-diagram work during the internship.",
+        "Star Solutions approved the earlier technical materials for public use; Chiune supplied the finished-part and chassis fit-check photos later."
       ],
       "images": [
         {
-          "src": "/media/experience/starsolutions/nex10-sma-manufacturing-drawing.png",
-          "alt": "Engineer-approved manufacturing drawing for the NEX10-to-SMA chassis adapter",
-          "caption": "Three-sheet manufacturing package prepared during the Star Solutions internship."
+          "src": "/media/experience/starsolutions/nex10-sma-manufactured.jpg",
+          "alt": "Finished metal NEX10-to-SMA chassis adapter with threaded ends and mounting hardware",
+          "caption": "The finished metal adapter, received after the CAD and 3D-printed fit-check stages."
         },
         {
-          "src": "/media/experience/nex10-sma-adapter.png",
-          "alt": "SolidWorks assembly preview of the chassis-mounted NEX10-to-SMA adapter",
-          "caption": "SolidWorks adapter design created and prototype fit-checked during the internship."
+          "src": "/media/experience/starsolutions/nex10-sma-adapter-updated.webp",
+          "alt": "Clear CAD render of the full NEX10-to-SMA chassis adapter",
+          "caption": "The adapter design in CAD, before the printed fit check and metal part."
+        },
+        {
+          "src": "/media/experience/starsolutions/adapter-prototype.webp",
+          "alt": "Black 3D-printed NEX10-to-SMA adapter prototype",
+          "caption": "3D-printed prototype used to check the fit before manufacturing."
+        },
+        {
+          "src": "/media/experience/starsolutions/adapter-fit-8221.webp",
+          "alt": "Interior of the RF chassis showing panel-mounted connectors, neighboring modules, and coax cables",
+          "caption": "Chassis fit-check view: the panel connectors, nearby RF hardware, and coax routing show the space the adapter had to work within."
+        },
+        {
+          "src": "/media/experience/starsolutions/adapter-fit-8222.webp",
+          "alt": "Second angle inside the RF chassis showing a connector through the enclosure wall and cable routing",
+          "caption": "A second fit-check angle showing the connector position at the chassis wall and clearance around the internal cable path."
+        },
+        {
+          "src": "/media/experience/starsolutions/nex10-sma-manufacturing-drawing.png",
+          "alt": "Engineer-approved manufacturing drawing for the NEX10-to-SMA chassis adapter",
+          "caption": "One sheet from the three-sheet manufacturing drawing package, with connector dimensions, hardware, and materials."
         },
         {
           "src": "/media/experience/starsolutions/supplier-quote-redacted.png",
           "alt": "Approved supplier quotation terms showing unit prices, quantities, sample plan, and lead time with personal information removed",
-          "caption": "Quoted terms only; not realized savings, purchases, or production results."
+          "caption": "Supplier quotes: $18.71 per unit at 100 and $13.72 at 300, with four proposed samples and a 4–5-week lead time. These were not purchases or realized savings."
+        },
+        {
+          "src": "/media/experience/starsolutions/network-analyzer-setup.webp",
+          "alt": "RF test bench with the Keysight E5071C vector network analyzer in the center and test cables attached",
+          "caption": "The Keysight E5071C vector network analyzer at the RF bench. I used it to check the splitter paths at 4.01 GHz."
         },
         {
           "src": "/media/experience/starsolutions/rf-validation-results.png",
           "alt": "Validation-report charts comparing measured RF splitter performance with datasheet values",
-          "caption": "Two four-way RF splitters measured at 4.01 GHz with a Keysight E5071C."
+          "caption": "My comparison of insertion loss, port-to-port isolation, VSWR, and amplitude unbalance for two splitters against the datasheet."
         },
         {
           "src": "/media/experience/starsolutions/compac-n-cable-block-diagram.png",
@@ -229,16 +385,17 @@
     {
       "id": "sonous-acoustic-drone-sensing",
       "title": "Sonous Systems — Echo",
+      "subtitle": "Acoustic Drone Detection",
       "category": "mechatronics",
       "categoryLabel": "Mechatronics",
       "timeframe": "Independent team project · 2026",
       "status": "in-progress",
       "public": true,
-      "cardSummary": "Echo is Sonous Systems’ in-progress acoustic sensing product, combining embedded audio, machine-learning inference, bearing estimation, multi-node fusion, and operator interfaces.",
-      "summary": "Developing Echo at Sonous Systems, our startup: a distributed acoustic-sensing system built around enclosed Raspberry Pi/ReSpeaker/GPS nodes, a tactical dashboard, and compact companion displays intended for watches and other accessible devices.",
-      "goal": "Detect audible drones, estimate their bearing, and explore multi-node position estimates while maintaining source traceability and explicit data-license boundaries.",
-      "built": "Built a source-traceable data and evaluation pipeline and integrated YAMNet and PANNs/CNN14 inference, six-channel ReSpeaker capture, raw-channel direction finding, GPS/PPS-aware node messages, robust local-ENU bearing fusion, and tactical operator mapping. Designed the selected Echo node enclosure in SolidWorks and developed dashboard concepts spanning the main operator view and compact circular wearable/accessibility displays.",
-      "result": "A license-safe YAMNet head reached 0.900 F1, 0.925 balanced accuracy, and 0.984 ROC-AUC across 90 out-of-fold recordings in five-fold leakage-aware cross-validation. The mobile node is practically finished and entering field testing with encouraging early results; enclosure production, two stationary nodes, triangulation software, interface deployment, quantitative field calibration, and final validation remain in progress.",
+      "cardSummary": "Designing Echo acoustic sensing nodes and a mobile rover concept, from enclosure CAD and embedded audio to classification, bearing estimates, and operator views.",
+      "summary": "At Sonous Systems, I work on Echo: an acoustic drone-sensing platform spanning the sensing-node enclosure, embedded capture and detection software, bearing and multi-node concepts, and operator interfaces. The current Sonous site also introduces Mobile Echo, a rover concept that carries the node to a listening position.",
+      "goal": "Make an acoustic sensor that one person could place in a useful location, detect small drones by sound, report a bearing, and communicate uncertainty. The node must package microphones and electronics for deployment; the mobile concept must stop its own drive noise before listening.",
+      "built": "Designed the Echo node assembly in SolidWorks and worked through enclosure packaging, microphone placement, and internal component arrangement. On the software side, built a traceable audio dataset and leakage-aware evaluation pipeline, implemented six-channel prototype capture and raw-channel direction finding, and developed GPS/PPS-aware node messages, local-coordinate bearing fusion, and dashboard concepts. The new Sonous site presents a sealed four-microphone product direction and Mobile Echo rover imagery; that product description is distinct from the six-channel development prototype.",
+      "result": "An offline, license-safe YAMNet classification head reached 0.900 F1, 0.925 balanced accuracy, and 0.984 ROC-AUC across 90 out-of-fold recordings. The enclosure CAD and operator concepts show the intended system architecture. The Sonous site now presents fixed Echo and Mobile Echo concepts; quantitative field detection and localization performance are still unverified.",
       "skills": [
         "Python",
         "YAMNet",
@@ -264,13 +421,32 @@
         "Six-channel audio capture, raw-channel direction finding, GPS/PPS-aware messages, robust local-ENU bearing fusion, and operator mapping are implemented in software.",
         "The three-node fusion visual is a synthetic software demonstration, not a field result or measured localization-accuracy claim.",
         "Sonous Systems is the startup name and Echo is the product name.",
+        "ECHO stands for Early Counter-drone Hearing Outpost.",
         "The selected SolidWorks enclosure design is intended for each Echo sensing node; enclosure production remains in progress.",
         "The dashboard concept includes a main operator view and small circular layouts intended for watches and other accessible devices; deployment remains planned.",
         "The mobile physical node is practically finished and is entering field testing with encouraging early results.",
         "Two stationary nodes are being built, and triangulation software is under development to complete the three-node prototype.",
-        "Quantitative field calibration and final field validation remain incomplete; no measured localization-accuracy claim has been established."
+        "Quantitative field calibration and final field validation remain incomplete; no measured localization-accuracy claim has been established.",
+        "The current Sonous website describes Echo as a sealed four-microphone node that listens, classifies, and reports a bearing.",
+        "The current Sonous website introduces Mobile Echo as a rover carrying the same node; it halts before listening so its own drive noise does not mask incoming sound.",
+        "The supplied local as2-node-v9-assembly STEP file contains the Echo node enclosure assembly for an interactive CAD view."
       ],
       "images": [
+        {
+          "src": "/media/projects/sonous/site-poster.jpg",
+          "alt": "Echo sensing node mounted on the Mobile Echo rover in Sonous product imagery",
+          "caption": "Echo node and mobile platform as presented on sonous.ca; product imagery, not a performance test."
+        },
+        {
+          "src": "/media/projects/sonous/site-rover-wide.jpg",
+          "alt": "Wide view of the Mobile Echo rover carrying an acoustic sensing node",
+          "caption": "Mobile Echo concept: move the node to a listening position, halt, then listen."
+        },
+        {
+          "src": "/media/projects/sonous/site-rover-drive.jpg",
+          "alt": "Mobile Echo rover driving outdoors with the sensing node mounted on top",
+          "caption": "Mobile Echo rover with the Echo node mounted above its chassis."
+        },
         {
           "src": "/media/projects/sonous/echo-enclosure-top.webp",
           "alt": "Top perspective of the selected Echo node enclosure assembly in SolidWorks",
@@ -312,6 +488,16 @@
           "src": "/media/projects/sonous/cross-validation-confusion-matrices.png",
           "alt": "Cross-validation confusion matrices for the acoustic classifier",
           "caption": "Out-of-fold software evaluation of the license-safe YAMNet head; not a field-performance result."
+        }
+      ],
+      "links": [
+        {
+          "label": "Visit Sonous",
+          "href": "https://sonous.ca/"
+        },
+        {
+          "label": "See Mobile Echo",
+          "href": "https://sonous.ca/product.html"
         }
       ]
     },

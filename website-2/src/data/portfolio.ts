@@ -39,15 +39,16 @@ export interface PortfolioExperience {
 export interface ProjectCaseStudy {
   id: string;
   title: string;
+  subtitle?: string;
   category: ProjectCategory;
   categoryLabel: string;
   timeframe: string;
   cardSummary: string;
-  subtitle?: string;
   summary: string;
   goal: string;
   built: string;
   result: string;
+  skills?: string[];
   images: PortfolioImage[];
   links?: PortfolioLink[];
   disclosure?: string;
